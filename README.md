@@ -4,23 +4,35 @@ This repository contains the documentation for the central NOMAD distribution.
 
 ## Contributing
 
-To contribute, please open a pull request (PR) with your changes. **At least one review from a FAIRmat co-worker is required before merging**. If you are not sure who to assign, please ask in the PR conversation by tagging @ahm531 or @JFRudzinski.
+- Typos, corrections, and missing docs can be reported by [Creating an Issue](https://github.com/FAIRmat-NFDI/nomad-docs/issues/new)
+
+- For internal contributions (write access to the repo required), please open a pull request (PR) with your changes. **At least one review from a FAIRmat co-worker is required before merging**. If you are not sure who to assign, please ask in the PR conversation by tagging @ahm531 or @JFRudzinski.
+
+- For external contributions, please follow the [External Contribution Instructions](#external-contribution-instructions)
+
+### Writing Guide
+
+When contributing, please check the <a href="https://github.com/FAIRmat-NFDI/nomad-docs/blob/main/docs/writing_guide.md" target="_blank" rel="noopener">writing guide</a> for best practices.
+
+---
 
 ## Running the Docs Server Locally
 
 If you have a `nomad-dev-distro` setup, you can follow the [day to day development](https://github.com/FAIRmat-NFDI/nomad-distro-dev?tab=readme-ov-file#day-to-day-development) instructions to install `nomad-docs` as a submodule there.
 
 
-If you have an up-to-date Python installation (3.11 or 3.12), see [Help to install Python](#help-to-install-python-311-or-312) below.
+If you *do not* have an up-to-date Python installation (3.11 or 3.12), see [Help to install Python](#help-to-install-python-311-or-312) below.
 
-1. Upgrade pip and install uv
+### Instructions
+
+#### 1. Upgrade pip and install uv
 
 ```sh
 pip install --upgrade pip
 pip install uv
 ```
 
-2. Run the Local Docs Server
+#### 2. Run the Local Docs Server
 
 Once `uv` is installed, you can start the MkDocs server with:
 
@@ -32,9 +44,53 @@ This will install all requirements in a virtual environment and start the local 
 
 > 💡 **Tip:** To compare your local docs with the latest version once you start making significant changes, use the [DEV Deployment DOCS](https://nomad-lab.eu/prod/v1/develop/docs/index.html).
 
+
+## How to run the tests
+
+```bash
+uv run --extra dev pytest
+```
+
+---
+## Appendix
+
+### External Contribution Instructions
+
+#### 1. **Fork the Repository**
+
+Click the **Fork** button at the top right of this page to create a copy of the repo under your GitHub account.
+
+#### 2. **Clone Your Fork Locally**
+
+```bash
+git clone https://github.com/your-username/nomad-docs.git
+cd nomad-docs
+```
+
+#### 3. **Create a New Branch for Your Changes**
+
+```bash
+git checkout -b my-feature-branch
+```
+
+#### 4. **Make and Commit Your Changes**
+
+#### 5. **Push to Your Fork**
+```bash
+git push origin my-feature-branch
+```
+
+#### 6. **Open a Pull Request**
+   - Go to your fork on GitHub.
+   - Click **"Compare & pull request"**.
+   - Choose the base repo (`FAIRmat-NFDI/nomad-docs`) and target branch (e.g., `main`).
+   - Describe your changes and submit the PR.
+
+> ✅ Your PR will be reviewed by the maintainers. You don’t need write access to contribute this way.
+
 ---
 
-## Help to install Python 3.11 or 3.12
+### Help to install Python 3.11 or 3.12
 
 > **Note:** Replace `3.11` with `3.12` below if you prefer to use Python 3.12.
 
