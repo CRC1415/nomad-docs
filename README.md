@@ -1,21 +1,144 @@
-## `nomad-docs`
+# `nomad-docs`
 
 This repository contains the documentation for the central NOMAD distribution.
 
-### Contributing
+## Contributing
 
-To contribute, please open a pull request (PR) with your changes.
+- Typos, corrections, and missing docs can be reported by [Creating an Issue](https://github.com/FAIRmat-NFDI/nomad-docs/issues/new)
 
-#### Running the Docs Server Locally
+- For internal contributions (write access to the repo required), please open a pull request (PR) with your changes. **At least one review from a FAIRmat co-worker is required before merging**. If you are not sure who to assign, please ask in the PR conversation by tagging @ahm531 or @JFRudzinski.
 
-You have two options to run the documentation server:
+- For external contributions, please follow the [External Contribution Instructions](#external-contribution-instructions)
 
-1. Use the [nomad-dev-distro](https://github.com/FAIRmat-NFDI/nomad-distro-dev?tab=readme-ov-file#day-to-day-development) command.
+### Writing Guide
 
-2. Or manually install the required dependencies and run:
+When contributing, please check the <a href="https://github.com/FAIRmat-NFDI/nomad-docs/blob/main/docs/writing_guide.md" target="_blank" rel="noopener">writing guide</a> for best practices.
+
+---
+
+## Running the Docs Server Locally
+
+If you have a `nomad-dev-distro` setup, you can follow the [day to day development](https://github.com/FAIRmat-NFDI/nomad-distro-dev?tab=readme-ov-file#day-to-day-development) instructions to install `nomad-docs` as a submodule there.
+
+
+If you *do not* have an up-to-date Python installation (3.11 or 3.12), see [Help to install Python](#help-to-install-python-311-or-312) below.
+
+### 1. Install uv
+
+#### (a) Standalone
+
+**On macOS and Linux**
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+**On Windows**
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+Or, from PyPI:
+```
+
+#### (b) With pip
+```bash
+pip install uv
+```
+
+#### (c) With pipx
+```bash
+pipx install uv
+```
+
+If installed via the standalone installer, uv can update itself to the latest version:
+
+```bash
+uv self update
+```
+
+### 2. Run the Local Docs Server
+
+Once `uv` is installed, you can start the MkDocs server with:
 
 ```bash
 uv run mkdocs serve
 ```
 
-This will start a local server where you can preview your changes.
+This will install all requirements in a virtual environment and start the local development server.
+
+> 💡 **Tip:** To compare your local docs with the latest version once you start making significant changes, use the [DEV Deployment DOCS](https://nomad-lab.eu/prod/v1/develop/docs/index.html).
+
+
+### How to run the tests
+
+```bash
+uv run --extra dev pytest
+```
+
+---
+## Appendix
+
+### External Contribution Instructions
+
+#### 1. **Fork the Repository**
+
+Click the **Fork** button at the top right of this page to create a copy of the repo under your GitHub account.
+
+#### 2. **Clone Your Fork Locally**
+
+```bash
+git clone https://github.com/your-username/nomad-docs.git
+cd nomad-docs
+```
+
+#### 3. **Create a New Branch for Your Changes**
+
+```bash
+git checkout -b my-feature-branch
+```
+
+#### 4. **Make and Commit Your Changes**
+
+#### 5. **Push to Your Fork**
+```bash
+git push origin my-feature-branch
+```
+
+#### 6. **Open a Pull Request**
+   - Go to your fork on GitHub.
+   - Click **"Compare & pull request"**.
+   - Choose the base repo (`FAIRmat-NFDI/nomad-docs`) and target branch (e.g., `main`).
+   - Describe your changes and submit the PR.
+
+> ✅ Your PR will be reviewed by the maintainers. You don’t need write access to contribute this way.
+
+---
+
+### Help to install Python 3.11 or 3.12
+
+> **Note:** Replace `3.11` with `3.12` below if you prefer to use Python 3.12.
+
+If Python 3.11 is not installed on your system, use the instructions below based on your OS:
+
+**Debian Linux**
+
+```bash
+sudo apt install python3.11
+```
+
+**Red Hat Linux**
+
+```bash
+sudo dnf install python3.11
+```
+
+**macOS**
+
+```bash
+brew install python@3.11
+```
+
+**Windows PowerShell**
+
+1. Download the installer from the [official Python website](https://www.python.org/downloads/release/python-3110/).
+2. Run the installer.
+3. Make sure to check the box **"Add Python 3.11 to PATH"** during installation.
+
