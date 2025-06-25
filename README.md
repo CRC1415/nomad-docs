@@ -23,11 +23,9 @@ If you have a `nomad-dev-distro` setup, you can follow the [day to day developme
 
 If you *do not* have an up-to-date Python installation (3.11 or 3.12), see [Help to install Python](#help-to-install-python-311-or-312) below.
 
-### Instructions
+### 1. Install uv
 
-#### 1. Install uv
-
-**(a) Standalone**
+#### (a) Standalone
 
 **On macOS and Linux**
 ```bash
@@ -40,12 +38,12 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 Or, from PyPI:
 ```
 
-**(b) With pip**
+#### (b) With pip
 ```bash
 pip install uv
 ```
 
-**(c) With pipx**
+#### (c) With pipx
 ```bash
 pipx install uv
 ```
@@ -56,7 +54,7 @@ If installed via the standalone installer, uv can update itself to the latest ve
 uv self update
 ```
 
-#### 2. Run the Local Docs Server
+### 2. Run the Local Docs Server
 
 Once `uv` is installed, you can start the MkDocs server with:
 
