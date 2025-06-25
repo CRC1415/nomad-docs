@@ -25,11 +25,35 @@ If you *do not* have an up-to-date Python installation (3.11 or 3.12), see [Help
 
 ### Instructions
 
-#### 1. Upgrade pip and install uv
+#### 1. Install uv
 
-```sh
-pip install --upgrade pip
+**(a) Standalone**
+
+**On macOS and Linux**
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+**On Windows**
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+Or, from PyPI:
+```
+
+**(b) With pip**
+```bash
 pip install uv
+```
+
+**(c) With pipx**
+```bash
+pipx install uv
+```
+
+If installed via the standalone installer, uv can update itself to the latest version:
+
+```bash
+uv self update
 ```
 
 #### 2. Run the Local Docs Server
@@ -45,7 +69,7 @@ This will install all requirements in a virtual environment and start the local 
 > 💡 **Tip:** To compare your local docs with the latest version once you start making significant changes, use the [DEV Deployment DOCS](https://nomad-lab.eu/prod/v1/develop/docs/index.html).
 
 
-## How to run the tests
+### How to run the tests
 
 ```bash
 uv run --extra dev pytest
