@@ -37,7 +37,7 @@ You can create a user account by following these [steps](overview.md#create-a-no
         - **Organization:** Datasets contains several entries from various uploads. One entry can be contained in many dataset.
         - **Sharing & Publishing:** Datasets are published independent of uploads and you can get a DOI for your datasets.
 
-For more detailed explanation, you can refer to this [page](/explanation/basics.md).
+For more detailed explanation, you can refer to this [page](../explanation/basics.md).
 
 -----------------------------
 
