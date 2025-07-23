@@ -30,8 +30,7 @@ They include general fields tailored to the type of entry you are creating. The 
 
 To create ELN entries using the templates provided by NOMAD, we will generate instances from the built-in schemas. This will automatically create entries with predefined fields, allowing us to efficiently fill in the relevant information of our experiment.
 
-Follow these steps to create ELN entries using the built-in schema: *(click on the arrows to navigate between steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for creating ELN entries using the built-in schema.**
 <div class="image-slider" id="slider1">
     <div class="nav-arrow left" id="prev1">←</div>
     <img src="images/ELN_built-in_1.png" alt="Step 1" class="active">
@@ -71,8 +70,7 @@ Now, let's create an entry using the built-in *Substance ELN* schema for **P3HT 
 
 Once the entry is created, we can fill in the relevant fields with detailed and accurate information. Fields can also be updated as needed to keep the entry accurate and useful.
 
-See the example below. *(click the arrows to navigate through the steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for filling in a substance entry.**
 <div class="image-slider" id="slider2">
     <div class="nav-arrow left" id="prev2">←</div>
     <img src="images/ELN_built-in_6.png" alt="Step 1" class="active">
@@ -119,8 +117,7 @@ Now, let's create an entry using the built-in *Generic Sample ELN* schema for **
 
 Once the entry is created, we can fill in the relevant fields with detailed and accurate information. Fields can also be updated as needed to keep the entry accurate and useful.
 
-See the example below. *(click the arrows to navigate through the steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for filling in a sample entry.**
 <div class="image-slider" id="slider3">
     <div class="nav-arrow left" id="prev3">←</div>
     <img src="images/ELN_built-in_13.png" alt="Step 1" class="active">
@@ -163,8 +160,7 @@ Now, let's create an entry using the built-in *Instrument ELN* schema for **scal
 
 Once the entry is created, we can fill in the relevant fields with detailed and accurate information. Fields can also be updated as needed to keep the entry accurate and useful.
 
-See the example below. *(click the arrows to navigate through the steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for filling in an instrument entry.**
 <div class="image-slider" id="slider4">
     <div class="nav-arrow left" id="prev4">←</div>
     <img src="images/ELN_built-in_20.png" alt="Step 1" class="active">
@@ -209,8 +205,7 @@ Now, let's create an entry using the built-in *Material Processing ELN* schema f
 
 Once the entry is created, we can fill in the relevant fields with detailed and accurate information. Fields can also be updated as needed to keep the entry accurate and useful.
 
-See the example below (click the arrows to navigate through the steps).
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for filling in a material processing entry.**
 <div class="image-slider" id="slider5">
     <div class="nav-arrow left" id="prev5">←</div>
     <img src="images/ELN_built-in_23.png" alt="step 1" class="active">
@@ -238,8 +233,7 @@ For the example process entry **Preparation of P3HT solution**, we will define t
 2. filling the solvent
 3. mixing the solution
 
-Follow these steps to define the process stages in your material processing entry: *(click on the arrows to navigate between steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for defining the process stages in your material processing entry.**
 <div class="image-slider" id="slider6">
     <div class="nav-arrow left" id="prev6">←</div>
     <img src="images/ELN_built-in_29.png" alt="step 1" class="active">
@@ -259,8 +253,7 @@ The workflow graph can be modified and enriched by adding additional information
 
 The **workflow2** section of the **Preparation of P3HT solution** example can be found under the **DATA** tab, in the left panel under **workflow2**. We can now add inputs, by referencing existing substance entries.
 
-See the example below. *click the arrows to navigate through the steps*.
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for editing the workflow graph.**
 <div class="image-slider" id="slider7">
     <div class="nav-arrow left" id="prev7">←</div>
     <img src="images/ELN_built-in_34.png" alt="step 1" class="active">
@@ -309,8 +302,7 @@ Now, let's create an entry using the built-in *Measurement ELN* schema for **Opt
 
 Once the entry is created, we can fill in the relevant fields with detailed and accurate information. Fields can also be updated as needed to keep the entry accurate and useful.
 
-See the example below. *(click the arrows to navigate through the steps)*
-
+**Use the arrow buttons ⬅️➡️ below to follow the steps for filling in a measurement entry.**
 <div class="image-slider" id="slider8">
     <div class="nav-arrow left" id="prev8">←</div>
     <img src="images/ELN_built-in_40.png" alt="Step 1" class="active">
