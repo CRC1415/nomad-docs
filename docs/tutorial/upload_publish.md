@@ -45,7 +45,7 @@ For more detailed explanation, you can refer to this [page](../explanation/basic
 
 The uploads exist in the *Your uploads* page. Here you can view a list of all your uploads with their relevant information. You can also create new uploads or add an example upload prepared by others.
 
-Follow these steps to create your first upload (click on the arrows to navigate between steps):
+**Use the arrow buttons ⬅️➡️ below to follow the steps for creating your first upload.**
 
 <div class="image-slider" id="slider1">
     <div class="nav-arrow left" id="prev1">←</div>
@@ -529,7 +529,7 @@ User created datasets exist in the “Your datasets” page page. You can reach 
 !!! warning "Assigning a DOI makes the dataset permanent—it cannot be modified or deleted."
     If you want to test the process without actually publishing the data, you can do so in the [NOMAD test installation](https://nomad-lab.eu/prod/v1/test/gui/about/information).
 
-Follow these steps to explore and manage your datasets (click on the arrows to navigate between steps):
+**Use the arrow buttons ⬅️➡️ below to follow the steps of exploring and managing your datasets.**
 
 <div class="image-slider" id="slider2">
     <div class="nav-arrow left" id="prev2">←</div>
@@ -539,8 +539,7 @@ Follow these steps to explore and manage your datasets (click on the arrows to n
     <div class="nav-arrow right" id="next2">→</div>
 </div>
 
-To publish your datasets and assign them a DOI, follow these steps (click on the arrows to navigate between steps):
-
+**Use the arrow buttons ⬅️➡️ below to see how to publish your datasets and assign them a DOI.**
 <div class="image-slider" id="slider3">
     <div class="nav-arrow left" id="prev3">←</div>
     <img src="images/dataset_4.png" alt="screenshot of navigating to datasets" class="active">
