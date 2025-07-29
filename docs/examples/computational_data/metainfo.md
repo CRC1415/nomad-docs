@@ -2,6 +2,8 @@
 
 <!-- TODO replace everything below with the new schema description for data, and move to the simulation schema for data repo, then simply place a link here -->
 
+<!-- TODO - already link to any existing DOCS for the new schema? -->
+
 ### Overview of metadata organization for computation
 
 NOMAD stores all processed data in a well defined, structured, and machine readable format, known as the `archive`.
@@ -35,6 +37,14 @@ archive
      └── results
 ```
 
+Entire subsections of NOMAD's schema can be browsed using the [MetaInfo Browser](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo){:target="_blank"}:
+
+- `run` base schema: [MetaInfo Browser > Entry > run](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad.datamodel.datamodel.EntryArchive/run){:target="_blank"}
+- `runschema` full schema for `run`: [MetaInfo Browser > runschema](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/runschema){:target="_blank"}
+- `workflow2` base schema: [MetaInfo Browser > Entry > workflow2](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad.datamodel.datamodel.EntryArchive/workflow2){:target="_blank"}
+- `simulationworkflowschema` full computational schema for `workflow2`: [MetaInfo Browser > simulationworkflowschema](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/simulationworkflowschema){:target="_blank"}
+
+
 The most important section of the archive for computational data is the `run` section, which is
 divided into three main subsections: `method`, `system`, and `calculation`. `method` stores
 information about the computational model used to perform the calculation.
@@ -50,7 +60,7 @@ simulation would be stored under `workflow/results`. Then, the `inputs`, `output
 For some standard workflows, e.g., geometry optimization and molecular dynamics, the NOMAD [normalizers](../../explanation/processing.md#normalizing)
 For non-standard workflows, the parser (or more appropriately the corresponding normalizer) must
 populate these sections accordingly.
-See [Standard and Custom Computational Workflows in NOMAD](./workflows.md) for more information about the structure of the workflow section, as well as instructions on how to upload custom workflows to link individual Entries in NOMAD.
+See [Explanation > Workflows](../../explanation/workflows.md) for more information about the general structure of the workflow section, and [How-to Guides > Customization > Define workflows](../../howto/customization/workflows.md) for instructions on how to upload custom workflows to link individual entries in NOMAD.
 <!-- TODO Comment from ND - Wouldn't it be easier to say that its subsection reference other sections in run? I think this better summarizes the general rule. -->
 <!-- TODO add graph showing how inputs, outputs, and tasks are connected  -->
 <!-- TODO add reference page of standard computational workflows and link to the above sentence. -->
@@ -59,6 +69,6 @@ See [Standard and Custom Computational Workflows in NOMAD](./workflows.md) for m
 <!-- TODO specify which workflow sections have to be set by the parser: workflow2 or these standard workflows. -->
 
 !!! warning "Attention"
-    We are currently performing a complete refactoring of the computational MetaInfo schema. Details and updates about this task, and how it may benefit your future usage of NOMAD, will be added below.
+    We are currently performing a complete refactoring of the computational MetaInfo schema. The new schema will be populated under the `data` section of the archive: [MetaInfo Browser > Entry > data](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad.datamodel.datamodel.EntryArchive/data){:target="_blank"}. A preliminary version of the full schema can be browsed in [MetaInfo Browser > nomad_simulations](https://nomad-lab.eu/prod/v1/gui/analyze/metainfo/nomad_simulations){:target="_blank"}.
 
-<!-- TODO Start adding the description of the Data Schema here -->
+    Further information can be found within the schema plugin docs: [`nomad-simulations` Docs](https://nomad-coe.github.io/nomad-simulations/){:target="_blank"}.

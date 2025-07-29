@@ -25,7 +25,7 @@ nav:
       - Programmatic use:
           - Use the API: howto/programmatic/api.md # TODO separate into How-to and Explanation/Reference
           - Download data: howto/programmatic/download.md
-          - Publish data using python: howto/programmatic/publish_python.md
+          - Publish data using Python: howto/programmatic/publish_python.md
           - Install nomad-lab: howto/programmatic/pythonlib.md
           - Access processed data: howto/programmatic/archive_query.md
           - Transform data: howto/programmatic/json_transformer.md
@@ -64,14 +64,11 @@ nav:
   - Domain-specific examples:
       - Overview: examples/overview.md
       - Computational data:
-          - Quick start: examples/computational_data/uploading.md
-          - Workflows: examples/computational_data/workflows.md
+          - Basics: examples/computational_data/basics.md
           - MetaInfo: examples/computational_data/metainfo.md
           - Schema plugins: examples/computational_data/schema_plugins.md
           - Parser plugins: examples/computational_data/parser_plugins.md
-          - H5MD schema - Howto: examples/computational_data/h5md_howto.md
-          - H5MD schema - Explanation: examples/computational_data/h5md_expl.md
-          - H5MD - Reference: examples/computational_data/h5md_ref.md
+          - FAQs: examples/computational_data/faqs.md
       - Experimental data:
             - Electron microscopy: examples/experiment_data/em.md
             - Photoemission spectroscopy: examples/experiment_data/mpes.md
@@ -87,6 +84,7 @@ nav:
       - Data structure: explanation/data.md
       - Processing: explanation/processing.md
       - Architecture: explanation/architecture.md
+      - Workflows: explanation/workflows.md
       - Plugins: explanation/plugin_system.md
       - Federation and Oasis: explanation/oasis.md
   - Reference:
