@@ -1,4 +1,4 @@
-name: Check mkdocs build
+name: Check mkdocs build and links in markdown files
 
 on:
   push:
@@ -13,6 +13,19 @@ env:
   PYTHON_VERSION: 3.12
 
 jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in markdown files
+        uses: tcort/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          config-file: .github/workflows/markdown-link-check.json
+          folder-path: 'docs, examples'
+          file-path: './README.md'
+
   test-docs:
     runs-on: ubuntu-latest
     steps:
@@ -31,7 +44,7 @@ jobs:
         run: |
           uv run \
             --with 'nomad-lab[infrastructure] @ https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-FAIR.git' \
-            mkdocs build
+            mkdocs build --strict
 
       - name: Copy built docs
         run: |
