@@ -74,6 +74,29 @@ uv run --extra dev pytest
 ```
 
 ---
+
+## Automated Tests
+
+This repository uses GitHub Actions to automatically run a series of tests on every push and pull request to the `main` branch. These tests ensure the quality and integrity of the documentation.
+
+### 1. Link Check
+
+This test checks for broken links in all markdown files (`.md`) within the `docs` and `examples` directories, as well as in the `README.md` file. This ensures that all internal and external links are valid and accessible.
+
+### 2. Documentation Build
+
+This test builds the MkDocs documentation using the `--strict` flag. This flag treats any warnings as errors, ensuring that the documentation is always in a buildable state.
+
+### 3. Pytest
+
+This test runs the `pytest` command to execute all the tests in the `tests` directory. This test runs the `pytest` command to execute all the tests in the `tests` directory. These tests include:
+
+- `test_assets.py`: This test ensures there are no unused assets (e.g., images, data files) in the `docs/` directory by checking if they are referenced in any Markdown files.
+- `test_docs.py`: This test verifies that the documentation pages are served correctly, checking for proper HTTP status codes and cache headers.
+- `test_pydantic.py`: This test checks helper functions that extract information from Pydantic models, which are used to automatically generate documentation for these models.
+- `test_metainfo.py`: This test checks helper functions that extract information from NOMAD's Metainfo models, which are used to automatically generate documentation for these models.
+
+---
 ## Appendix
 
 ### External Contribution Instructions
