@@ -487,7 +487,7 @@ of testing.
 #### Test structure
 
 We have adopted a `pytest`-like structure for organizing the test utilities:
-each source code folder may contain a `conftest.js` file that contains
+each source code folder may contain a `conftest.spec.js` file that contains
 utilities that are relevant for testing the code in that particular folder.
 These utilities can usually be placed into the following categories:
 
@@ -497,7 +497,7 @@ These utilities can usually be placed into the following categories:
   some parts of the infrastructure to work properly, which is achieved by
   wrapping your component with other components that provide a context. Custom
   render functions can do this automatically for you, e.g. the default render
-  as exported from `src/components/conftest.js` wraps your components with an
+  as exported from `src/components/conftest.spec.js` wraps your components with an
   infrastructure that is very similar to the production app. See
   [here](https://testing-library.com/docs/react-testing-library/setup/#custom-render){:target="_blank"}
   for more information.
@@ -509,14 +509,14 @@ These utilities can usually be placed into the following categories:
 - Custom expects: These are reusable functions that perform actual tests using
   the `expect` function. Whenever the same tests are performed by several
   `*.spec.js` files, you should formalize these common tests into an
-  `expect*` function and place it in a relevant `conftest.js` file.
+  `expect*` function and place it in a relevant `conftest.spec.js` file.
 
 Often your components will need to communicate with the API during tests. One
 should generally avoid using manually created mocks for the API traffic, and
 instead prefer using API responses that originate from an actual API call
-during testing. Manually created mocks require a lot of manual work in creating
-them and keeping them up-to-date and true integration tests are impossible
-to perform without live communication with an API. In order to simplify the API
+during testing. It requires a lot of work to manually create mocks
+and keep them up-to-date, and true integration tests are impossible
+to perform with live communication with an API. In order to simplify the API
 communication during testing, you can use the `startAPI`+`closeAPI` functions, that
 will prepare the API traffic for you. A simple example could look like this:
 
@@ -584,25 +584,24 @@ perform calls to a running server where a test state has been prepared. This
 mode can be used to perform integration tests but also to record the snapshot
 files needed by the offline testing.
 
+Before running tests, ensure that the GUI artifacts are up-to-date:
+
+    ```sh
+    ./scripts/generate_gui_test_artifacts.sh
+    ```
+
+    As snapshot tests do not connect to the server, the artifacts cannot be
+    fetched dynamically from the server and static files need to be used instead.
+    Note that you should not push these files to Git: the CI/CD pipeline will
+    automatically generate them.
+
 ##### Offline testing
 
 This is the way our CI pipeline runs the tests and should be used locally, e.g.
 whenever you wish to reproduce pipeline errors or when your tests do not
 involve any API traffic.
 
-1. Ensure that the GUI artifacts are up-to-date:
-
-   ```shell
-   ./scripts/generate_gui_test_artifacts.sh
-   ```
-
-   As snapshot tests do not connect to the server, the artifacts cannot be
-   fetched dynamically from the server and static files need to be used instead.
-   Note that you should not push these files to Git: the CI/CD pipeline will
-   automatically generate them.
-
-2. Run `yarn test` to run the whole suite or `yarn test [<filename>]` to run a
-   specific test.
+Run `yarn test` to run the whole suite, or `yarn test [<filename>]` to run a specific test.
 
 ##### Online testing
 
@@ -610,18 +609,17 @@ When you wish to record API traffic for offline testing, or to perform
 integration tests, you will need to have a server running with the correct
 configuration. To do this, follow these steps:
 
-1. Have the docker infrastructure running: `docker compose up`
+1. Have the docker infrastructure running: `docker compose up -d`
 
-2. Have the `nomad appworker` running with the config found in
-   `gui/tests/nomad.yaml`:
-   `export NOMAD_CONFIG=gui/tests/nomad.yaml; nomad admin run appworker`
+2. Have the `nomad appworker` running with the config found in `gui/tests/nomad.yaml`:
+`export NOMAD_CONFIG=gui/tests/nomad.yaml && nomad admin run appworker`
 
 3. Activate the correct Python virtual environment before running the tests
-   with Yarn (Yarn will run the Python functions that prepare the state).
+with Yarn (Yarn will run the Python functions that prepare the state).
 
 4. Run the tests with `yarn test-record [<filename>]` if you wish to record a
-   snapshot file or `yarn test-integration [<filename>]` if you want the
-   perform the test without any recording.
+snapshot file, or `yarn test-integration [<filename>]` if you want the
+perform the test without any recording.
 
 ## Build custom Oasis image
 
