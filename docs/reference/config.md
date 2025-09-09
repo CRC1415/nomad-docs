@@ -1,117 +1,127 @@
 # Configuration
 
-## Introduction
+Many aspects of NOMAD and its operation can be modified through configuration. Most configuration items have reasonable defaults and typically only a small subset has to be overwritten. Configuration items are structured hierarchically. For example, the configuration item `services.api_host` denotes the attribute `api_host` in the configuration section `services`.
 
-Many aspects of NOMAD and its operation can be modified through configuration. Most
-configuration items have reasonable defaults and typically only a small subset has to be
-overwritten.
+## Configuration sources
 
-Configuration items get their value in the following order:
+Configuration items get their value based on a hierarchy of sources. The sources are applied in the following order of precedence, where later sources override earlier ones (see [merging rules](#merging-rules) below):
 
-1. The item is read from the environment. This has the highest priority and will overwrite
-values in a `nomad.yaml` file or the NOMAD source-code.
-2. The value is given in a `nomad.yaml` configuration file.
-3. There is no custom value, and the value hard-coded in the NOMAD sources will be used.
+1. **Environment Variables:** A variable like `NOMAD_SERVICES_API_HOST`. These have the highest priority and will override all other settings. NOMAD services will inspect the environment for any variables starting with `NOMAD_`. The rest of the name is interpreted as a configuration item, where sections and attributes are concatenated with a `_`. For example, the environment variable `NOMAD_SERVICES_API_HOST` will set the value for the `api_host` attribute in the `services` section.
 
-Configuration items are structured. The configuration is hierarchical and items are aggregated
-in potentially nested section. For example the configuration item `services.api_host` denotes
-the attribute `api_host` in the configuration section `services`.
+2. **Command-Line Configuration Files:** Files passed via the `-f` or `--config-file` flag to the NOMAD CLI. If multiple files are given, they are merged in order, with later files overriding earlier ones. For example, to load an additional configuration file on top of a default configuration, you could do the following:
 
-### Setting values from the environment
+    ```bash
+    nomad admin run appworker -f nomad.yaml -f nomad-dev.yaml
+    ```
 
-NOMAD services will look at the environment.
-All environment variables starting with `NOMAD_` are considered. The rest of the name
-is interpreted as a configuration item. Sections and attributes are concatenated with a `_`.
-For example, the environment variable `NOMAD_SERVICES_API_HOST` will set the value for
-the `api_host` attribute in the `services` section.
+3. **Default `nomad.yaml`:** A file named `nomad.yaml` in the current working directory, or a file pointed to by the `NOMAD_CONFIG` environment variable. This serves as the base configuration. This file is only automatically read if no file(s) have been specified using the command flag above.
 
-### Setting values from a `nomad.yaml`
+4. **Built-in Defaults:** The default values hard-coded in the NOMAD source code. These have the lowest priority. These default values can be found from the `nomad/config/defaults.yaml` file in the source code.
 
-NOMAD services will look for a `nomad.yaml` file. By default, they will look in the
-current working directory. This location can be overwritten with the `NOMAD_CONFIG` environment
-variable.
+## Merging Rules
 
-The configuration sections and attributes can be denoted with YAML objects and attributes.
-Here is an example `nomad.yaml` file:
+When configuration is loaded from multiple sources (e.g., a default file and an override file), the values are merged according to the following rules:
+
+- **Objects (Dictionaries):** When overwriting an *object*, the new value is recursively merged with the existing value. The final merged object will have all attributes from the new object, plus any attributes from the old object that were not overwritten. This allows you to change an individual setting deep in the configuration hierarchy without having to restate the entire structure.
+
+- **Other Types (Lists, Strings, Numbers):** When overwriting any other data type, such as a list, string, or number, the new value **completely replaces** the old one.
+
+It is crucial to remember that **lists are not appended or merged item-by-item**. When you provide a new list in an override file, it will **completely replace** the original list.
+
+For example, consider a default configuration that enables several plugins:
 
 ```yaml
---8<-- "ops/docker-compose/nomad-oasis/configs/nomad.yaml"
+# In the base nomad.yaml
+plugins:
+  entry_points:
+    include:
+      - "systemnormalizer:system_normalizer_entry_point"
+      - "atomisticparsers:amber_parser_entry_point"
 ```
 
-When overwriting an *object* in the configuration, the new value will be merged with the default value. The new merged object will have all of the attributes of the new object in addition to any old attributes that were not overwritten. This allows you to simply change an individual setting without having to provide the entire structure again, which simplifies customization that happens deep in the configuration hierarchy. When overwriting anything else (numbers, strings, lists etc.) the new value completely replaces the old one.
-
-### User interface customization
-
-Many of the UI options use a data model that contains the following three fields: `include`, `exclude` and `options`. This structure allows you to easily disable, enable, reorder and modify the UI layout with minimal config rewrite. Here are examples of common customization tasks using the search columns as an example:
-
-Disable item:
+If you provide an override file to run only the `systemnormalizer:system_normalizer_entry_point` for your nomad oasis:
 
 ```yaml
-ui:
-  apps:
-    options:
-      entries:
-        columns:
-          exclude: ['upload_create_time']
+# In override.yaml
+plugins:
+  entry_points:
+    include:
+      - "atomisticparsers:amber_parser_entry_point"
 ```
 
-Explicitly select the shown items and their order
+The final list of normalizers for that run will be `["atomisticparsers:amber_parser_entry_point"]`. The `systemnormalizer` will be removed for that run because the entire `include` list was replaced.
+
+If you intend to *add* an item to a list, you must repeat all the original items in your override file and add the new one.
+
+## Configuration examples
+
+Many of the configuration options use a data model that contains the following three fields: `include`, `exclude` and `options`. This structure allows you to easily disable, enable, reorder and modify the configuration values with minimal config rewrite. Here are examples of common customization tasks:
+
+Disable plugin entry point
 
 ```yaml
-ui:
-  apps:
-    options:
-      entries:
-        columns:
-          include: ['entry_id', 'upload_create_time']
+plugins:
+  entry_points:
+    exclude:
+      - <plugin-entry-point-id>
 ```
 
-Modify existing option
+Explicitly select the list of plugins to use:
 
 ```yaml
-ui:
-  apps:
+plugins:
+  entry_points:
+    include:
+      - <plugin-entry-point-id-1>
+      - <plugin-entry-point-id-2>
+```
+
+Modify plugin configuration
+
+```yaml
+plugins:
+  entry_points:
     options:
-      entries:
-        columns:
-          options:
-            upload_create_time:
-              label: "Uploaded"
+      <plugin-entry-point-id>:
+        name: "Custom name"
 ```
 
 Add a new item that does not yet exist in options. Note that by default all options are shown in the order they have been declared unless the order is explicitly given in `include`.
 
 ```yaml
-ui:
-  apps:
+plugins:
+  entry_points:
     options:
-      entries:
-        columns:
+      <plugin-entry-point-id>:
+        menus:
           options:
-            upload_id:
-              label: "Upload ID"
+            my_menu: # This option does not exist yet, create it here
+              title: "My Menu"
+              ...
 ```
+
+## Configuration Reference
 
 The following is a reference of all configuration sections and attributes.
 
-## Services
+### Services
 
 {{ config_models(['services', 'meta', 'oasis', 'north']) }}
 
-## Files, databases, external services
+### Files, databases, external services
 
 {{ config_models(['fs', 'mongo', 'elastic', 'rabbitmq', 'keycloak', 'logstash', 'datacite', 'rfc3161_timestamp', 'mail'])}}
 
-## Processing
+### Processing
 
 {{ config_models(['process', 'reprocess', 'bundle_export', 'bundle_import', 'normalize', 'celery', 'archive'])}}
 
-## User Interface
+### User Interface
 
 These settings affect the behaviour of the user interface. Note that the preferred way for creating custom apps is by using [app plugin entry points](../howto/plugins/apps.md).
 
 {{ config_models(['ui'])}}
 
-## Others
+### Others
 
 {{ config_models() }}
