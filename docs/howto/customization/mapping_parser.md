@@ -1,31 +1,163 @@
 # How to write data to archive with MappingParser
 
-`MappingParser` is a generic parser class implemented in
-`nomad.parsing.file_parser/mapping_parser.py` to handle the conversion to and from a
+`MappingParser` is a NOMAD parsing framework for handling tree-like data structures.
+It is extensively used for processing highly structured files, like computational output.
+This framework acts as an intermediate step in the [parsing phase](../../explanation/basics.md), where reading the source file is done separtely from building up the archive (i.e. `data`).
+Some functionality can be inserted in the mapping, the rest is relegated to [normalization](../../explanation/basics.md#normalizing) functionalitites of the schema.
+
+![Responsiblity distribution MappingParser](images/mapping_parser_concept.png)
+
+<!-- `nomad.parsing.file_parser/mapping_parser.py` to handle the conversion to and from a
 data object and a python dictionary. We refer to an instance of the
 this class as 'mapping parser' throughout this section. In the following, the abstract
 properties and methods of the mapping parser are explained. The various implementations of
 the mapping parser are also defined and `Mapper` which is required to convert a
-mapping parser into another mapping parser is explained as well.
+mapping parser into another mapping parser is explained as well. -->
+
+## Fundamentals
+
+The NOMAD schema side targets several data paths within the source file.
+These paths are represented using the [JMesPath](https://jmespath.org/) format.
+This path is added to [`m_annotations`](../../reference/annotations.md), either overwriting or extending the previous annotations.
+Each mapping corresponds to its own dictionary key, and a parser schema may contain multiple in parallel.
+
+In the simplest case, e.g. a _single quantity_, you may simply write:
+
+```python
+<quantity>.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+    dict(
+        out=MapperAnnotation(mapper=<OUTCAR jmes_path>),
+        xml=MapperAnnotation(mapper=<vasprun.xml jmes_path>),
+    )
+)
+```
+
+<!-- Given that NOMAD schemas typically follow most conventional file structures, some path parts may overlap. -->
+This works fine for top-level quantities, but those deeper down in the schema have to instantiate their containing sections.
+These can be defined in _absolute_ terms, or _relative_ to their section above using the *dot notation*, e.g. `.model`. 
+The annotations themselves can be manipulated in two possible ways:
+
+1. *definition* level, i.e. `m_def`.
+1. *attribute* level, i.e. the data instance generated during runtime.
+
+The mapping parser will search for the first available annotation in the following order:
+
+1. *attribute level*: specializes subsections to specific contexts.
+1. *definition level*: used for generic paths.
+1. *child sections' definitions* (i.e. all inheriting sections): used to bypass any abstract sections, which should not be instantiated themselves. (note)
+
+![Path annotation in NOMAD datamodel](images/mapping_parser_path.png)
+
+In the case of quantities, there is no practical distinction between options 1 and 2.
+By convention, we use the shorter *attribute-level* annotation.
+
+The following real-world example showcases the three annotation techniques listed above.
+
+```python
+# GLOBAL m_def annotation
+general.Simulation.m_def.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+    dict(xml=MapperAnnotation(mapper='modeling'))
+)
+
+# OPTIONAL CLASS INHERITANCE as a mask
+class Simulation(general.Simulation):  # Inherits from general.Simulation
+
+    -------------------------------------------------------------------------
+    2 POSSIBILITIES
+
+    # DEFINITION-LEVEL annotation (generic, default mapping)
+    general.Simulation.m_def.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+        dict(xml=MapperAnnotation(mapper='.parameters.separator'))
+    )
+
+    # ATTRIBUTE-LEVEL annotation (context-specific)
+    general.Simulation.program.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+        dict(xml=MapperAnnotation(mapper='.generator'))
+    )
+    -------------------------------------------------------------------------
+
+    # COMPOSE with the UPPER section's m_def (includes DFT as subsection)
+    model_method.DFT.m_def.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+        dict(xml=MapperAnnotation(mapper='.parameters.separator'))
+    )
+
+# continue the mapping of the Program ATTRIBUTES
+class Program(general.Program):
+    general.Program.version.m_annotations.setdefault(MAPPING_ANNOTATION_KEY, {}).update(
+        dict(xml=MapperAnnotation(mapper='.i[?"@name"==\'version\'] | [0].__value'))
+    )
+```
+
+### Controlling Repeating Sections
+
+**Subsections** that are defined as **repeating** in the schema are automatically picked up by the mapping parser.
+It will look for any repeating units along the path and instantiate the same number of subsections, i.e. $\text{no. subsections} = \prod_{\text{segments}} \text{repeating path segment}$.
+To compose parallel branches into the same repeating subsection, i.e. $\text{no. subsections} = \sum_{\text{branches}} \text{parallel branch}$:
+
+1. generate different mappings and add them to the annotation `dict`. Each mapping comes with its own unique key.
+1. during the *conversion phase*, select `update_mode="append"`. Manipulate the order in the data via the conversion order of the various maps.
+
+**Array quantities**, meanwhile, with `shape=['*']`, have to be handled using an *operator*.
+This is due to `shape` having variable rank, e.g. `shape=['*','*']`.
+
+### Other Edge Cases
+
+**Recursive sections**, i.e. section schemas with the same schema as a subsection, should also be handled by an *operator*, or a different annotation key.
+Annotation keys that populate the same archive, can be loaded successively by the _writer_.
+
+Likewise, **references** have to be set by the parser dev in the _writer_.
+They namely require a source and a target, and the schema only defines the source.
+
+## How-To
+
+### Use JMesPath
+
+**Accessing individual elements**:
+
+- Extract the first element: `Mapper(mapper='.array[0]')`
+- Extract last element: `Mapper(mapper='.array[-1]')`
+- Extract specific index with pipe syntax: `Mapper(mapper='.varray | [0].v')`
+
+**Accessing multiple elements**:
+
+- Extract all elements: `Mapper(mapper='.array[*]')`
+- Extract all vertex labels (exciting.py example): `Mapper(mapper=r'bandstructure.vertex[*]."@label"')`
+- Extract from nested structure: `Mapper(mapper='.varray[?"@name"==\'kpointlist\'].v | [0]')`
+
+**Conditional selection**:
+
+- Filter by attribute: `Mapper(mapper='.i[?"@name"==\'program\'] | [0].__value')`
+- Filter by value comparison: `Mapper(mapper='c[?n>=`1`].v | [1]')` <!-- check code rendering -->
+- Complex filter with string matching: `Mapper(mapper='.separator[?"@name"==\'electronic exchange-correlation\']')`
 
 ## MappingParser
 
-The mapping parser has several abstract properties and methods and the most important
-ones are listed in the following:
+The `MappingParser` defines the source-to-archive mapping.
+The source `data_object` can be an `XML` element tree or a `metainfo` section.
+Settings include:
 
 - `filepath`: path to the input file to be parsed
 - `data_object`: object resulting from loading the file in memory with `load_file`
 - `data`: dictionary representation of `data_object`
-- `mapper`: instance of `Mapper` required by `convert`
 - `load_file`: method to load the file given by `filepath`
+
+It also handles the actual conversion, via three methods.
+Each requires a `Mapper` instance as input:
+
 - `to_dict`: method to convert `data_object` into `data`
 - `from_dict`: method to convert `data` into `data_object`
 - `convert`: method to convert to another mapping parser
 
-`data_object` can be an `XML` element tree or a `metainfo` section for example depending on
-the inheriting class. In order to convert a mapping parser to another parser,
-the target parser must provide a [`Mapper`](#mapper) object. We refer to this simply as
-mapper throughout.
+Conversion can be toggled via the `update` optional key.
+
+| Update Mode | Description                                                                            |
+|-------------|----------------------------------------------------------------------------------------|
+| replace     | Replaces the target data entirely with the source data (default behavior)              |
+| append      | Appends source data to target, preserving existing target values when they exist       |
+| merge       | Merges dictionaries by recursively updating keys, or merges lists starting at index 0  |
+| merge@start | Merges lists starting at the beginning (index 0)                                       |
+| merge@last  | Merges lists starting from the end, calculated as len(source) - len(target)            |
+| merge@<n>   | Merges lists starting at a specific index n (can be negative for relative positioning) |
 
 In the following, we describe the currently implemented mapping parsers.
 
@@ -215,3 +347,5 @@ mapper which source to get the data.
         ),
     )
 ```
+
+
