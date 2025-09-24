@@ -1,4 +1,4 @@
-# Transform JSON Data Structures with Transformer
+# How to transform JSON data structures
 
 ## Who is this how-to guide for?
 

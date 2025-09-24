@@ -1,4 +1,4 @@
-# How to use ELNs
+# How to enter data with ELNs
 
 This guide describes how to manually create entries and enter information
 via ELNs (electronic lab notebooks). NOMAD ELNs allow you to acquire
@@ -15,7 +15,7 @@ button. This will bring you to the upload page.
 
 Click the `CREATE FROM SCHEMA` button. This will bring-up a dialog for *naming your entry*
 and *selecting a schema* for your ELN.
-You can use one of NOMAD's built-in schemas or add your own custom schema (see [How to > Customization > How to write a YAML schema package](../customization/elns.md)).
+You can use one of NOMAD's built-in schemas or add your own custom schema (see [How to > Customization > How to write a YAML schema package](./elns.md)).
 
 Here we will select the simplest built-in ELN schema, `Basic ELN`.
 The `Basic ELN` offers you simple fields for a *name*, *tags*, a *date/time*, and a rich text
@@ -48,7 +48,7 @@ click the `ADD EXAMPLE UPLOADS` button. The `Electronic Lab Notebook` example, w
 contain a schema and entries that instantiate different parts of the schema.
 The *ELN example sample (`sample.archive.json`) demonstrates what you can do.
 
-Follow the [How-to write a schema](../customization/basics.md) and [How-to define ELN](../customization/elns.md)
+Follow the [How-to write a schema](./yaml.md) and [How-to define ELN](./elns.md)
 guides to create you own customized of ELNs.
 
 ## Integration of third-party ELNs
@@ -57,8 +57,7 @@ guides to create you own customized of ELNs.
 
     This part of the documentation is still work in progress.
 
-The code base is part of the [FAIRmat-NFDI](https://github.com/FAIRmat-NFDI/nomad-external-eln-integrations){:target="_
-blank"} repository.
+The code base is part of the [FAIRmat-NFDI](https://github.com/FAIRmat-NFDI/nomad-external-eln-integrations){:target="_blank"} repository.
 
 NOMAD offers integration with third-party ELN providers, simplifying the process of connecting
 and interacting with external platforms. Three main external ELN solutions that are integrated into NOMAD

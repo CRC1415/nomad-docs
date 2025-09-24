@@ -1,4 +1,4 @@
-# Configure an Oasis
+# How to configure an Oasis
 
 Originally, the NOMAD Central Repository is a service that runs at the Max-Planck's computing facility in Garching, Germany. However, the NOMAD software is Open-Source, and everybody can run it. Any service that uses NOMAD software independently is called a *NOMAD Oasis*. A *NOMAD Oasis* does not need to be fully isolated. For example, you can publish uploads from your NOMAD Oasis to the central NOMAD installation.
 
@@ -398,10 +398,10 @@ A few notes on the realm configuration:
 This is an incomplete list of potential things to customize your NOMAD experience.
 
 - Learn [how to develop plugins](../plugins/plugins.md) that can be installed in an Oasis
-- Write .yaml based [schemas](../customization/basics.md) and [ELNs](../customization/elns.md)
-- Learn how to use the [tabular parser](../customization/tabular.md) to manage data from .xls or .csv
-- Add specialized [NORTH tools](../manage/north.md)
-- [Restricting user access](admin.md#restricting-access-to-your-oasis)
+- Write .yaml based [schemas](../manage/gui/yaml.md) and [ELNs](../manage/gui/elns.md)
+- Learn how to use the [tabular parser](../manage/gui/tabular.md) to manage data from .xls or .csv
+- Add specialized [NORTH tools](../manage/gui/north.md)
+- [Restricting user access](./admin.md#restricting-access-to-your-oasis)
 
 ## Troubleshooting
 

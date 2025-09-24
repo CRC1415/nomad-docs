@@ -1,16 +1,16 @@
-# Introduction to plugins
+# Overview for plugin development
 
 The main way to customize a NOMAD installation is through the use of **plugins**. A NOMAD plugin is a Python package that an administrator can install into a NOMAD distribution to add custom features. This page helps you develop and publish a NOMAD plugin. For a high-level overview of the plugin mechanism, see the [NOMAD plugin system](../../explanation/plugin_system.md) -page.
 
 A single Python plugin package can contain multiple [plugin entry points](../../explanation/plugin_system.md#plugin-entry-points). These entry points represent different types of customizations including:
 
-- [Actions](./actions.md)
-- [APIs](./apis.md)
-- [Apps](./apps.md)
-- [Example uploads](./example_uploads.md)
-- [Normalizers](./parsers.md)
-- [Parsers](./parsers.md)
-- [Schema packages](./schema_packages.md)
+- [Actions](./types/actions.md)
+- [APIs](./types/apis.md)
+- [Apps](./types/apps.md)
+- [Example uploads](./types/example_uploads.md)
+- [Normalizers](./types/normalizers.md)
+- [Parsers](./types/parsers.md)
+- [Schema packages](./types/schema_packages.md)
 
 See the [FAIRmat-NFDI GitHub organization page](https://github.com/FAIRmat-NFDI) for a list of plugins developed by FAIRmat. You can also see the list of activated plugins and plugin entry points at the bottom of the *Information page* (`about/information`) of any NOMAD installation, for example check out the [central NOMAD installation](https://nomad-lab.eu/prod/v1/gui/about/information).
 
