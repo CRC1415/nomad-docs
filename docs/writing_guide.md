@@ -10,10 +10,6 @@ Before merging make sure that the mkdocs logs do not report any broken links. Th
 
 All assets specific to an individual markdown file should be stored within an immediate sub-directory of the file, labeled accordingly. Please use `images/` and `data/` for the image and data files, respectively.
 
-## Sections Hierarchy
-
-single "#" sections should only be used at the beginning of the md file
-
 ## File organization should mirror the navigation bar
 
 Files and sub-folders should be stored according to the navigation bar organization in `mkdocs.yml`.
@@ -24,7 +20,7 @@ If you add a new page to the docs, make sure to add this page to the correspondi
 
 ## Standardized Internal and External Link Naming
 
-Do not use `HERE` as a name for links. For internal links use the path hierarchy to the referenced page or section, separated by >'s. For example: `[Tutorial > Exploring Data > Search Interface & Filters](<path-to-referenced-section>)`. Long paths can be abbreviated to the first and last parts: by using `[Tutorial > ... > Search Interface & Filters](<path-to-referenced-section>)` If the referenced section belongs to the current page, drop the global path, i.e., `[Search Interface & Filters](<path-to-referenced-section>)`. External links to NOMAD plugins or other NOMAD-related documentation should follow the same syntax, with the name of the plugin as the root. For other external links provide some sort of descriptive name and use your discretion.
+Use descriptive link text (instead of `here/link`). For internal links use the path hierarchy to the referenced page or section, separated by >'s. For example: `[Tutorial > Exploring Data > Search Interface & Filters](<path-to-referenced-section>)`. Long paths can be abbreviated to the first and last parts: by using `[Tutorial > ... > Search Interface & Filters](<path-to-referenced-section>)` If the referenced section belongs to the current page, drop the global path, i.e., `[Search Interface & Filters](<path-to-referenced-section>)`. External links to NOMAD plugins or other NOMAD-related documentation should follow the same syntax, with the name of the plugin as the root. For other external links provide some sort of descriptive name and use your discretion.
 
 ## External Links
 
