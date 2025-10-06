@@ -33,7 +33,6 @@ jobs:
               BODY="$BODY_RAW"
             fi
           fi
-
           JSON=$(jq -n \
             --arg title "$TITLE" \
             --arg url "$URL" \
@@ -44,7 +43,7 @@ jobs:
               url: $url,
               description: $body,
               color: 3447003,
-              footer: { text: "Merged by " + $author }
+              footer: { text: "Merged by \($author)" }
             }]}')
 
           echo "Posting merged PR #$TITLE to Discord..."
