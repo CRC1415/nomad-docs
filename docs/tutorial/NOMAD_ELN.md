@@ -1,4 +1,4 @@
-# Using NOMAD as an Electronic Lab Notebook
+# Using NOMAD as an electronic lab notebook
 
 In this tutorial, we will explore how to use NOMAD's Electronic Lab Notebook (ELN) functionality to record experiments effectively. You will learn how to create entries for substances and instruments, record samples along with their processing conditions, and the various measurements that make up your experiments. We will also cover NOMAD's built-in ELN templates, which help structure and interlink different aspects of an experiment, providing a clear, visual overview of the entire workflow.
 
@@ -17,11 +17,11 @@ In doing this, we will apply an example of an experiment on preparing solution-p
 
     ![Overview of the example entities and activities](images/ELN_2.png)
 
-## Create a New ELN Upload
+## Create a new ELN upload
 
 In NOMAD, an Electronic Lab Notebook (ELN) is created by initiating a NOMAD upload. This process allows you to structure and document your research data efficiently. For a step-by-step guide on how to create an upload, please refer to [this page](upload_publish.md#create-new-upload){:target="_blank"}.
 
-## Create ELN Entries
+## Create ELN entries
 
 The next step is to create entries for your substances, instruments, processes, and measurements. In NOMAD, each ELN entry is structured using templates called *built-in schema*. These templates are specifically designed to capture relevant information for different types of entries, ensuring consistency and completeness in documentation.
 
@@ -41,7 +41,7 @@ To create ELN entries using the templates provided by NOMAD, we will generate in
     <div class="nav-arrow right" id="next1">→</div>
 </div>
 
-### Create a Substance Entry
+### Create a substance entry
 
 Now, let's create an entry using the built-in *Substance ELN* schema for **P3HT powder**. Follow the steps of creating an entry described above and select *Substance ELN* from the drop-down menu in step 4.
 
@@ -83,7 +83,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
     <div class="nav-arrow right" id="next2">→</div>
 </div>
 
-??? task "Task: Create an ELN entry for substances"
+??? task "Create an ELN entry for substances"
     Create an ELN entry in NOMAD for the following substances:
 
     - Chloroform
@@ -93,7 +93,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
 
 ---
 
-### Create a Sample Entry
+### Create a sample entry
 
 Now, let's create an entry using the built-in *Generic Sample ELN* schema for **P3HT Thin Film**. Follow the steps of creating an entry described above and select *Generic Sample ELN* from the drop-down menu in step 4.
 
@@ -130,7 +130,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
     <div class="nav-arrow right" id="next3">→</div>
 </div>
 
-??? task "Task: Create an ELN entry for a sample"
+??? task "Create an ELN entry for a sample"
 
     Create an ELN entry in NOMAD for P3HT solution in chloroform.
     Reference the sample to its components (P3HT powder and chloroform).
@@ -139,7 +139,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
 
 ---
 
-### Create an Instrument Entry
+### Create an instrument entry
 
 Now, let's create an entry using the built-in *Instrument ELN* schema for **scale**. Follow the steps of creating an entry described above and select *Instrument ELN* from the drop-down menu in step 4.
 
@@ -170,7 +170,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
     <div class="nav-arrow right" id="next4">→</div>
 </div>
 
-??? task "Task: Create an ELN entry for an instrument"
+??? task "Create an ELN entry for an instrument"
     Create an ELN entry in NOMAD for one of the following instruments:
 
     - Optical Spectrometer
@@ -180,7 +180,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
 
 ---
 
-### Create a Process Entry
+### Create a process entry
 
 Now, let's create an entry using the built-in *Material Processing ELN* schema for **Preparation of P3HT solution**. Follow the steps of creating an entry described above and select *Materials Processing ELN* from the drop-down menu in step 4.
 
@@ -219,7 +219,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
     <div class="nav-arrow right" id="next5">→</div>
 </div>
 
-??? task "Task: Reference a sample to your process ELN"
+??? task "Reference a sample to your process ELN"
     For the Process ELN entry created above, make a reference to a sample entry called *P3HT_solution_in_CF*.
 
     - If the P3HT_solution_in_CF sample entry already exists, simply link to it within the samples subsection of your Process ELN entry.
@@ -265,7 +265,7 @@ The **workflow2** section of the **Preparation of P3HT solution** example can be
     <div class="nav-arrow right" id="next7">→</div>
 </div>
 
-??? task "Task: Reference P3HT powder as input for the process"
+??? task "Reference P3HT powder as input for the process"
     For the Process ELN entry created above, make reference to the substance ELN entry *P3HT Powder* as an input of the process.
 
     *Tip:* Use the workflow2 section of the entry.
@@ -278,7 +278,7 @@ We can now see the changes in the workflow graph based on our modifications in t
 
 ---
 
-### Create a Measurement Entry
+### Create a measurement entry
 
 Now, let's create an entry using the built-in *Measurement ELN* schema for **Optical absorption measurement**. Follow the steps of creating an entry described above and select *Measurement ELN* from the drop-down menu in step 4.
 
@@ -320,7 +320,7 @@ Once the entry is created, we can fill in the relevant fields with detailed and 
 
 ---
 
-### Integrate Your Experiment
+### Integrate your experiment
 
 Once all substances, samples, processes, and measurements are defined, you can integrate them into a structured workflow using the *Experiment ELN* schema. The *Experiment ELN* schema allows linking *processes* and *measurements* into a single entry for a comprehensive overview of your experimental workflow.
 
@@ -351,7 +351,7 @@ The *steps* subsection allows us to reference the various processes and measurem
 
 ---
 
-## Exploring and Searching Your ELN
+## Explore and search your ELN
 
 <!-- TODO consider changing this admonition to a download button -->
 ??? example "Download the example file for this exercise"
