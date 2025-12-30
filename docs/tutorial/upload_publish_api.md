@@ -1,9 +1,22 @@
 <!-- markdownlint-disable MD013 -->
 <!-- Disabled MD013: long lines are needed in this tutorial -->
 
-# Upload and publish using NOMAD API
+# Upload and publish data using the NOMAD API
 
-In this tutorial, you will learn to interact with the NOMAD API using Python and the [`nomad-utility-workflows`](https://pypi.org/project/nomad-utility-workflows/){:target="_blank" rel="noopener"} package. You will perform, programmatically, many of the tasks you might otherwise do in the NOMAD GUI: authenticate with your NOMAD account, create uploads from example ZIP files (miscellaneous files, DFT computations, and experimental XPS data), inspect the processing status and entries of those uploads, edit upload and entry metadata, group uploads into datasets, share them with selected users, set embargo periods, and finally publish your uploads on the NOMAD test deployment.
+In this tutorial, we interact with the NOMAD API using Python and the [`nomad-utility-workflows`](https://fairmat-nfdi.github.io/nomad-utility-workflows/){:target="_blank" rel="noopener"} package, to programmatically perform the full data upload and publishing workflow. We work with example data files to inspect generated entries, modify metadata, organize entries into datasets, and publish the results on the NOMAD test deployment. By the end of the tutorial, we will have reproduced the core upload and publishing workflows available in the NOMAD GUI.
+
+---
+
+## What you will learn
+
+In this tutorial, you will learn how to:
+
+1. Authenticate with the NOMAD API using Python
+2. Upload raw research data to NOMAD and create uploads programmatically
+3. Retrieve uploads and entries and inspect or edit their metadata
+4. Group entries into datasets for curation and organization
+5. Share uploads with collaborators and manage access permissions
+6. Publish uploads on the NOMAD test deployment
 
 ---
 
@@ -11,14 +24,14 @@ In this tutorial, you will learn to interact with the NOMAD API using Python and
 
 This tutorial assumes basic familiarity with Python and programmatic workflows.
 
-Before starting this tutorial, please make sure you have the following:
+Before starting, make sure you have the following:
 
 1. **NOMAD user account**  
-   In order to interact with the NOMAD API, a user account is required.  
-   You can create a user account by following these [steps](overview.md#create-a-nomad-user-account){:target="_blank" rel="noopener"} on the overview page.
+   In order to interact with the NOMAD API, a user account is required.
+   You can create an account by following the steps described in the [overview page](overview.md#create-a-nomad-user-account){:target="_blank" rel="noopener"}.
 
 2. **Python environment**  
-   A Python **3.11 or newer** environment with permission to install external packages.  
+   A Python 3.11 or newer environment with permission to install external packages.  
    The examples in this tutorial are designed to be run in a Jupyter notebook.
 
 3. **Basic Python knowledge**  
@@ -36,24 +49,9 @@ Before starting this tutorial, please make sure you have the following:
 
 ---
 
-## What you will learn
-
-In this tutorial, you will learn how to programmatically upload, manage, and publish research data in NOMAD using the NOMAD API and Python.
-
-By the end of this tutorial, you will be able to:
-
-1. Authenticate with the NOMAD API using Python
-2. Upload raw research data to NOMAD and create uploads programmatically
-3. Retrieve uploads and entries and inspect or edit their metadata
-4. Group entries into datasets for curation and organization
-5. Share uploads with collaborators and manage access permissions
-6. Publish uploads on the NOMAD test deployment
-
----
-
 ## Environment setup
 
-In this tutorial, we will use the NOMAD **test** deployment. Therefore, in all code examples, we will set `url="test"` when calling the helper functions. Later, you can switch to `url="prod"` or a custom NOMAD API URL if needed.
+In this tutorial, we will use the [NOMAD test deployment](https://nomad-lab.eu/prod/v1/test/gui/search/entries){:target="_blank" rel="noopener"}. Therefore, in all code examples, we will set `url="test"` when calling the helper functions. Later, you can switch to `url="prod"` or a custom NOMAD API URL if needed.
 
 We assume you are working in a Python 3.11+ environment, preferably in a dedicated virtual environment for this tutorial.
 
@@ -273,7 +271,7 @@ In the NOMAD GUI, the upload you just created looks like this:
 </div>
 <!-- markdownlint-enable MD033 -->
 
-### Upload computations data
+### Upload computational data
 
 You can repeat the same pattern for the DFT example (`FHI-aims.zip`) to create a separate upload for simulated data and inspect its entries:
 
@@ -396,7 +394,7 @@ print("Open in GUI:    ", dft_upload.nomad_gui_url)
     ```
 This snippet:
 
-- Retrieves the latest state of your DFT upload from the NOMAD API, using `dft_upload_id`.
+- Retrieves the latest state of your DFT upload from the NOMAD API, using `dft_upload_id`
 - Shows the processing status and any errors or warnings.
 - Tells you how many entries were created.
 - Provides a direct link to inspect the upload in the NOMAD GUI.
@@ -453,8 +451,7 @@ In the examples below, we use `dft_upload_id` to refer to the DFT upload, but th
 
 ### Edit upload's metadata
 
-You can update the upload's **name** as well as the **entry-level metadata** (such as comment and references) for all entries contained in the upload. The function `edit_upload_metadata` applies metadata changes to **every
-entry in the upload**, similar to clicking the GUI button **EDIT METADATA OF ALL THE ENTRIES** in the upload page.
+You can update the upload's **name** as well as the **entry-level metadata** (such as comment and references) for all entries contained in the upload. The function `edit_upload_metadata` applies metadata changes to **every entry in the upload**, similar to clicking the GUI button **EDIT METADATA OF ALL THE ENTRIES** in the upload page.
 
 <!-- markdownlint-disable MD046 -->
 ```python
@@ -509,7 +506,7 @@ edit_upload_metadata(
 This code updates the upload name and applies the comment and references to all entries in the upload.
 
 !!! warning
-    Running the next snippet before NOMAD finishes processing the entries may make it *look* as if the entries metadata is not updated. Wait up to 2 minutes! and retry to ensure the snippet  is executed only after NOMAD processing has completed.
+    Running the next snippet before NOMAD finishes processing the entries may make it *look* as if the entries metadata is not updated. Wait up to 2 minutes and retry to ensure the snippet is executed only after NOMAD processing has completed.
 
 To inspect it programmatically try:
 
@@ -664,7 +661,7 @@ print("Access updated.")
     ```
     Access updated.
     ```
-If you wish, you can verify this in the upload page by clicking **EDIT UPLOAD MEMBERS**, which will look like similar to:
+If you wish, you can verify this in the upload page by clicking **EDIT UPLOAD MEMBERS**, which will look similar to:
 
 <!-- markdownlint-disable MD033 -->
 <div style="text-align: center;">
