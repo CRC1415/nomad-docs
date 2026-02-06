@@ -18,7 +18,6 @@ Use NOMAD to manage, explore, and analyze data.
 
 - [Upload and publish data for supported formats](manage/gui/upload.md)
 - [Enter data with ELNs](manage/gui/eln.md)
-- [Explore data](manage/gui/explore.md)
 - [Analyze data in NORTH](manage/gui/north.md)
 - [Create custom workflows](manage/gui/workflows.md)
 - [Write a YAML schema package](manage/gui/yaml.md)
@@ -61,6 +60,7 @@ NOMAD plugins are connect with the core software via "entry points". There are v
 - [Apps](plugins/types/apps.md)
 - [Example uploads](plugins/types/example_uploads.md)
 - [Normalizers](plugins/types/normalizers.md)
+- [NORTH tools](plugins/types/north_tools.md)
 - [Parsers](plugins/types/parsers.md)
 - [Schema packages](plugins/types/schema_packages.md)
 
