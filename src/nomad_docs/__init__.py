@@ -48,6 +48,7 @@ from nomad_docs.pydantic import (
     get_field_type_info,
 )
 
+from nomad_docs.training_resources import render_training_resources_table
 
 class MyYamlDumper(yaml.Dumper):
     """
@@ -499,3 +500,14 @@ def define_env(env):
                 f'<span class="category-pill"{style}>'
                 f"{anchor_tag[0]}{name}{anchor_tag[1]}</span>"
             )
+
+    @env.macro
+    def training_resources_table(
+            json_path="docs/assets/data/training_resources_youtube_playlist.json",
+            preview_chars=260,
+    ):
+        import os
+
+        root = os.path.join(os.path.dirname(__file__), "../..")
+        full_path = os.path.join(root, json_path)
+        return render_training_resources_table(full_path, preview_chars=preview_chars)
