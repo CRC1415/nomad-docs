@@ -500,6 +500,48 @@ class MyActionInput(BaseModel):
     )
 ```
 
+### UI widget hints with `json_schema_extra`
+
+You can add `json_schema_extra` hints so the UI renders appropriate upload
+controls for each asset type:
+
+```py
+from pydantic import BaseModel, Field
+
+from nomad.actions.assets.models import ActionAssetRef
+
+
+class AssetInputs(BaseModel):
+    audio_file: ActionAssetRef = Field(
+        json_schema_extra={
+            'x-nomad-widget': 'audio-upload',
+            'accept': ['audio/*'],
+        }
+    )
+    image_file: ActionAssetRef = Field(
+        json_schema_extra={
+            'x-nomad-widget': 'image-upload',
+            'accept': ['image/*'],
+        }
+    )
+    pdf_file: ActionAssetRef = Field(
+        json_schema_extra={
+            'x-nomad-widget': 'file-upload',
+            'accept': ['application/pdf'],
+        }
+    )
+    text_file: ActionAssetRef = Field(
+        json_schema_extra={
+            'x-nomad-widget': 'file-upload',
+            'accept': ['text/plain'],
+        }
+    )
+```
+
+For user experience:
+- Audio widgets can support recording directly in the browser (browser/device dependent).
+- Image widgets can support taking a photo from device camera or choosing an existing file.
+
 ### What plugin developers need to do (and not do)
 
 As a plugin author, you do **not** need to implement upload endpoints, asset
