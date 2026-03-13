@@ -20,25 +20,23 @@
 Definitions that are used in the documentation via mkdocs-macro-plugin.
 """
 
-from pydantic.fields import FieldInfo
-import yaml
 import json
 import os.path
-
-from typing import get_args, cast
-
 from inspect import isclass
+from typing import cast, get_args
 
+import yaml
+from markdown.extensions.toc import slugify
+from nomad import utils
+from nomad.config import config
+from nomad.config.models.plugins import EntryPointType, ParserEntryPoint
+from nomad.utils import strip
+from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 
-from pydantic import BaseModel
-
-from markdown.extensions.toc import slugify
-
-from nomad.utils import strip
-from nomad.config import config
-from nomad import utils
-
+from nomad_docs.metainfo import (
+    package_markdown_from_package,
+)
 from nomad_docs.pydantic import (
     exported_config_models,
     get_field_default,
@@ -47,11 +45,6 @@ from nomad_docs.pydantic import (
     get_field_options,
     get_field_type_info,
 )
-from nomad_docs.metainfo import (
-    package_markdown_from_package,
-)
-
-from nomad.config.models.plugins import ParserEntryPoint, EntryPointType
 
 
 class MyYamlDumper(yaml.Dumper):
@@ -73,7 +66,7 @@ def define_env(env):
 
     @env.macro
     def doc_snippet(key):  # pylint: disable=unused-variable
-        from nomad.app.v1.models import query_documentation, owner_documentation
+        from nomad.app.v1.models import owner_documentation, query_documentation
         from nomad.app.v1.routers.entries import archive_required_documentation
 
         doc_snippets = {
@@ -148,20 +141,30 @@ def define_env(env):
         return f"\n{indent}".join(f"{indent}{yaml_string}".split("\n"))
 
     @env.macro
-    def config_models(models=None):  # pylint: disable=unused-variable
+    def config_models(models: list[str] | None=None) -> str:  # pylint: disable=unused-variable
         from nomad.config.models.config import Config
 
-        results = ""
-        for name, field in Config.model_fields.items():
-            if models and name not in models:
-                continue
+        all_fields = Config.model_fields
 
-            if not models and name in exported_config_models:
-                continue
+        if models is None:
+            selected_names = [
+                name for name in all_fields if name not in exported_config_models
+            ]
+        else:
+            selected_names = list(models)
+            unknown_names = [name for name in selected_names if name not in all_fields]
+            if unknown_names:
+                unknown = ", ".join(sorted(unknown_names))
+                raise KeyError(
+                    f"Unknown config model name(s): {unknown}. "
+                )
 
-            results += pydantic_model_from_model(field.annotation, name)
-            results += "\n\n"
-        return results
+        results: list[str] = []
+        for name in selected_names:
+            field = all_fields[name]
+            results.append(pydantic_model_from_model(field.annotation, name))
+
+        return "\n\n".join(results)
 
     def pydantic_model_from_model(model, name=None, heading=None, hide=[]):
         if hasattr(model, "model_fields"):
