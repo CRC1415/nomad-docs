@@ -28,7 +28,7 @@ Before starting, make sure you have the following:
 1. **NOMAD user account**  
     In order to upload data into NOMAD, a user account is required.
     You can create an account by following the steps described in the
-    [overview page](overview.md#create-a-nomad-user-account){:target="_blank" rel="noopener"}.
+    [overview page](overview.md#create-a-nomad-user-account).
 
 2. **Example files available on your local machine**  
     This tutorial uses provided example data files for:
@@ -99,7 +99,7 @@ The uploads exist in the *Your uploads* page. Here you can view a list of all yo
 
     At the top of the `OVERVIEW` tab, you will find several icons that help you to manage your upload:
 
-    ![Top fields in uploads page](images/top_fields_uploads.png){.screenshot}
+    ![Top fields in uploads page](images/top_fields_uploads.png){:.screenshot}
 
     The name of the upload can be modified by clicking on the pen icon :fontawesome-solid-pen:. The other icons are used as follows:
 
@@ -149,12 +149,12 @@ Uploads in NOMAD can be shared or published. When an upload is shared or publish
 
 A NOMAD upload can have four states based on sharing and publishing:
 
-|Status    | Icon   | Description                         |
-|----------|--------|-------------------------------------|
-|Private   |<img src="images/icon_unpublished.png" alt="Icon of private upload" width="20"> |The upload is private and is visible to the uploader only.|
-|Shared    |<img src="images/icon_shared.png" alt="Icon of shared upload" width="20">       |The upload is accessible to selected users but not publicly available.|
-|Published |<img src="images/icon_published.png" alt="Icon of published upload" width="20"> |The upload is publicly available to everyone.|
-|Visible   |<img src="images/icon_visible.png" alt="Icon of visible upload" width="20">     |The upload is unpublished but accessible to everyone.|
+|Status    | Icon                                                                           | Description                                                           |
+|----------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------|
+|Private   |<img src="images/icon_unpublished.png" alt="Icon of private upload" width="20"> |The upload is private and is visible to the uploader only.             |
+|Shared    |<img src="images/icon_shared.png" alt="Icon of shared upload" width="20">       |The upload is accessible to selected users but not publicly available. |
+|Published |<img src="images/icon_published.png" alt="Icon of published upload" width="20"> |The upload is publicly available to everyone.                          |
+|Visible   |<img src="images/icon_visible.png" alt="Icon of visible upload" width="20">     |The upload is unpublished but accessible to everyone.                  |
 
 You can manage upload sharing in the *Edit upload members* menu. To access it, click on <img src="images/edit_upload_members_icon.png" alt="Edit upload members Icon" width="20"> available at the top of the upload page.
 
@@ -311,7 +311,7 @@ In other words, NOMAD will read the input and output files and provide all infor
     ![Animation of drag and drop a compressed file in NOMAD](images/example_3-2_drag_drop_files.gif)
 
     After uploading files, processing is automatically triggered. This involves identifying supported file formats in NOMAD and extracting relevant (meta)data. The exact processing steps depend on the use case.
-    For example, you can learn more about the [processing of computational data on this link](../examples/computational_data/basics.md){:target="_blank" rel="noopener"}.
+    For example, you can learn more about the [processing of computational data on this link](../examples/computational_data/basics.md).
 
     Once processing is complete, NOMAD generates an entry page that presents the data in a structured, hierarchical format based on the NOMAD *metainfo* schema.
 
