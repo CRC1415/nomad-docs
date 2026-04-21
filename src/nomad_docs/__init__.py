@@ -503,7 +503,7 @@ def define_env(env):
 
     @env.macro
     def training_resources_table(
-            json_path="docs/assets/data/training_resources_youtube_playlist.json",
+            json_path="src/nomad_docs/data/training_resources_youtube_playlist.json",
             preview_chars=260,
     ):
         import os

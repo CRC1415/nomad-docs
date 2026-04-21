@@ -182,7 +182,7 @@ def main() -> None:
     p.add_argument("--api-base", default="http://141.20.184.181/nomad-oasis/api/v1")
     p.add_argument("--tag", default="YouTube Playlist")
     p.add_argument("--owner", default="visible")
-    p.add_argument("--out", default="docs/assets/data/training_resources_youtube_playlist.json")
+    p.add_argument("--out", default="src/nomad_docs/data/training_resources_youtube_playlist.json")
     p.add_argument(
         "--token-path",
         default=str(Path.home() / ".config" / "nomad-docs" / "oasis_app_token"),
