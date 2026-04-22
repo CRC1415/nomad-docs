@@ -23,17 +23,17 @@ Our tutorial documentation covers the basics of using Central NOMAD and NOMAD Oa
 
 ### Tutorial topics
 
-[**Uploading and publishing data**](upload_publish.md)
-
-- Create a NOMAD upload and share it with your colleagues.
-- Add research data files to the upload and create entries.
-- Create datasets and publish them with a DOI.
-
 [**Exploring data**](explore.md)
 
 - Find and access data using the search interface and the filter sidebar.
 - Create custom widgets for a personalized search experience.
 - Use the NOMAD domain-specific apps.
+
+[**Uploading and publishing data**](upload_publish.md)
+
+- Create a NOMAD upload and share it with your colleagues.
+- Add research data files to the upload and create entries.
+- Create datasets and publish them with a DOI.
 
 [**Using NOMAD as an ELN**](eln/built_in_templates.md)
 
