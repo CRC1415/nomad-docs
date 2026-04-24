@@ -652,7 +652,7 @@ This folder should be treated as run-scoped state; do not place global caches he
 For workflows that need user confirmation, extra parameters, or follow-up file
 uploads during execution, use Temporal signals plus `workflow.wait_condition`.
 
-### Workflow pattern (with NOMAD `request_user_input` activity)
+### Workflow pattern (with NOMAD `request_signal_input` activity)
 
 ```py
 from datetime import timedelta
@@ -661,8 +661,8 @@ from temporalio import workflow
 
 with workflow.unsafe.imports_passed_through():
     from nomad.actions.manager import (
-        RequestUserInputActivityInput,
-        request_user_input_activity,
+        RequestSignalInputActivityInput,
+        request_signal_input_activity,
     )
 
     from my_plugin.actions.models import UserDecision, WorkflowInput
@@ -684,8 +684,8 @@ class ApprovalWorkflow:
         # Ask NOMAD backend to create a user-input request.
         # signal_fn_name must match the workflow signal method name.
         await workflow.execute_activity(
-            request_user_input_activity,
-            RequestUserInputActivityInput(
+            request_signal_input_activity,
+            RequestSignalInputActivityInput(
                 action_instance_id=workflow.info().workflow_id,
                 user_id=data.user_id,
                 signal_fn_name='provide_input',
@@ -715,8 +715,8 @@ Send user input to the running workflow using the user-input endpoint with:
 - `signal_fn_name`: signal method name (for example `provide_input`)
 - `data`: signal payload (serializable model; can include `ActionAssetRef` for new uploads)
 
-Important: `signal_fn_name` provided to `request_user_input_activity` and
-`signal_fn_name` used by the submit-user-input call must be exactly the same
+Important: `signal_fn_name` provided to `request_signal_input_activity` and
+`signal_fn_name` used by the `submit_signal_input` call must be exactly the same
 as the workflow signal method name.
 
 ### Human-in-the-loop design recommendations
