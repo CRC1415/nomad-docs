@@ -565,17 +565,19 @@ path assumptions:
 ```py
 from temporalio import activity
 
-from nomad.actions.assets import open_action_asset, resolve_action_asset
+from nomad.actions.assets import open_action_asset, resolve_action_asset_path
 from nomad_example.actions.myaction.models import MyActionInput
 
 
 @activity.defn
 def process_uploaded_file(data: MyActionInput) -> dict:
+    action_instance_id = activity.info().workflow_id
+
     # 1) If you need a concrete filesystem path:
-    file_path = resolve_action_asset(data.measurement_file)
+    file_path = resolve_action_asset_path(data.measurement_file, action_instance_id)
 
     # 2) If you only need to read bytes/stream content:
-    with open_action_asset(data.measurement_file, mode='rb') as f:
+    with open_action_asset(data.measurement_file, action_instance_id, mode='rb') as f:
         content = f.read()
 
     # ... process file_path/content ...
@@ -593,9 +595,9 @@ lifecycle details are handled by NOMAD runtime.
 - Persist derived outputs to artifact folders (see next section), not into input paths.
 - Upload constraints (for example file-size limits, allowed media types, and per-user quota) are enforced by NOMAD and are configurable per Oasis via `nomad.yaml`.
 
-## Artifact storage: global vs per action instance
+## Storage layout for actions
 
-NOMAD provides two useful storage targets for action code.
+NOMAD provides one global storage target and two per-instance folders for plugin-facing code.
 
 ### 1) Global action artifacts (`action_artifacts_dir`)
 
@@ -617,7 +619,17 @@ artifacts/
       v2/
 ```
 
-### 2) Per-instance artifacts (`action_instance_artifacts_dir`)
+### 2) Per-instance uploaded assets (`action_instance_assets_dir`)
+
+`action_instance_assets_dir(action_instance_id)` points to user-uploaded input
+files for a specific workflow run.
+
+- This is where uploaded `ActionAssetRef` files are materialized for the run.
+- Treat this folder as input data owned by the runtime.
+- Prefer `open_action_asset(...)` / `resolve_action_asset_path(...)` helpers in
+  plugin code instead of hard-coding filesystem paths.
+
+### 3) Per-instance output artifacts (`action_instance_artifacts_dir`)
 
 Use `action_instance_artifacts_dir(action_instance_id)` for outputs and
 intermediate files tied to one workflow execution:
@@ -631,8 +643,9 @@ This folder should be treated as run-scoped state; do not place global caches he
 
 ### Quick decision rule
 
-- Reusable across runs/users/actions -> global `artifacts/`.
-- Specific to one workflow run -> `action_instance_id` folder.
+- Reusable across runs/users/actions -> global `action_artifacts_dir()`.
+- User-uploaded run input files -> `action_instance_assets_dir(action_instance_id)`.
+- Plugin-generated run outputs/intermediates -> `action_instance_artifacts_dir(action_instance_id)`.
 
 ## Human-in-the-loop actions with Temporal signals
 
