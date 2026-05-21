@@ -6,7 +6,7 @@ This guide describes how to upload data in NOMAD [supported file formats](../../
 
 You can upload files one by one, but you can also provider larger `.zip` or `.tar.gz`
 archive files, if this is easier to you. Also the file upload via frp or command line with
-curl or with wget generates an archive files. The specific layout of these files is up to you.
+`curl` or with `wget` generates an archive files. The specific layout of these files is up to you.
 NOMAD will simply extract them and consider the whole directory structure within.
 
 ## Create an upload and add files
@@ -172,18 +172,22 @@ to provide *user metadata* via file. See [user metadata](#add-user-metadata) abo
 To further automate, you can also upload and directly publish data. After performing some
 smaller test uploads, you should consider skipping our staging and publish the upload
 right away. This can save you some time and additional API calls. The upload endpoint
-has a parameter `publish_directly`. You can modify the upload command you get on the upload page as follows:
+has a parameter `publish_directly` and requires [getting and setting up a token](../program/auth.md#create-a-pat)
+with at least `"uploads:write"` permission. You can modify the upload command you get on the upload page as follows:
 
 ```shell
-curl "http://nomad-lab.eu/prod/v1/uploads/?token=<your-token>&publish_directly=true" -T <local_file>
+curl "http://nomad-lab.eu/prod/v1/uploads/?publish_directly=true" \
+  -H "Authorization: Bearer ${NOMAD_PAT}" \
+  -T <local_file>
 ```
 
-HTTP makes it easy for you to upload files via browser and curl, but it is not an
+HTTP makes it easy for you to upload files via browser and `curl`, but it is not an
 ideal protocol for the stable transfer of large and many files. Alternatively, we can organize
 a separate manual file transfer to our servers. We will put your prepared upload
 files (.zip or .tag.gz) on a predefined path on the NOMAD servers. NOMAD allows to *"upload"*
 files directly from its servers via an additional `local_path` parameter:
 
 ```shell
-curl -X PUT "http://nomad-lab.eu/prod/v1/api/uploads/?token=<your-token>&local_path=<path-to-upload-file>"
+curl -X PUT "http://nomad-lab.eu/prod/v1/api/uploads/?local_path=<path-to-upload-file>" \
+  -H "Authorization: Bearer ${NOMAD_PAT}"
 ```
