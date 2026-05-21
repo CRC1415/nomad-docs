@@ -91,6 +91,17 @@ curl "{{ nomad_url() }}/v1/uploads" \
     header = "Authorization: Bearer ${NOMAD_PAT}"
     ```
 
+#### With `wget`
+
+Use the PAT in the `Authorization` header:
+
+```bash
+wget \
+  --header="Authorization: Bearer ${NOMAD_PAT}" \
+  -O - \
+  "{{ nomad_url() }}/v1/uploads"
+```
+
 ### List your PATs
 
 You can list all PATs for your account, and optionally filter, sort, and paginate the results.
