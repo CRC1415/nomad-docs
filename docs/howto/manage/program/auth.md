@@ -50,13 +50,15 @@ pat = response.json()
 raw_token = pat["raw_token"]
 ```
 
-### Use a PAT in Python
+### Use a PAT
 
-Once created, we recommend storing it in an environment variable:
+Once created, we recommend [storing it in an environment variable](https://developer.android.com/tools/variables){:target="_blank" rel="noopener"}, for example in macOS/Linux:
 
 ```bash
 export NOMAD_PAT="<personal-access-token>"
 ```
+
+#### With Python `requests`
 
 Use the PAT in subsequent requests:
 
@@ -66,12 +68,28 @@ import requests
 
 response = requests.get(
     "{{ nomad_url() }}/v1/uploads",
-    headers={"Authorization": f"Bearer {os.environ["NOMAD_PAT"]}"},
+    headers={"Authorization": f"Bearer {os.environ['NOMAD_PAT']}"},
 )
 response.raise_for_status()
-
-uploads = response.json()["data"]
 ```
+
+#### With `curl`
+
+Use the PAT in the `Authorization` header:
+
+```bash
+curl "{{ nomad_url() }}/v1/uploads" \
+  -H "Authorization: Bearer ${NOMAD_PAT}"
+```
+
+!!! warning
+    You can set default headers in [`~/.curlrc`](https://everything.curl.dev/cmdline/configfile.html){:target="_blank" rel="noopener"},
+    but be careful: those headers are applied to ALL `curl` requests using that config. This can
+    accidentally send your PAT to unintended endpoints.
+
+    ```.curlrc
+    header = "Authorization: Bearer ${NOMAD_PAT}"
+    ```
 
 ### List your PATs
 
@@ -87,7 +105,7 @@ import requests
 
 response = requests.get(
     "{{ nomad_url() }}/v1/auth/pats",
-    headers={"Authorization": f"Bearer {os.environ["NOMAD_PAT"]}"},
+    headers={"Authorization": f"Bearer {os.environ['NOMAD_PAT']}"},
     params={
         "search": "ci",
         "state": "active",
