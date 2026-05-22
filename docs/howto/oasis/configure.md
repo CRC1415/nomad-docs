@@ -371,15 +371,14 @@ HTTP 401 Unauthorized
 
 #### Restricting access to specific users
 
-The `authorized_users` is a list of usernames or user emails (case-insensitive).
+The `authorized_users` is a list of usernames (case-insensitive).
 If specified, only these users are considered to be fully authorized for access.
 
 ```yaml
 auth:
   authorized_users:
-    - user1@example.com
-    - user2@example.com
-    - username3
+    - alice
+    - bob
 ```
 
 If this option is set, only the listed users are considered fully authorized.
@@ -490,8 +489,8 @@ auth:
     include:
       - "*:read"
   authorized_users:
-    - alice@example.com
-    - bob@example.com
+    - alice
+    - bob
 ```
 
 #### Fully Restricted Oasis
@@ -503,8 +502,8 @@ auth:
   require_authentication: true
   reject_unauthorized_users: true
   authorized_users:
-    - alice@example.com
-    - bob@example.com
+    - alice
+    - bob
 ```
 
 ## User management
