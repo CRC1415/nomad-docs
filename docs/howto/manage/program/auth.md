@@ -52,7 +52,10 @@ raw_token = pat["raw_token"]
 
 ### Use a PAT
 
-Once created, we recommend [storing it in an environment variable](https://developer.android.com/tools/variables){:target="_blank" rel="noopener"}, for example in macOS/Linux:
+Once created, we recommend [storing it in an environment variable](https://en.wikipedia.org/wiki/Environment_variable){:target="_blank" rel="noopener"}, for example in macOS/Linux:
+
+This helps avoid hardcoding secrets in scripts, which can be accidentally leaked
+through version control, logs, or shared files.
 
 ```bash
 export NOMAD_PAT="<personal-access-token>"
