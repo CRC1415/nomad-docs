@@ -426,7 +426,7 @@ from inside the iframe. Until a postMessage-based theme handoff is
 implemented, your options are:
 
 - Hard-code colors that approximate the NOMAD palette — use
-  [`themeOptions.ts`](https://github.com/FAIRmat-NFDI/nomad-gui/blob/develop/src/components/theme/themeOptions.ts){:target="_blank" rel="noopener"}
+  [`themeOptions.ts`](https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-gui/-/blob/develop/src/components/theme/themeOptions.ts){:target="_blank" rel="noopener"}
   as your reference.
 - Detect the user's OS-level preference with
   `@media (prefers-color-scheme: dark)` and render a matching theme.
