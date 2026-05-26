@@ -360,7 +360,7 @@ Dashboards live inside the new NOMAD GUI, so it's worth a little effort
 to make them feel native. The available approaches differ between
 FastAPI-hosted and externally hosted dashboards.
 
-### FastAPI-hosted dashboards
+### Styling a FastAPI-hosted dashboard
 
 The NOMAD GUI uses [Material UI](https://mui.com){:target="_blank" rel="noopener"}
 with the `cssVariables: true` option, which means the active theme is
@@ -416,9 +416,9 @@ declaration is enough — the JS above only overrides what is available).
 The authoritative list of theme colors lives in the NOMAD GUI's theme
 file. Use it as the source of truth when you need to hard-code values
 or extend the palette:
-[`src/components/theme/themeOptions.ts`](https://github.com/FAIRmat-NFDI/nomad-gui/blob/develop/src/components/theme/themeOptions.ts){:target="_blank" rel="noopener"}.
+[`src/components/theme/themeOptions.ts`](https://gitlab.mpcdf.mpg.de/nomad-lab/nomad-gui/-/blob/develop/src/components/theme/themeOptions.ts){:target="_blank" rel="noopener"}.
 
-### Externally hosted dashboards
+### Styling an externally hosted dashboard
 
 For externally hosted dashboards, **browser same-origin policy
 prevents reading the parent's CSS variables or any other DOM state**
