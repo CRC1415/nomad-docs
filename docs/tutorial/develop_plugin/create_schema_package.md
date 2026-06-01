@@ -31,6 +31,8 @@ Before starting this tutorial, make sure you have the following:
 
 ## Add schema normalization logic
 
+## Create an entry point for the schema package
+
 ## Test on GUI
 
 ## Next steps
