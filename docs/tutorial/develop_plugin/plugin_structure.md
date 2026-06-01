@@ -1,6 +1,6 @@
 # Develop a NOMAD plugin
 
-In this tutorial series, we develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we use a simplified microscopy measurement as an example, covering everything from creating a plugin repository and defining schemas to implementing parsing. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment.
+In this tutorial series, we develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we use a simplified optical microscopy measurement as an example, covering everything from creating a plugin repository and defining schemas to implementing parsing. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment.
 
 ---
 
@@ -68,7 +68,7 @@ To create a new repository from the template, select **Use this template** and t
 ![Use template](../images/use_template_dark.png#gh-dark-mode-only)
 ![Use template](../images/use_template_light.png#gh-light-mode-only)
 
-Enter a repository name (for example, `nomad-sintering`) and select **Create repository** to complete the setup.
+Enter a repository name (for example, `nomad-optical-microscopy`) and select **Create repository** to complete the setup.
 <!-- TODO: add image slider to show the two steps -->
 
 ## Generate the plugin structure
@@ -79,7 +79,7 @@ Next, you will generate the initial structure of the plugin by applying the offi
 
 You can proceed in one of two ways:
 
-1. Use GitHub Codespaces (cloud-based development), or
+1. (Recommended) Use GitHub Codespaces (cloud-based development), or
 2. Develop locally on Linux.
 
 **Using GitHub codespaces**
@@ -103,6 +103,8 @@ cd REPOSITORY_NAME
 Cruft is a tool that creates projects from Cookiecutter templates and keeps them up to date as the template evolves.
 
 **Install cruft**
+
+*Skip this step if you are using GitHub Codespaces (cruft is available by default).*
 
 Install [cruft](https://pypi.org/project/cruft/){:target="_blank" rel="noopener"}, preferably using
 `pipx` by running the following:
@@ -131,9 +133,9 @@ For example:
   [1/12] full_name (John Doe): Hampus Näsström
   [2/12] email (john.doe@physik.hu-berlin.de): hampus.naesstroem@physik.hu-berlin.de
   [3/12] github_username (foo): hampusnasstrom
-  [4/12] plugin_name (foobar): sintering
-  [5/12] module_name (sintering):
-  [6/12] short_description (NOMAD example template): A schema package plugin for sintering.
+  [4/12] plugin_name (foobar): optical-microscopy
+  [5/12] module_name (optical_microscopy):
+  [6/12] short_description (NOMAD example template): A schema package and parser plugin for optical microscopy.
   [7/12] version (0.1.0):
   [8/12] Select license
     1 - MIT
@@ -143,15 +145,15 @@ For example:
     Choose from [1/2/3/4] (1):
   [9/12] include_schema_package [y/n] (y): y
   [10/12] include_normalizer [y/n] (y): n
-  [11/12] include_parser [y/n] (y): n
+  [11/12] include_parser [y/n] (y): y
   [12/12] include_app [y/n] (y): n
 ```
 
-Selecting `y` for include_schema_package creates a Python package for the schema.
+Selecting `y` for include_schema_package creates a Python package for the schema, similar for the parser.
 
 !!! success "You have just created a minimal NOMAD plugin with a plugin entry point for a schema package"
     ```no-highlight
-    nomad-sintering/
+    optical-microscopy/
     ├── LICENSE
     ├── MANIFEST.in
     ├── README.md
@@ -161,15 +163,20 @@ Selecting `y` for include_schema_package creates a Python package for the schema
     ├── move_template_files.sh
     ├── pyproject.toml
     ├── src
-    │   └── nomad_sintering
+    │   └── optical_microscopy
     │       ├── __init__.py
+    │       ├── parsers
+    │       │   ├── __init__.py
+    │       │   └── parser.py
     │       └── schema_packages
     │           ├── __init__.py
-    │           └── mypackage.py
+    │           └── schema_package.py
     └── tests
         ├── conftest.py
         ├── data
         │   └── test.archive.yaml
+        ├── parsers
+        │   └── test_parser.py
         └── schema_packages
             └── test_schema.py
     ```
@@ -180,7 +187,7 @@ The plugin is generated in a subdirectory. Move the files to the repository root
 sh CHANGE_TO_PLUGIN_NAME/move_template_files.sh
 ```
 
-The `CHANGE_TO_PLUGIN_NAME` should be substituted by the name of the plugin you've created. In the above case it'll be `sh nomad-sintering/move_template_files.sh`.
+The `CHANGE_TO_PLUGIN_NAME` should be substituted by the name of the plugin you've created. In the above case it'll be `sh optical-microscopy/move_template_files.sh`.
 
 Finally, add the files to Git and commit the changes you have made:
 
