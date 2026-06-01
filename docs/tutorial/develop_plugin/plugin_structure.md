@@ -212,6 +212,8 @@ and check the "Allow GitHub Actions to create and approve pull requests" options
 ![Use template](../images/workflow_permissions_dark.png#gh-dark-mode-only)
 ![Use template](../images/workflow_permissions_light.png#gh-light-mode-only)
 
+# Old - to be removed later
+
 ## Setting up the python environment
 
 In this step, you will set up a Python environment and install the plugin for local development.
