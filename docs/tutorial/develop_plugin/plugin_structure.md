@@ -1,6 +1,6 @@
 # Develop a NOMAD plugin
 
-In this tutorial, we develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a corresponding normalization process. To follow the full development workflow, we use a sintering process as an example, covering everything from creating a plugin repository and defining schemas to implementing normalization. By the end of the tutorial, we will have produced a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment.
+In this tutorial series, we develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we use a simplified microscopy measurement as an example, covering everything from creating a plugin repository and defining schemas to implementing parsing. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment.
 
 ---
 
@@ -10,16 +10,19 @@ In this tutorial, you will learn how to:
 
 1. Create and version-control a NOMAD plugin repository using Git and GitHub
 2. Generate a plugin project using the official NOMAD cookiecutter template
-3. Define custom NOMAD schema packages using YAML and Python
+3. Set up a development and testing environment for the plugin
+<!-- 3. Define custom NOMAD schema packages using YAML and Python
 4. Register schema packages as NOMAD plugin entry points
 5. Implement normalization process that adds functionality to a schema
-6. Test and prepare the plugin for integration into a NOMAD Oasis deployment
+6. Test and prepare the plugin for integration into a NOMAD Oasis deployment -->
+
+In the following tutorials, you will create a custom schema package and a parser.
 
 ---
 
 ## Before you begin
 
-This tutorial assumes basic familiarity with Python and Git and is intended for users who want to extend NOMAD with custom schemas and normalization process.
+This tutorial assumes basic familiarity with Python and Git and is intended for users who want to extend NOMAD with custom functionality.
 
 Before starting this tutorial, make sure you have the following:
 
