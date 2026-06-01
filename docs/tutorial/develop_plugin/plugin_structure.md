@@ -62,8 +62,8 @@ First, you will version-control your NOMAD plugin by creating a GitHub repositor
 To create a new repository from the template, select **Use this template** and then choose
 **Create a new repository**. You must be logged in to GitHub to see this option.
 
-![Use template](./images/use_template_dark.png#gh-dark-mode-only)
-![Use template](./images/use_template_light.png#gh-light-mode-only)
+![Use template](../images/use_template_dark.png#gh-dark-mode-only)
+![Use template](../images/use_template_light.png#gh-light-mode-only)
 
 Enter a repository name (for example, `nomad-sintering`) and select **Create repository** to complete the setup.
 <!-- TODO: add image slider to show the two steps -->
@@ -83,8 +83,8 @@ You can proceed in one of two ways:
 
 To use a GitHub codespace for the plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
 
-![Use codepace](./images/codespace_dark.png#gh-dark-mode-only)
-![Use codespace](./images/codespace_light.png#gh-light-mode-only)
+![Use codepace](../images/codespace_dark.png#gh-dark-mode-only)
+![Use codespace](../images/codespace_light.png#gh-light-mode-only)
 
 **Developing locally**
 
@@ -193,14 +193,14 @@ The template repository includes a GitHub Actions workflow that checks for updat
 
 From you plugin repository on GitHub, open the **Settings** page, and navigate to **Actions → General** (on the left pane):
 
-![Use template](./images/github_settings_dark.png#gh-dark-mode-only)
-![Use template](./images/github_settings_light.png#gh-light-mode-only)
+![Use template](../images/github_settings_dark.png#gh-dark-mode-only)
+![Use template](../images/github_settings_light.png#gh-light-mode-only)
 
 Scroll to the bottom of the page, select the "Read and write permissions"
 and check the "Allow GitHub Actions to create and approve pull requests" options, and then click **Save**.
 
-![Use template](./images/workflow_permissions_dark.png#gh-dark-mode-only)
-![Use template](./images/workflow_permissions_light.png#gh-light-mode-only)
+![Use template](../images/workflow_permissions_dark.png#gh-dark-mode-only)
+![Use template](../images/workflow_permissions_light.png#gh-light-mode-only)
 
 ## Setting up the python environment
 
@@ -245,7 +245,7 @@ In this step, you will add a custom schema package to the plugin and make it ava
     
 <!-- TODO: Create a directly downloadable file-->
 ??? info "Schema packages can also be written directly in Python."
-    For step-by-step guidance on defining schema packages from scratch, see [How-to guide: Define NOMAD schema packages](../howto/plugins/types/schema_packages.md)
+    For step-by-step guidance on defining schema packages from scratch, see [How-to guide: Define NOMAD schema packages](../../howto/plugins/types/schema_packages.md)
 
 ### Generate schema classes
 
@@ -578,7 +578,7 @@ Rerun the nomad parse command. The output file `normalized.archive.json` should 
 
 ### Next steps
 
-The next step is to include your new schema in a custom NOMAD Oasis. For more information on how to configure a NOMAD Oasis you can have a look at [How-to guides/NOMAD Oasis/Configuration](../howto/oasis/configure.md).
+The next step is to include your new schema in a custom NOMAD Oasis. For more information on how to configure a NOMAD Oasis you can have a look at [How-to guides/NOMAD Oasis/Configuration](../../howto/oasis/configure.md).
 
 Before you continue, commit your changes to git:
 
