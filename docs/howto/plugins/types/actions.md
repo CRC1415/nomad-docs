@@ -481,6 +481,10 @@ For binary browser inputs (file upload, audio recording, image capture), use
 the action-asset flow: upload bytes first, then pass references in workflow
 or signal payloads.
 
+Action assets are private, action-scoped attachments. They do not become NOMAD
+upload raw files, are not processed or indexed as upload data, and are not
+user-manageable upload contents after the action form or signal is submitted.
+
 ### Plugin model design
 
 Define your workflow/signal models with `ActionAssetRef` instead of raw bytes:
@@ -539,6 +543,7 @@ class AssetInputs(BaseModel):
 ```
 
 For user experience:
+
 - Audio widgets can support recording directly in the browser (browser/device dependent).
 - Image widgets can support taking a photo from device camera or choosing an existing file.
 
@@ -556,6 +561,11 @@ Your responsibility is:
 
 Everything else (browser upload, backend validation, binding to action
 instance/signal scope, and storage transitions) is handled by NOMAD runtime.
+
+Asset inputs are supported for actions started through the GUI action form and
+for signal submissions. ELN-triggered `start_action(...)` calls should continue
+to pass serializable metadata and NOMAD upload references instead of
+`ActionAssetRef` values.
 
 ### Activity example: use asset helper functions
 
@@ -643,6 +653,7 @@ This folder should be treated as run-scoped state; do not place global caches he
 
 ### Quick decision rule
 
+- NOMAD dataset/raw data -> upload files.
 - Reusable across runs/users/actions -> global `action_artifacts_dir()`.
 - User-uploaded run input files -> `action_instance_assets_dir(action_instance_id)`.
 - Plugin-generated run outputs/intermediates -> `action_instance_artifacts_dir(action_instance_id)`.
@@ -752,6 +763,7 @@ For secrets that are specific to an individual user, such as a personal API key,
 Here is an example of how to use `SecretStr` in an action's input model:
 
 **nomad_example/actions/myaction/models.py**
+
 ```python
 from pydantic import BaseModel, Field, SecretStr
 
@@ -763,6 +775,7 @@ class MyActionInput(BaseModel):
 When a user triggers the action, they will be prompted to enter their API key. The key will be encrypted and stored securely. You can then access the secret in your action's code by calling the `get_secret_value()` method:
 
 **nomad_example/actions/myaction/activities.py**
+
 ```python
 from temporalio import activity
 from nomad_example.actions.myaction.models import MyActionInput
