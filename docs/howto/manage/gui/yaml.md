@@ -118,6 +118,9 @@ Dimensions can be given as:
 - the string `'*'` to denote am arbitrary sized dimension, e.g. a list quantity would have shape `['*']`.
 - A string that describes the name of a sibling quantity with an integer type, e.g. `['number_of_atoms', 3]`
 
+!!! note
+    The `shape` attribute works identically for all quantity types, including Reference types. Whether a quantity holds primitive values (strings, numbers) or references to other sections, the shape always defines the dimensionality in the same way.
+
 ### Unit
 
 NOMAD manages units and data with units via the [Pint](https://pint.readthedocs.io/en/stable/){:target="_blank" rel="noopener"} Python package. A unit is given as a string that is parsed by pint. These strings can

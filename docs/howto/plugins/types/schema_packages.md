@@ -238,6 +238,10 @@ represents a single piece of data. Quantities can be defined with the following 
 - `shape`: defines the dimensionality of the quantity. Examples are: `[]` (number),
   `['*']` (list), `[3, 3]` (3 by 3 matrix), `['n_elements']` (a vector of length defined by
   another quantity `n_elements`).
+
+!!! note
+    The `shape` attribute works identically for all quantity types, including Reference types. Whether a quantity holds primitive values (strings, numbers) or references to other sections, the shape always defines the dimensionality in the same way.
+
 - `unit`: a physical unit. We use [Pint](https://pint.readthedocs.io/en/stable/){:target="_blank" rel="noopener"} here. You can
   use unit strings that are parsed by Pint, e.g. `meter`, `m`, `m/s^2`. As a convention the
   NOMAD Metainfo uses only SI units.
