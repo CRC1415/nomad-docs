@@ -240,7 +240,7 @@ represents a single piece of data. Quantities can be defined with the following 
   another quantity `n_elements`).
 
 !!! note
-    The `shape` attribute works identically for all quantity types, including Reference types. Whether a quantity holds primitive values (strings, numbers) or references to other sections, the shape always defines the dimensionality in the same way.
+    The `shape` attribute works identically for all quantity types, including Reference types. For Reference types, shape defines the dimensionality of the references themselves (e.g., a single reference vs. an array of references), not the shape of the referenced data.
 
 - `unit`: a physical unit. We use [Pint](https://pint.readthedocs.io/en/stable/){:target="_blank" rel="noopener"} here. You can
   use unit strings that are parsed by Pint, e.g. `meter`, `m`, `m/s^2`. As a convention the

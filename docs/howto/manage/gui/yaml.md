@@ -119,7 +119,7 @@ Dimensions can be given as:
 - A string that describes the name of a sibling quantity with an integer type, e.g. `['number_of_atoms', 3]`
 
 !!! note
-    The `shape` attribute works identically for all quantity types, including Reference types. Whether a quantity holds primitive values (strings, numbers) or references to other sections, the shape always defines the dimensionality in the same way.
+    The `shape` attribute works identically for all quantity types, including Reference types. For Reference types, shape defines the dimensionality of the references themselves (e.g., a single reference vs. an array of references), not the shape of the referenced data.
 
 ### Unit
 
