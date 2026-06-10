@@ -65,7 +65,7 @@ plugins:
 
 ## Accessing plugin configuration at runtime
 
-When developing plugins, you can access both the plugin's configuration (metadata and parameters) and the actual plugin implementation (the resource). NOMAD uses a [lazy-loading pattern](../../explanation/plugin_system.md#plugin-resource) where these are kept separate: `get_plugin_entry_point()` returns the entry point configuration, while `.load()` returns the actual plugin resource.
+When developing plugins, you can access both the plugin's configuration (metadata and parameters) and the actual plugin implementation (the resource). NOMAD uses a [lazy-loading pattern](../../explanation/plugin_system.md#plugin-resource) where these are kept separate: `get_plugin_entry_point()` returns the entry point configuration, while `EntryPoint.load()` returns the actual plugin resource.
 
 ### Configuring plugin parameters
 
@@ -105,9 +105,9 @@ print(f'Plugin name: {entry_point.name}')
 
 The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']`.
 
-### Loading the plugin resource with `.load()`
+### Loading the plugin resource with `EntryPoint.load()`
 
-If you need to access the actual plugin implementation (not just its configuration), call the `.load()` method on the entry point. This returns the plugin resource, such as a Parser instance, Normalizer, FastAPI app, or SchemaPackage.
+Once you have retrieved the entry point using `get_plugin_entry_point()`, you can call its `.load()` method to access the actual plugin implementation. This returns the plugin resource, such as a Parser instance, Normalizer, FastAPI app, or SchemaPackage.
 
 ```python
 from nomad.config import config
@@ -122,7 +122,7 @@ parser = entry_point.load()
 parser.parse('path/to/file.out', archive, logger)
 ```
 
-The resource is only loaded when you call `.load()`, not when you call `get_plugin_entry_point()`. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
+Note that you must first call `get_plugin_entry_point()` to retrieve the entry point, then call `.load()` on that entry point to get the resource. The resource is only loaded when you call `.load()`, not during the initial `get_plugin_entry_point()` call. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
 
 ### Additional resources
 
