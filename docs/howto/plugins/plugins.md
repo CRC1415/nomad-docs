@@ -93,36 +93,30 @@ from nomad.config import config
 entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
 
 # Access configuration parameters
-print(f'Parameter value: {entry_point.parameter}')
-# Output: Parameter value: custom_value
-print(f'Another setting: {entry_point.another_setting}')
-# Output: Another setting: 42
+print(f'Parameter value: {entry_point.parameter}')  # Output: Parameter value: custom_value
+print(f'Another setting: {entry_point.another_setting}')  # Output: Another setting: 42
 
 # Access metadata
-print(f'Plugin name: {entry_point.name}')
-# Output: Plugin name: nomad_example.parsers:myparser
+print(f'Plugin name: {entry_point.name}')  # Output: Plugin name: nomad_example.parsers:myparser
 ```
 
-The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']`.
+The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']` (the same name used when configuring the plugin in `nomad.yaml`).
 
 ### Loading the plugin resource with `EntryPoint.load()`
 
-Once you have retrieved the entry point using `get_plugin_entry_point()`, you can call its `.load()` method to access the actual plugin implementation. This returns the plugin resource, such as a Parser instance, Normalizer, FastAPI app, or SchemaPackage.
+Once you have retrieved the entry point using `get_plugin_entry_point()`, you can call `EntryPoint.load()` to access the actual plugin implementation. This returns the plugin resource, such as a `Parser` instance, `Normalizer`, `FastAPI` app, or `SchemaPackage`.
 
 ```python
 from nomad.config import config
 
-# Get the entry point
 entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
-
-# Load the actual parser resource
 parser = entry_point.load()
 
-# Now you can use the parser instance
+# Use the parser instance
 parser.parse('path/to/file.out', archive, logger)
 ```
 
-Note that you must first call `get_plugin_entry_point()` to retrieve the entry point, then call `.load()` on that entry point to get the resource. The resource is only loaded when you call `.load()`, not during the initial `get_plugin_entry_point()` call. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
+Note that you must first call `get_plugin_entry_point()` to retrieve the entry point, then call `EntryPoint.load()` on that entry point to get the resource. The resource is only loaded when you call `EntryPoint.load()`, not during the initial `get_plugin_entry_point()` call. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
 
 ### Additional resources
 
