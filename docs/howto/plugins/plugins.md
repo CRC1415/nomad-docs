@@ -63,6 +63,71 @@ plugins:
     exclude: ["nomad_plugin.parsers:myparser"]
 ```
 
+## Accessing plugin configuration at runtime
+
+When developing plugins, your code often needs to access configuration parameters that administrators define in `nomad.yaml`. This is especially important when configuration values can be overridden by users of your plugin.
+
+### Configuring plugin parameters
+
+Administrators can override plugin-specific parameters using the `plugins.entry_points.options` section in `nomad.yaml`. For example:
+
+```yaml
+plugins:
+  entry_points:
+    options:
+      nomad_example.parsers:myparser:
+        parameter: "custom_value"
+        another_setting: 42
+```
+
+For comprehensive documentation on plugin configuration options, see the [Configuration reference](../../reference/config.md).
+
+### Retrieving configuration with `get_plugin_entry_point()`
+
+To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This function returns the final entry point configuration with all administrator overrides applied.
+
+```python
+from nomad.config import config
+
+# Get your plugin's entry point configuration
+entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
+
+# Access configuration parameters
+print(f'Parameter value: {entry_point.parameter}')
+print(f'Another setting: {entry_point.another_setting}')
+```
+
+The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']`.
+
+**When to use this:**
+
+- Accessing custom configuration parameters defined in your entry point class
+- Retrieving metadata about your plugin (name, description, etc.)
+- Getting configuration values that may have been overridden by administrators
+- Accessing any property defined in your entry point's pydantic model
+
+### Understanding the lazy-loading pattern
+
+NOMAD uses a lazy-loading pattern for plugins, where the entry point (configuration) is separate from the resource (the actual implementation). The entry point is loaded immediately when NOMAD starts, while the resource (e.g., your parser class, normalizer, or API) is only loaded when needed.
+
+This separation allows NOMAD to:
+
+- Load plugin metadata and configuration quickly at startup
+- Defer loading heavy resources until they're actually used
+- Validate configuration without importing all plugin code
+
+When you call `get_plugin_entry_point()`, you're accessing the entry point configuration. To load the actual plugin resource, NOMAD internally calls the entry point's `load()` method. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
+
+### Additional resources
+
+- [Plugin entry point models reference](../../reference/plugins.md) - Documentation for all entry point types
+- [NOMAD plugin system explanation](../../explanation/plugin_system.md) - Conceptual overview of the plugin architecture
+- Plugin type-specific guides for examples:
+    - [Parsers](./types/parsers.md)
+    - [APIs](./types/apis.md)
+    - [Normalizers](./types/normalizers.md)
+    - [Schema packages](./types/schema_packages.md)
+
 ## Plugin development guidelines
 
 ### Linting and formatting
