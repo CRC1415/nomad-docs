@@ -65,7 +65,7 @@ plugins:
 
 ## Accessing plugin configuration at runtime
 
-When developing plugins, your code often needs to access configuration parameters that administrators define in `nomad.yaml`. This is especially important when configuration values can be overridden by users of your plugin.
+When developing plugins, you can access both the plugin's configuration (metadata and parameters) and the actual plugin implementation (the resource). NOMAD uses a [lazy-loading pattern](../../explanation/plugin_system.md#plugin-resource) where these are kept separate: `get_plugin_entry_point()` returns the entry point configuration, while `.load()` returns the actual plugin resource.
 
 ### Configuring plugin parameters
 
@@ -105,17 +105,24 @@ print(f'Plugin name: {entry_point.name}')
 
 The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']`.
 
-### Understanding the lazy-loading pattern
+### Loading the plugin resource with `.load()`
 
-NOMAD uses a lazy-loading pattern for plugins, where the entry point (configuration) is separate from the resource (the actual implementation). The entry point is loaded immediately when NOMAD starts, while the resource (e.g., your parser class, normalizer, or API) is only loaded when needed.
+If you need to access the actual plugin implementation (not just its configuration), call the `.load()` method on the entry point. This returns the plugin resource, such as a Parser instance, Normalizer, FastAPI app, or SchemaPackage.
 
-This separation allows NOMAD to:
+```python
+from nomad.config import config
 
-- Load plugin metadata and configuration quickly at startup
-- Defer loading heavy resources until they're actually used
-- Validate configuration without importing all plugin code
+# Get the entry point
+entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
 
-When you call `get_plugin_entry_point()`, you're accessing the entry point configuration. To load the actual plugin resource, NOMAD internally calls the entry point's `load()` method. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
+# Load the actual parser resource
+parser = entry_point.load()
+
+# Now you can use the parser instance
+parser.parse('path/to/file.out', archive, logger)
+```
+
+The resource is only loaded when you call `.load()`, not when you call `get_plugin_entry_point()`. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
 
 ### Additional resources
 
