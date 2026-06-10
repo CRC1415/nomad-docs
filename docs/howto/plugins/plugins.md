@@ -84,7 +84,7 @@ For comprehensive documentation on plugin configuration options, see the [Config
 
 ### Retrieving configuration with `get_plugin_entry_point()`
 
-To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This function returns the final entry point configuration with all administrator overrides applied.
+To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This function returns the final entry point configuration with all administrator overrides applied, ensuring that the settings are up-to-date and all default overrides are included.
 
 ```python
 from nomad.config import config
