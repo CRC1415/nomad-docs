@@ -84,7 +84,7 @@ For comprehensive documentation on plugin configuration options, see the [Config
 
 ### Retrieving configuration with `get_plugin_entry_point()`
 
-To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This function returns the final entry point configuration with all administrator overrides applied, ensuring that the settings are up-to-date and all default overrides are included.
+To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This returns your plugin's entry point configuration with all administrator overrides applied, giving you access to custom parameters and metadata (such as plugin name and description) while ensuring all settings are up-to-date.
 
 ```python
 from nomad.config import config
@@ -104,13 +104,6 @@ print(f'Plugin name: {entry_point.name}')
 ```
 
 The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']`.
-
-**When to use this:**
-
-- Accessing custom configuration parameters defined in your entry point class
-- Retrieving metadata about your plugin (name, description, etc.)
-- Getting configuration values that may have been overridden by administrators
-- Accessing any property defined in your entry point's pydantic model
 
 ### Understanding the lazy-loading pattern
 
