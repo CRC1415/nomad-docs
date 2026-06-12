@@ -84,9 +84,7 @@ For comprehensive documentation on plugin configuration options, see the [Config
 
 ### Retrieving configuration with `get_plugin_entry_point()`
 
-To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This returns your plugin's entry point configuration with all administrator overrides applied, giving you access to custom parameters and metadata (such as plugin name and description) while ensuring all settings are up-to-date.
-
-**When to use this:** Use `get_plugin_entry_point()` when your plugin logic needs to access configuration parameters, such as when passing a configuration value to internal plugin functions or when retrieving metadata.
+To access your plugin's configuration from within your plugin code, use the `get_plugin_entry_point()` function from `nomad.config`. This returns your plugin's entry point configuration with all administrator overrides applied, giving you access to custom parameters and other relevant configurations, while ensuring all settings are up-to-date.
 
 ```python
 from nomad.config import config
@@ -97,28 +95,9 @@ entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
 # Access configuration parameters
 print(f'Parameter value: {entry_point.parameter}')  # Output: Parameter value: custom_value
 print(f'Another setting: {entry_point.another_setting}')  # Output: Another setting: 42
-
-# Access metadata
-print(f'Plugin name: {entry_point.name}')  # Output: Plugin name: nomad_example.parsers:myparser
 ```
 
 The entry point name passed to `get_plugin_entry_point()` must match the name defined in your plugin's `pyproject.toml` under `[project.entry-points.'nomad.plugin']` (the same name used when configuring the plugin in `nomad.yaml`).
-
-### Loading the plugin resource with `EntryPoint.load()`
-
-Once you have retrieved the entry point using `get_plugin_entry_point()`, you can call `EntryPoint.load()` to access the actual plugin implementation. This returns the plugin resource, such as a `Parser` instance, `Normalizer`, `FastAPI` app, or `SchemaPackage`. Note that you must first call `get_plugin_entry_point()` to retrieve the entry point, then call `EntryPoint.load()` on that entry point to get the resource.
-
-NOMAD automatically loads plugin resources when it needs them (e.g., when parsing a file). You typically only need to manually call `EntryPoint.load()` when writing plugin code that needs to access another plugin's resource. This lazy-loading pattern improves startup performance by deferring heavy resource initialization until actually needed. For more details on the plugin system architecture, see the [NOMAD plugin system](../../explanation/plugin_system.md) documentation.
-
-```python
-from nomad.config import config
-
-entry_point = config.get_plugin_entry_point('nomad_example.parsers:myparser')
-parser = entry_point.load()
-
-# Use the parser instance
-parser.parse('path/to/file.out', archive, logger)
-```
 
 ### Additional resources
 
