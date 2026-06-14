@@ -181,10 +181,8 @@ Selecting `y` for include_schema_package creates a Python package for the schema
 The plugin is generated in a subdirectory. Move the files to the repository root using the provided helper script:
 
 ```sh
-sh CHANGE_TO_PLUGIN_NAME/move_template_files.sh
+sh optical-microscopy/move_template_files.sh
 ```
-
-The `CHANGE_TO_PLUGIN_NAME` should be substituted by the name of the plugin you've created. In the above case it'll be `sh optical-microscopy/move_template_files.sh`.
 
 Finally, add the files to Git and commit the changes you have made:
 
@@ -215,9 +213,23 @@ The structure of the plugin is now ready for development for your specific purpo
 
 ### Option 1: Stand-alone installation of the plugin
 
-In this step, you will set up a Python environment and install the plugin for local development.
+In this step, you will set up a Python environment and install the plugin for local development. This can be done conveniently in one step using [uv](https://docs.astral.sh/uv/getting-started/installation/) or in several steps with pip.
 
-**Creating a virtual environment**
+**(Recommended) Installation with uv**
+
+Open the terminal, navigate to the folder with your plugin using `cd`. Set up the plugin:
+
+```sh
+uv sync --extra dev
+```
+
+After that many commands can be run in the newly created Python environment by using:
+
+```sh
+uv run <command>
+```
+
+**(Alternative) Installation with pip**
 
 Open the terminal, navigate to the folder with your plugin using `cd`. Create a virtual environment using Python 3.12 and activate it:
 
@@ -225,8 +237,6 @@ Open the terminal, navigate to the folder with your plugin using `cd`. Create a 
 python3.12 -m venv .pyenv
 source .pyenv/bin/activate
 ```
-
-**Installing the plugin**
 
 Install the plugin package in editable mode using the NOMAD package registry:
 
