@@ -32,7 +32,7 @@ The `normalize()` method of the `OpticalMicroscopy` class is currently only call
 
 **Step 2**
 
-Implement the `write_data()` method. 
+Implement the `write_data()` method.
 
 1. The data from the file can be first filled into a temporary object of the same class as the entry archive (already created in the code):
 
