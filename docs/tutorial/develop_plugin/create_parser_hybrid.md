@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 ## Part 3: Hybrid approach
 
 Users often prefer a hybrid approach, where the data is pre-filled automatically from the input files, but the subsequent manual edits are also saved in the entry. Both the original information and the edited values are saved in this approach.

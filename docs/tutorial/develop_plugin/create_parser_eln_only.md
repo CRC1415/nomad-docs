@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 ## Part 2: Manual input priority
 
 In this part you will create a parser using the ELN approach. On the one hand, more manual steps will need to be performed by the user for the file processing; on the other hand, the resulting entry will be user-editable, allowing users to overwrite or modify information provided by the source file.
@@ -8,12 +10,14 @@ From the developer point of view, this means that the actual parser entry point 
 
 ### Tutorial instructions
 
-Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']`  section of the [`pyproject.toml`](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials/blob/main/pyproject.toml#L120) of the plugin.
+Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the [`pyproject.toml`](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials/blob/main/pyproject.toml#L120) of the plugin.
 
-Note that the parser entry point is not present, and that the schema has already been created. Note also that all of the quantities defined in the `OpticalMicroscopy` schema and its subsections have an additional `a_eln` parameter set to 
+Note that the parser entry point is not present, and that the schema has already been created. Note also that all of the quantities defined in the `OpticalMicroscopy` schema and its subsections have an additional `a_eln` parameter set to:
+
 ```py
 ELNAnnotation(component=ELNComponentEnum.<data type>
 ```
+
 This makes the corresponding fields in the GUI user-editable (see more details in the [schema tutorial](create_schema_package.md)).
 
 **Step 1**

@@ -69,8 +69,6 @@ metainfo-yaml2py sintering.archive.yaml -o src/nomad_sintering/schema_packages -
 
 The `-n` flag adds `normalize()` functions (will be used below), while the `-o` flag specifies the output directory.
 
-
-
 ## Add ELN capabilities to the schema package
 
 Add input file support to the schema
@@ -88,9 +86,6 @@ data_file = Quantity(
 ```
 
 The `a_eln` annotation configures the quantity to accept file uploads in the NOMAD GUI using the `FileEditQuantity` component.
-
-
-
 
 ## Add schema normalization logic
 
