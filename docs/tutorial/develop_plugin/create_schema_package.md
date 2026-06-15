@@ -15,7 +15,7 @@ By the end of this tutorial, you will be able to:
 
 This tutorial assumes basic familiarity with Python and Git. You should have Python 3.10 or higher installed, along with Git. We recommend using a modern Python IDE (such as VS Code or PyCharm) to follow along.
 
-We will use the [nomad-plugin-tutorials](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials) repository to build the schema package step by step. Start by cloning the repository and navigating into it:
+We will use the [nomad-plugin-tutorials](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials){:target="_blank" rel="noopener"} repository to build the schema package step by step. Start by cloning the repository and navigating into it:
 
 ```bash
 git clone git@github.com:FAIRmat-NFDI/nomad-plugin-tutorials.git
@@ -28,13 +28,13 @@ To access the "tutorial mode" version of the code (which contains code-along exe
 git checkout tutorial-mode
 ```
 
-For instructions on installing and running the plugin locally, refer to the repository's [README.md](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials#getting-started).
+For instructions on installing and running the plugin locally, refer to the repository's [README.md](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials#getting-started){:target="_blank" rel="noopener"}.
 
 The schema package tutorial code is located in the `src / nomad_plugin_tutorials / schema` directory.
 
 ## Your first NOMAD schema package
 
-In NOMAD, a schema defines the structure of data in a Python class using quantities and sub-sections. We will learn how to build a schema by implementing a calculation for Planck spectral radiance (or [black-body radiation](https://en.wikipedia.org/wiki/Black-body_radiation)).
+In NOMAD, a schema defines the structure of data in a Python class using quantities and sub-sections. We will learn how to build a schema by implementing a calculation for Planck spectral radiance (or [black-body radiation](https://en.wikipedia.org/wiki/Black-body_radiation){:target="_blank" rel="noopener"}).
 
 Here is an overview of the schema structure we will build:
 
@@ -204,14 +204,14 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we:
 When defining the root section of an entry, we can use the `EntryData` base
 class. It identifies the root section and sets the metadata appropriately. In
 addition, NOMAD also provides a set of
-[basesections](https://nomad-lab.eu/prod/v1/docs/reference/basesections.html)
+[basesections](https://nomad-lab.eu/prod/v1/docs/reference/basesections.html){:target="_blank" rel="noopener"}
 broadly inspired from Basic-Formal Ontology's (BFO) Entity-Activity model.
 Inheriting basesections for your schema gives them a semantic meaning that is
 quickly recognizable in NOMAD. Since our root section is meant to calculate and
 save spectral radiance data, let's use the `Activity` basesection.
 
 We define the root class `BlackbodyRadiation` with quantities that have
-[ELN annotations](https://nomad-lab.eu/prod/v1/docs/reference/annotations.html#eln-annotations)
+[ELN annotations](https://nomad-lab.eu/prod/v1/docs/reference/annotations.html#eln-annotations){:target="_blank" rel="noopener"}
 (`a_eln`). These annotations determine how each quantity is
 rendered in the GUI (e.g. text inputs or number edits) and allow interactive
 with the users.
@@ -347,6 +347,7 @@ Additionally, we map the custom `name` quantity to NOMAD's standardized search i
 
         super().normalize(archive, logger)
     ```
+
 ## Register the schema package
 
 !!! info "Why registering the schema package is required"

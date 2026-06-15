@@ -209,11 +209,11 @@ and check the "Allow GitHub Actions to create and approve pull requests" options
 
 ## Developing the plugin
 
-The structure of the plugin is now ready for development for your specific purposes. If you plan to work with a single plugin and can avoid using NOMAD GUI functionality, stand-alone installation of the plugin will be sufficient. If you plan to work with multiple plugins or GUI-specific functionality, or if you wish to develop the core NOMAD package, we recommend using a dedicated [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev) development environment.
+The structure of the plugin is now ready for development for your specific purposes. If you plan to work with a single plugin and can avoid using NOMAD GUI functionality, stand-alone installation of the plugin will be sufficient. If you plan to work with multiple plugins or GUI-specific functionality, or if you wish to develop the core NOMAD package, we recommend using a dedicated [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"} development environment.
 
 ### Option 1: Stand-alone installation of the plugin
 
-In this step, you will set up a Python environment and install the plugin for local development. This can be done conveniently in one step using [uv](https://docs.astral.sh/uv/getting-started/installation/) or in several steps with pip.
+In this step, you will set up a Python environment and install the plugin for local development. This can be done conveniently in one step using [uv](https://docs.astral.sh/uv/getting-started/installation/){:target="_blank" rel="noopener"} or in several steps with pip.
 
 **(Recommended) Installation with uv**
 
@@ -249,13 +249,13 @@ pip install -e '.[dev]'
 
 This option should be used with a local Linux-based machine.
 
-Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev) repository (`Fork` -> `Create a new fork` in the upper right part of the page). You will also need the following additional software installed on your system:
+Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"} repository (`Fork` -> `Create a new fork` in the upper right part of the page). You will also need the following additional software installed on your system:
 
-- [Docker](https://docs.docker.com/engine/install/) - generally, only `docker-compose` functionality will be needed
+- [Docker](https://docs.docker.com/engine/install/){:target="_blank" rel="noopener"} - generally, only `docker-compose` functionality will be needed
 
-- [uv](https://docs.astral.sh/uv/getting-started/installation/) python package manager, version 0.5.14 or above
+- [uv](https://docs.astral.sh/uv/getting-started/installation/){:target="_blank" rel="noopener"} python package manager, version 0.5.14 or above
 
-- [node.js](https://nodejs.org/en) version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install) version 1.22 or above are necessary to run the GUI
+- [node.js](https://nodejs.org/en){:target="_blank" rel="noopener"} version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install){:target="_blank" rel="noopener"} version 1.22 or above are necessary to run the GUI
 
 Then, check `Basic infra` and follow the `Step-by-Step Setup` instructions in the `nomad-distro-dev` readme file.
 

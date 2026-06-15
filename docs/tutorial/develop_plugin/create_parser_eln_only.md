@@ -10,7 +10,7 @@ From the developer point of view, this means that the actual parser entry point 
 
 ### Tutorial instructions
 
-Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the [`pyproject.toml`](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials/blob/main/pyproject.toml#L120) of the plugin.
+Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the [`pyproject.toml`](https://github.com/FAIRmat-NFDI/nomad-plugin-tutorials/blob/main/pyproject.toml#L120){:target="_blank" rel="noopener"} of the plugin.
 
 Note that the parser entry point is not present, and that the schema has already been created. Note also that all of the quantities defined in the `OpticalMicroscopy` schema and its subsections have an additional `a_eln` parameter set to:
 
