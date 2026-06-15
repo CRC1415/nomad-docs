@@ -176,10 +176,10 @@ measurement.results[0].image = 'path/to/image.jpeg'
 
 ## Static entries: the outcome
 
-Once the parser runs successfully, NOMAD creates a **static entry** from the raw file. This entry:
+Once the parser runs successfully, NOMAD creates a **static entry** from the
+raw file. This entry is **read-only** from the user's perspective - there are
+no ELN fields for direct editing.
 
-- Is **read-only** from the user's perspective—there are no ELN widgets for direct editing.
-- Contains all data populated by the parser under `archive.data`, accessible in the NOMAD UI and via the API.
-- Can be re-parsed automatically if the raw file changes or the parser is updated.
-
-Static entries are ideal for instrument output files where the structured data should be derived entirely from the raw file without any manual input.
+Static entries are ideal for instrument or simulation output files where the
+structured data should be derived entirely from the raw file without any manual
+input.
