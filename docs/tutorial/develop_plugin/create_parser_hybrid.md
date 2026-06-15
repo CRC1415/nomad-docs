@@ -4,7 +4,7 @@ Users often prefer a hybrid approach, where the data is pre-filled automatically
 
 This can be achieved by creating two entries during parsing. The first one is a non-editable "Raw Data File" entry, and the second one is the user-editable version with populated schema.
 
-Realizing this approach requires multiple steps from the developer. To simplify the process, we created a specialized `ElnParserEntryPoint` class which redefines a standard `ParserEntryPoint`. The specific classes for both Raw Data File entry and the ELN can be selected by the developer.
+Realizing this approach requires multiple steps from the developer. To simplify the process, we created a specialized `ElnParserEntryPoint` class which redefines a standard `ParserEntryPoint`. The specific classes for botha: the  Raw Data File entry and the ELN can be selected by the developer.
 
 ## Tutorial instructions
 
@@ -46,45 +46,6 @@ When using `ElnParserEntryPoint`, you can choose to utilize default versions of 
     )
     ```
 
-## Testing the plugin
+## Hybrid approach: the outcome
 
-If you use `nomad-distro-dev`, all functionality of the plugin can be tested within GUI by restarting the `nomad-distro-dev`. For the stand-alone installation of the plugin, other options are available: parsing only with a command line, or parsing and normalization with a python script.
-
-### Parsing only with a command line
-
-The parsing can be tested at any moment using a built-in NOMAD command `parse`.
-
-1. Ensure that all the requirements for the plugin are installed. If you use `uv` in a stand-alone installation, run
-
-    ```sh
-    uv sync --extra dev
-    ```
-
-2. Run the parser with a selected input file:
-
-    ```sh
-    uv run nomad parse PATH/TO/THE/SELECTED/INPUT/FILE
-    ```
-
-    The result will be shown in the terminal. You can also save it into some temporary file, for example:
-
-    ```sh
-    uv run nomad parse PATH/TO/THE/SELECTED/INPUT/FILE > result.json
-    ```
-
-### Parsing and normalization with a python script
-
-You can use `parse()` and `normalize_all()` functions from `nomad.client`, for example:
-
-```py
-from nomad.client import normalize_all, parse
-
-archive = parse('src/nomad_plugin_tutorials/parsers/data/om_example/metadata.xml')[0]
-
-## print out or assert something from the parsed archive here
-
-normalize_all(archive)
-
-## print out or assert something from the parsed and normalized archive here
-
-```
+The hybrid approach to parsing combines the advantages of the two previously described methods at the cost of the increased complexity of the resulting data structure. The raw file is automatically parsed into a **static** raw data file entry, that references an additional **automatically generated but user-editable** ELN entry.

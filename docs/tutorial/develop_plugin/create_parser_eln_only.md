@@ -1,4 +1,4 @@
-# Parsing from an ELN entry
+# Parsing from an ELN: user-editable entries
 
 In this part you will create a parser using the ELN approach. On the one hand, more manual steps will need to be performed by the user for the file processing; on the other hand, the resulting entry will be user-editable, allowing users to overwrite or modify information provided by the source file.
 
@@ -146,3 +146,7 @@ Now the data in the temporary object can be merged into the entry archive so tha
 
         merge_sections(self, measurement, logger=logger)
     ```
+
+## User-editable entries: the outcome
+
+Unlike the static approach in [Tutorial 1](./create_parser_parser_only.md), the resulting entry is **user-editable**. The manually entered data has priority over the data from the source file. However, the ELN approach requires manual creation of a NOMAD ELN entry from schema, and the process has lower level of automation in general.
