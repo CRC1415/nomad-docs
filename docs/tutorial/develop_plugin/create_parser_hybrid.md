@@ -1,6 +1,4 @@
-<!-- markdownlint-disable MD041 -->
-
-## Part 3: Hybrid approach
+# Matching and creating an ELN entry (Hybrid Approach)
 
 Users often prefer a hybrid approach, where the data is pre-filled automatically from the input files, but the subsequent manual edits are also saved in the entry. Both the original information and the edited values are saved in this approach.
 
@@ -8,7 +6,7 @@ This can be achieved by creating two entries during parsing. The first one is a 
 
 Realizing this approach requires multiple steps from the developer. To simplify the process, we created a specialized `ElnParserEntryPoint` class which redefines a standard `ParserEntryPoint`. The specific classes for both Raw Data File entry and the ELN can be selected by the developer.
 
-### Tutorial instructions
+## Tutorial instructions
 
 !!! question "Tutorial 3.1"
     Please switch to the parser tutorial 3 by commenting lines corresponding to `tutorial_2` and uncommenting line corresponding to `tutorial_3` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
@@ -51,7 +49,7 @@ When using `ElnParserEntryPoint`, you can choose to utilize default versions of 
 
 If you use `nomad-distro-dev`, all functionality of the plugin can be tested within GUI by restarting the `nomad-distro-dev`. For the stand-alone installation of the plugin, other options are available: parsing only with a command line, or parsing and normalization with a python script.
 
-**Parsing only with a command line**
+### Parsing only with a command line
 
 The parsing can be tested at any moment using a built-in NOMAD command `parse`.
 
@@ -73,7 +71,7 @@ The parsing can be tested at any moment using a built-in NOMAD command `parse`.
     uv run nomad parse PATH/TO/THE/SELECTED/INPUT/FILE > result.json
     ```
 
-**Parsing and normalization with a python script**
+### Parsing and normalization with a python script
 
 You can use `parse()` and `normalize_all()` functions from `nomad.client`, for example:
 

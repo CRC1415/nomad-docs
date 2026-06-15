@@ -1,6 +1,4 @@
-<!-- markdownlint-disable MD041 -->
-
-## Part 2: Parsing from an ELN entry
+# Parsing from an ELN entry
 
 In this part you will create a parser using the ELN approach. On the one hand, more manual steps will need to be performed by the user for the file processing; on the other hand, the resulting entry will be user-editable, allowing users to overwrite or modify information provided by the source file.
 
@@ -8,7 +6,7 @@ From the user point of view, the NOMAD entry should be created manually, and som
 
 From the developer point of view, this means that the actual parser entry point is not needed. The entry can be created from the schema, and all the necessary steps can be performed within the `normalize()` method of the schema.
 
-### Tutorial instructions
+## Tutorial instructions
 
 !!! question "Tutorial 2.1"
     Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
@@ -96,7 +94,7 @@ You have just used `write_data()` method that has not been implemented yet.
 
 
     def write_data(self, data_dict: dict, logger: 'BoundLogger') -> None:
-        
+
         ...
 
         measurement = OpticalMicroscopy()
@@ -142,7 +140,7 @@ Now the data in the temporary object can be merged into the entry archive so tha
 
 
     def write_data(self, data_dict: dict, logger: 'BoundLogger') -> None:
-        
+
         ...
 
         merge_sections(self, measurement, logger=logger)
