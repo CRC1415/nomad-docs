@@ -10,7 +10,7 @@ From the developer point of view, this means that the actual parser entry point 
 
 ### Tutorial instructions
 
-!!! example "Tutorial 2.1"
+!!! question "Tutorial 2.1"
     Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
 
     You can find this file in the `tutorial-mode` branch under the root of the repository. Read the instructions in the code for more information.
@@ -35,7 +35,7 @@ ELNAnnotation(component=ELNComponentEnum.<data type>
 
 This makes the corresponding fields in the GUI user-editable (see more details in the [schema tutorial](create_schema_package.md)).
 
-!!! example "Tutorial 2.2"
+!!! question "Tutorial 2.2"
 
     The `normalize()` method of the `OpticalMicroscopy` class is currently only calling the same method of the parent class and then raising `NotImplementedError`. Please update `normalize()` method such that it:
 
@@ -72,7 +72,7 @@ This makes the corresponding fields in the GUI user-editable (see more details i
 
 You have just used `write_data()` method that has not been implemented yet.
 
-!!! example "Tutorial 2.3"
+!!! question "Tutorial 2.3"
 
     Implement the parsing logic of the `write_data()` method of the `OpticalMicroscopy` class.
 
@@ -127,7 +127,7 @@ You have just used `write_data()` method that has not been implemented yet.
 
 Now the data in the temporary object can be merged into the entry archive so that the priority is given to the data already in the entry archive. This can be done recursively for all subsections of a given archive.
 
-!!! example "Tutorial 2.4"
+!!! question "Tutorial 2.4"
 
     Use an example that is already present in the `utils.py` file of the plugin as the `merge_sections()` function to complete `write_data()` method of the `OpticalMicroscopy` class.
 
