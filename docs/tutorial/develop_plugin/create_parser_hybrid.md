@@ -33,6 +33,7 @@ When using `ElnParserEntryPoint`, you can choose to utilize default versions of 
     You can find the file in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_3 / parsers / __init__.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 3.2: Solution"
+
     ```py
     from nomad.config.models.plugins import ElnParserEntryPoint
 

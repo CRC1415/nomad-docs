@@ -2,7 +2,7 @@
 
 In this tutorial, we will build a parser that reads a raw instrument data file
 and populates a NOMAD archive entry with a custom schema. The result is a
-_static_ entry in the GUI: the data is read and structured at upload time by the parser,
+*static* entry in the GUI: the data is read and structured at upload time by the parser,
 with no further editing possible from the user.
 
 The parser tutorial code is located in the `src / nomad_plugin_tutorials / parsers / tutorial_1` directory.
@@ -138,6 +138,7 @@ measurement.results[0].image = 'path/to/image.jpeg'
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_1 / parsers / parser.py`.
 
 ??? success "Tutorial 2.1: Solution"
+
     ```py
     def parse(
         self, mainfile: str, archive: 'EntryArchive', logger=None, child_archives=None

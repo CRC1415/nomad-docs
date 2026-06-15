@@ -59,7 +59,7 @@ To define a custom schema section in NOMAD, we inherit from the `ArchiveSection`
 
 Let's start by defining the results section:
 
-```python
+```py
 from nomad.datamodel.data import ArchiveSection
 
 class BlackbodyResults(ArchiveSection):
@@ -76,7 +76,7 @@ Each `Quantity` represents a data field and requires a `type` (e.g., `float`, `s
 
 For example, we can define scalar `temperature` and 1D-array `wavelength` quantities as follows:
 
-```python
+```py
 from nomad.datamodel.data import ArchiveSection
 from nomad.metainfo import Quantity
 
@@ -102,7 +102,8 @@ class BlackbodyResults(ArchiveSection):
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.1: Solution"
-    ```python
+
+    ```py
     class BlackbodyResults(ArchiveSection):
         """
         Results of the Planck spectral radiance calculation.
@@ -145,7 +146,7 @@ NOMAD uses Plotly to render the interactive plots from JSON-serialized data. Eac
 
 Let's define a new class `BlackbodyResultsPlot` that inherits from both `BlackbodyResults` (to include all of our data quantities) and `PlotSection` (to inherit the `figures` sub-section):
 
-```python
+```py
 from nomad.datamodel.metainfo.plot import PlotSection
 
 class BlackbodyResultsPlot(BlackbodyResults, PlotSection):
@@ -167,7 +168,8 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we:
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials /schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.2: Solution"
-    ```python
+
+    ```py
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         """
         Creates a Plotly line plot of B(λ, T) and marks the peak wavelength.
@@ -214,7 +216,7 @@ We define the root class `BlackbodyRadiation` with quantities that have
 rendered in the GUI (e.g. text inputs or number edits) and allow interactive
 with the users.
 
-```python
+```py
 from nomad.datamodel.data import EntryData
 from nomad.datamodel.metainfo.annotations import ELNAnnotation, ELNComponentEnum
 from nomad.datamodel.metainfo.basesections import Activity
@@ -251,7 +253,8 @@ cleanly separate the input parameters from the calculation outputs.
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.3: Solution"
-    ```python
+
+    ```py
     class BlackbodyRadiation(Activity, EntryData):
         """
         ELN schema for a Planck blackbody radiation calculation.
@@ -304,7 +307,8 @@ Additionally, we map the custom `name` quantity to NOMAD's standardized search i
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.4: Solution"
-    ```python
+
+    ```py
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         """
         Computes the Planck spectral radiance B(λ, T) based on user inputs, stores
@@ -377,7 +381,7 @@ To register the schema package, we define a plugin entry point by updating the m
 
 We inherit from `SchemaPackageEntryPoint` and override its `load()` method to return the `m_package` of our schema:
 
-```python
+```py
 from nomad.config.models.plugins import SchemaPackageEntryPoint
 
 class BlackbodyRadiationSchemaEntryPoint(SchemaPackageEntryPoint):

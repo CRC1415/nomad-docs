@@ -28,7 +28,7 @@ From the developer point of view, this means that the actual parser entry point 
 Note that the parser entry point is not present, and that the schema has already been created. Note also that all of the quantities defined in the `OpticalMicroscopy` schema and its subsections have an additional `a_eln` parameter set to:
 
 ```py
-ELNAnnotation(component=ELNComponentEnum.<data type>
+ELNAnnotation(component=ELNComponentEnum.<data_type>)
 ```
 
 This makes the corresponding fields in the GUI user-editable (see more details in the [schema tutorial](create_schema_package.md)).
@@ -132,6 +132,7 @@ Now the data in the temporary object can be merged into the entry archive so tha
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_2 / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 2.4: Solution"
+
     ```py
 
     class OpticalMicroscopy(Measurement, EntryData):
