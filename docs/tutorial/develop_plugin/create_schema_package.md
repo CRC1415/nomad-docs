@@ -344,6 +344,30 @@ Additionally, we map the custom `name` quantity to NOMAD's standardized search i
         super().normalize(archive, logger)
     ```
 
+### Wrapping the sections with SchemaPackage
+
+`SchemaPackage` is the container that groups all schema sections into a single
+registerable unit. It must be instantiated as `m_package = SchemaPackage()` at
+the top of the module before any section classes are defined and finalized with
+`m_package.__init_metainfo__()` at the very end, once all classes are in place.
+
+```py
+from nomad.metainfo import SchemaPackage
+
+m_package = SchemaPackage()  # instantiate SchemaPackage
+
+class BlackbodyResults(...):
+    ...
+
+class BlackbodyResultsPlot(...):
+    ...
+
+class BlackbodyRadiation(...):
+    ...
+
+m_package.__init_metainfo__()  # initialize the metainfo from section classes
+```
+
 ## Register the schema package
 
 !!! info "Why registering the schema package is required"
