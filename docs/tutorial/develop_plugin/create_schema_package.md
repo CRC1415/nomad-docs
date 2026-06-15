@@ -97,7 +97,7 @@ class BlackbodyResults(ArchiveSection):
     )
 ```
 
-!!! example "Tutorial 1.1"
+!!! question "Tutorial 1.1"
     In the `BlackbodyResults` section, add the quantities for spectral radiance and peak wavelength with suitable type, shape, unit, and description.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
@@ -163,7 +163,7 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we:
 3. Import the helper plotting function `plot_blackbody_spectrum` from the visualization module: `nomad_plugin_tutorials.schema.visualize`.
 4. Set `self.figures` to a list containing a `PlotlyFigure` populated with the JSON-serialized Plotly figure.
 
-!!! example "Tutorial 1.2"
+!!! question "Tutorial 1.2"
     Implement the `normalize` method in `BlackbodyResultsPlot` to generate the Plotly plot.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials /schema / schema_package.py`. Read the instructions in the code for more information.
@@ -248,7 +248,7 @@ root section as **sub-sections** using the `SubSection` class. For example, we
 can embed the `BlackbodyResultsPlot` section under the `results` sub-section to
 cleanly separate the input parameters from the calculation outputs.
 
-!!! example "Tutorial 1.3"
+!!! question "Tutorial 1.3"
     Complete the class definition of `BlackbodyRadiation` by defining the quantities for `wavelength_min` and `wavelength_max` (using `NumberEditQuantity` components and default values of `100.0` and `3000.0` respectively) and composing `BlackbodyResultsPlot` inside the `results` sub-section.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
@@ -302,7 +302,7 @@ In this part, we will use a helper function `planck_spectrum` from the `nomad_pl
 
 Additionally, we map the custom `name` quantity to NOMAD's standardized search indexing metadata at `archive.results.material.material_name`, making our custom entry easily searchable.
 
-!!! example "Tutorial 1.4"
+!!! question "Tutorial 1.4"
     Implement the `normalize` method in the `BlackbodyRadiation` class to run the Planck spectrum calculation, assign it to the `results` sub-section, and populate the search metadata.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
@@ -393,6 +393,11 @@ or use `uv sync` if you are using uv.
 uv sync --extra dev
 ```
 
-## Test on GUI
+## Test the schema package
+
+### Using Python scripts
+
+### Using NOMAD GUI
 
 ## Next steps
+
