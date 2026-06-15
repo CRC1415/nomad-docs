@@ -396,4 +396,3 @@ uv sync --extra dev
 ### Using NOMAD GUI
 
 ## Next steps
-
