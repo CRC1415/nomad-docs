@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 ## Part 1: Parsing data into static entry
 
 In this tutorial we will create a parser that can parse a raw file and
