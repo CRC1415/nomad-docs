@@ -9,7 +9,7 @@ From the developer point of view, this means that the actual parser entry point 
 ## Tutorial instructions
 
 !!! question "Tutorial 2.1"
-    Please switch to the parser tutorial 2 by commenting lines corresponding to `tutorial_1` and uncommenting line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
+    Please switch to the parser tutorial 2 by commenting out lines corresponding to `tutorial_1` and uncommenting the line corresponding to `tutorial_2` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
 
     You can find this file in the `tutorial-mode` branch under the root of the repository. Read the instructions in the code for more information.
 
