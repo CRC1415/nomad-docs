@@ -41,7 +41,7 @@ This makes the corresponding fields in the GUI user-editable (see more details i
 
     2. If yes, uses the `data_file` value and the `read_data_file()` (same as in parser tutorial part 1) utility function to read the metadata file into a python dictionary.
 
-    3. Then, if the dictionary is created successfully, calls a `write_data()` method (see Tutorial 2.3) that will fill the entry archive.
+    3. Then, if the dictionary is created successfully, calls a `write_data()` method (will be implemented in Tutorial 2.3) that will fill the entry archive.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_2 / schema / schema_package.py`. Read the instructions in the code for more information.
 
