@@ -1,6 +1,6 @@
 # Matching and creating an ELN entry (Hybrid Approach)
 
-Users often prefer a hybrid approach of tutorial 1 and 2, where raw files can be matched automatically (as in tutorial 1) but an ELN is generated for users to provide input. The data is then read from the raw file in the `normalize` method (as in tutorial 2). 
+Users often prefer a hybrid approach of tutorial 1 and 2, where raw files can be matched automatically (as in tutorial 1) but an ELN is generated for users to provide input. The data is then read from the raw file in the `normalize` method (as in tutorial 2).
 
 This can be achieved by matching the raw file but only creating a minimal "Raw Data File" entry. The parser than selects and creates an appropriate ELN entry with the reading logic in its `normalize` method.
 

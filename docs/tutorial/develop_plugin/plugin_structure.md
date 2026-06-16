@@ -262,4 +262,3 @@ Then, follow the instructions in the `nomad-distro-dev` readme file under the `B
 ## Next steps
 
 In the next tutorials we will learn how to add data schemas and file parsers to our newly created plugin.
-
