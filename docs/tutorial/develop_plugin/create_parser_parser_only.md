@@ -132,12 +132,12 @@ measurement.m_setdefault('results/0')
 measurement.results[0].image = 'path/to/image.jpeg'
 ```
 
-!!! example "Tutorial 2.1"
+!!! example "Tutorial 1.1"
     Complete the `parse` method of `OpticalMicroscopyParser` to populate all fields of the `OpticalMicroscopy` schema from the parsed data dictionary and assign it to `archive.data`.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_1 / parsers / parser.py`.
 
-??? success "Tutorial 2.1: Solution"
+??? success "Tutorial 1.1: Solution"
 
     ```py
     def parse(

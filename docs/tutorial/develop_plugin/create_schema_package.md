@@ -34,7 +34,11 @@ The schema package tutorial code is located in the `src / nomad_plugin_tutorials
 
 ## Your first NOMAD schema package
 
-In NOMAD, a schema defines the structure of data in a Python class using quantities and sub-sections. We will learn how to build a schema by implementing a calculation for Planck spectral radiance (or [black-body radiation](https://en.wikipedia.org/wiki/Black-body_radiation){:target="_blank" rel="noopener"}).
+In NOMAD, a schema defines the structure of data in a Python class using
+[quantities](../../reference/glossary.md#quantity) and nested
+[sub-sections](../../reference/glossary.md#section-and-subsection). We will
+learn how to build a schema by implementing a calculation for Planck spectral
+radiance (or [black-body radiation](https://en.wikipedia.org/wiki/Black-body_radiation){:target="_blank" rel="noopener"}).
 
 Here is an overview of the schema structure we will build:
 
@@ -204,14 +208,14 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we:
 When defining the root section of an entry, we can use the `EntryData` base
 class. It identifies the root section and sets the metadata appropriately. In
 addition, NOMAD also provides a set of
-[basesections](https://nomad-lab.eu/prod/v1/docs/reference/basesections.html){:target="_blank" rel="noopener"}
+[basesections](../../reference/basesections.md)
 broadly inspired from Basic-Formal Ontology's (BFO) Entity-Activity model.
 Inheriting basesections for your schema gives them a semantic meaning that is
 quickly recognizable in NOMAD. Since our root section is meant to calculate and
 save spectral radiance data, let's use the `Activity` basesection.
 
 We define the root class `BlackbodyRadiation` with quantities that have
-[ELN annotations](https://nomad-lab.eu/prod/v1/docs/reference/annotations.html#eln-annotations){:target="_blank" rel="noopener"}
+[ELN annotations](../../reference/annotations.md#eln-annotations)
 (`a_eln`). These annotations determine how each quantity is
 rendered in the GUI (e.g. text inputs or number edits) and allow interactive
 with the users.
@@ -416,11 +420,3 @@ or use `uv sync` if you are using uv.
 ```sh
 uv sync --extra dev
 ```
-
-## Test the schema package
-
-### Using Python scripts
-
-### Using NOMAD GUI
-
-## Next steps
