@@ -51,7 +51,7 @@ Our tutorial documentation covers the basics of using Central NOMAD and NOMAD Oa
 - Create a custom NOMAD ELN schema using YAML files.
 - Create a parser for your tabular data (.xls or .csv).
 
-[**Developing NOMAD plugins**](develop_plugin.md)
+[**Developing NOMAD plugins**](develop_plugin/plugin_structure.md)
 
 - Use the NOMAD GitHub template to create plugins.
 - Install plugins to your NOMAD Oasis.
