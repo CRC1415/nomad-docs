@@ -2,7 +2,7 @@
 
 Users often prefer a hybrid approach of tutorial 1 and 2, where raw files can be matched automatically (as in tutorial 1) but an ELN is generated for users to provide input. The data is then read from the raw file in the `normalize` method (as in tutorial 2). 
 
-This can be achieved by creating two entries during parsing. The first one is a non-editable "Raw Data File" entry, and the second one is the user-editable version with populated schema.
+This can be achieved by matching the raw file but only creating a minimal "Raw Data File" entry. The parser than selects and creates an appropriate ELN entry with the reading logic in its `normalize` method.
 
 Realizing this approach requires multiple steps from the developer. To simplify the process, we created a specialized `ElnParserEntryPoint` class which redefines a standard `ParserEntryPoint`. The specific classes for botha: the  Raw Data File entry and the ELN can be selected by the developer.
 
