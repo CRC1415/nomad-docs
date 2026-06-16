@@ -49,3 +49,29 @@ When using `ElnParserEntryPoint`, you can choose to utilize default versions of 
 ## Hybrid approach: the outcome
 
 The hybrid approach to parsing combines the advantages of the two previously described methods at the cost of the increased complexity of the resulting data structure. The raw file is automatically parsed into a **static** raw data file entry, that references an additional **automatically generated but user-editable** ELN entry.
+
+## Testing the parser
+
+If you use `nomad-distro-dev` development environment, all functionality of the plugin can be tested within GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
+
+For a stand-alone installation of the plugin, please use a provided `tutorial.ipynb` jupyter notebook (you can find it under `src / nomad_plugin_tutorials / parsers / tutorial_3 / tutorial.ipynb`).
+
+Before running the notebook, ensure that the plugin and all dependencies are installed by running
+
+```sh
+uv sync --extra dev
+```
+
+or, if you use pip:
+
+```sh
+pip install -e '.[dev]'
+```
+
+In step 1, you will use the `parse()` function from `nomad.client` to imitate uploading a file in GUI
+
+In step 2, you can inspect the parsing results of the raw file archive
+
+In step 3, you parse a newly created ELN archive and run the normalizer to populate the data from the source file 
+
+In step 4, you can inspect the parsing results of the ELN archive

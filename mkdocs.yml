@@ -25,7 +25,6 @@ nav:
               - Tutorial 1: tutorial/develop_plugin/create_parser_parser_only.md
               - Tutorial 2: tutorial/develop_plugin/create_parser_eln_only.md
               - Tutorial 3: tutorial/develop_plugin/create_parser_hybrid.md
-              - Testing the plugin: tutorial/develop_plugin/test_parser.md
   - How-to guides:
       - Overview: howto/overview.md
       - Manage and find data:

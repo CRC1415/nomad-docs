@@ -150,3 +150,29 @@ Now the data in the temporary object can be merged into the entry archive so tha
 ## User-editable entries: the outcome
 
 Unlike the static approach in [Tutorial 1](./create_parser_parser_only.md), the resulting entry is **user-editable**. The manually entered data has priority over the data from the source file. However, the ELN approach requires manual creation of a NOMAD ELN entry from schema, and the process has lower level of automation in general.
+
+## Testing the parser
+
+If you use `nomad-distro-dev` development environment, all functionality of the plugin can be tested within GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
+
+For a stand-alone installation of the plugin, please use a provided `tutorial.ipynb` jupyter notebook (you can find it under `src / nomad_plugin_tutorials / parsers / tutorial_2 / tutorial.ipynb`).
+
+Before running the notebook, ensure that the plugin and all dependencies are installed by running
+
+```sh
+uv sync --extra dev
+```
+
+or, if you use pip:
+
+```sh
+pip install -e '.[dev]'
+```
+
+In step 1, you imitate creation of an ELN in GUI by creating an `EntryArchive` with minimal information
+
+In step 2, you add `data` section of the type `OpticalMicroscopy` to the new archive and add a `data_file`
+
+In step 3, you run the normalizer to fill the ELN from the source file (imitates saving entry in the GUI)
+
+In step 4, you can inspect the parsing results
