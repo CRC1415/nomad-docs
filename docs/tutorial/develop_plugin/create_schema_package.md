@@ -257,7 +257,11 @@ class BlackbodyRadiation(Activity, EntryData):
 To compose our schema hierarchically, we can include other sections inside the
 root section as **sub-sections** using the `SubSection` class. For example, we
 can embed the `BlackbodyResultsPlot` section under the `results` sub-section to
-cleanly separate the input parameters from the calculation outputs.
+cleanly separate the input parameters from the calculation outputs:
+
+```py
+results = SubSection(section_def=BlackbodyResultsPlot)
+```
 
 !!! question "Tutorial 1.3"
     Complete the class definition of `BlackbodyRadiation` by defining the quantities for `wavelength_min` and `wavelength_max` (using `NumberEditQuantity` components and default values of `100.0` and `3000.0` respectively) and composing `BlackbodyResultsPlot` inside the `results` sub-section.
