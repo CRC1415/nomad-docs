@@ -72,6 +72,6 @@ In step 1, you will use the `parse()` function from `nomad.client` to imitate up
 
 In step 2, you can inspect the parsing results of the raw file archive
 
-In step 3, you parse a newly created ELN archive and run the normalizer to populate the data from the source file 
+In step 3, you parse a newly created ELN archive and run the normalizer to populate the data from the source file
 
 In step 4, you can inspect the parsing results of the ELN archive
