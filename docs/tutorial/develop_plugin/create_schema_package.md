@@ -158,9 +158,16 @@ class BlackbodyResultsPlot(BlackbodyResults, PlotSection):
     Section that generates a Plotly plot of the spectral radiance profile and
     populates `figures` subsection with JSON-serialized Plotly figure data.
     """
+    
+    def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
+        """
+        Creates a Plotly line plot of B(λ, T) and marks the peak wavelength.
+        Stores the figure in `self.figures` for display in the NOMAD UI.
+        """
+        super().normalize(archive, logger)
 ```
 
-Within the `normalize` method of `BlackbodyResultsPlot`, we:
+Within the `normalize` method of `BlackbodyResultsPlot`, we want to:
 
 1. Call `super().normalize(archive, logger)` to execute any normalizer logic from parent classes.
 2. Verify that our input quantities (`wavelength` and `spectral_radiance`) are present before attempting to plot.
@@ -217,8 +224,8 @@ save spectral radiance data, let's use the `Activity` basesection.
 We define the root class `BlackbodyRadiation` with quantities that have
 [ELN annotations](../../reference/annotations.md#eln-annotations)
 (`a_eln`). These annotations determine how each quantity is
-rendered in the GUI (e.g. text inputs or number edits) and allow interactive
-with the users.
+rendered in the GUI (e.g. text inputs or number edits) and allow input
+from the users.
 
 ```py
 from nomad.datamodel.data import EntryData

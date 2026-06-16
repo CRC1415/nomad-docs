@@ -35,7 +35,7 @@ Before starting this tutorial, make sure you have the following:
 4. **Local or cloud-based development environment**  
    You need either:
 
-    - A Linux-based local machine with Python ≥ 3.12, git, and any Integrated Development Environment (IDE), or
+    - A local machine with Python ≥ 3.12, git, and any Integrated Development Environment (IDE), or
     - Access to GitHub Codespaces for cloud-based development.
 
 ??? info "Background concepts used in this tutorial (optional)"
@@ -76,7 +76,7 @@ Next, you will generate the initial structure of the plugin by applying the offi
 You can proceed in one of two ways:
 
 1. Use GitHub Codespaces (cloud-based development), or
-2. Develop locally on Linux.
+2. Develop locally.
 
 **Using GitHub codespaces**
 
@@ -87,7 +87,7 @@ To use a GitHub codespace for the plugin development, click on the **<> Code** b
 
 **Developing locally**
 
-If you prefer to work locally on a Linux machine, click on the **<> Code** button in the repository and choose the **“Local”** tab, copy the repository URL, and clone it to a selected location in your machine by running in terminal:
+If you prefer to work locally, click on the **<> Code** button in the repository and choose the **“Local”** tab, copy the repository URL, and clone it to a selected location in your machine by running in terminal:
 
 ```sh
 cd LOCAL/PATH/ON/YOUR/MACHINE
@@ -223,7 +223,7 @@ Open the terminal, navigate to the folder with your plugin using `cd`. Set up th
 uv sync --extra dev
 ```
 
-After that many commands can be run in the newly created Python environment by using:
+This sets up a dynamic Python environment. To run a python command, use:
 
 ```sh
 uv run <command>
@@ -257,16 +257,9 @@ Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-di
 
 - [node.js](https://nodejs.org/en){:target="_blank" rel="noopener"} version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install){:target="_blank" rel="noopener"} version 1.22 or above are necessary to run the GUI
 
-Then, check `Basic infra` and follow the `Step-by-Step Setup` instructions in the `nomad-distro-dev` readme file.
+Then, follow the instructions in the `nomad-distro-dev` readme file under the `Basic infra` and `Step-by-Step Setup` headings.
 
 ## Next steps
 
-Specific details for developing schema packages and parsers are provided in corresponding tutorials.
+In the next tutorials we will learn how to add data schemas and file parsers to our newly created plugin.
 
-Commit all your changes in the plugin to git:
-
-```sh
-git add -A
-git commit -m "Short description of the changes"
-git push
-```
