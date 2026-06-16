@@ -127,7 +127,7 @@ Now the data in the temporary object can be merged into the entry archive so tha
 
 !!! question "Tutorial 2.4"
 
-    Use an example that is already present in the `utils.py` file of the plugin as the `merge_sections()` function to complete `write_data()` method of the `OpticalMicroscopy` class.
+    Use the `merge_sections()` function from the `utils` submodules to complete `write_data()` method of the `OpticalMicroscopy` class by merging the temporary object into the `self` object (which contains potential user input).
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_2 / schema / schema_package.py`. Read the instructions in the code for more information.
 
