@@ -1,6 +1,6 @@
 # Matching and creating an ELN entry (Hybrid Approach)
 
-Users often prefer a hybrid approach, where the data is pre-filled automatically from the input files, but the subsequent manual edits are also saved in the entry. Both the original information and the edited values are saved in this approach.
+Users often prefer a hybrid approach of tutorial 1 and 2, where raw files can be matched automatically (as in tutorial 1) but an ELN is generated for users to provide input. The data is then read from the raw file in the `normalize` method (as in tutorial 2). 
 
 This can be achieved by creating two entries during parsing. The first one is a non-editable "Raw Data File" entry, and the second one is the user-editable version with populated schema.
 
