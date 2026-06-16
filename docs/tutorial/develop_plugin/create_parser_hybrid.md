@@ -9,7 +9,7 @@ Realizing this approach requires multiple steps from the developer. To simplify 
 ## Tutorial instructions
 
 !!! question "Tutorial 3.1"
-    Please switch to the parser tutorial 3 by commenting lines corresponding to `tutorial_2` and uncommenting line corresponding to `tutorial_3` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
+    Please switch to the parser tutorial 3 by commenting out lines corresponding to `tutorial_2` and uncommenting the lines corresponding to `tutorial_3` in the `[project.entry-points.'nomad.plugin']` section of the `pyproject.toml`.
 
     You can find this file in the `tutorial-mode` branch under the root of the repository. Read the instructions in the code for more information.
 
