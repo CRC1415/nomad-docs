@@ -23,12 +23,13 @@ Dashboards can be used for a wide variety of purposes:
 similar (both can mount a FastAPI app inside NOMAD), but their audience
 is different:
 
-| | **APIs** | **Dashboards** |
-| --- | --- | --- |
-| Audience | Other programs (clients, scripts, integrations) | End users via a browser |
-| Surfaces in the GUI? | No (just an extra `/myapi/` mount) | Yes — listed on the *Dashboards* page, with embedded + new-tab launchers, icons, descriptions |
-| Typical content | JSON endpoints | HTML + JS, optionally a full SPA |
-| Can be external? | No — must return a FastAPI app | Yes — can point at an external URL |
+- **Audience.** APIs target other programs (clients, scripts, integrations),
+  while dashboards target end users working in a browser.
+- **How they surface in the GUI.** APIs are listed on the *APIs* page, with
+  links to reach each mounted API. Dashboards are listed on the *Dashboards*
+  page, with embedded and new-tab launchers, icons and descriptions.
+- **Typical content.** APIs serve JSON endpoints, whereas dashboards serve
+  HTML and JS, optionally a full SPA.
 
 You should read the [introduction to plugins](../plugins.md) to have a
 basic understanding of how plugins and plugin entry points work in the
