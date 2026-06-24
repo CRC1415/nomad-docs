@@ -17,3 +17,5 @@ ignorePatterns:
   - pattern: '^https://stackoverflow\.com/'
   # xfce.org is consistently unreachable in CI (navigation times out)
   - pattern: "^https://(www\\.)?xfce\\.org/?$"
+  # hifis.net is consistently unreachable in CI (navigation times out)
+  - pattern: "^https://(www\\.)?hifis\\.net/"
