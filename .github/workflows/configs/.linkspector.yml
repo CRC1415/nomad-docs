@@ -4,7 +4,7 @@ dirs:
 files:
   - ./README.md
 useGitIgnore: true
-timeout: 10000 # in ms (default is 30s)
+timeout: 25000 # in ms (default is 30s)
 ignorePatterns:
   # Ignore all non-http(s) links; `mkdocs --strict` would validates internal links
   - pattern: "^(?!https?://).*"
