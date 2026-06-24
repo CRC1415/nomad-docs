@@ -493,3 +493,18 @@ Either:
   instance, or
 - Implement a graceful 401 fallback in your dashboard so it remains
   usable when the visitor is not logged in.
+
+## Sample use cases
+
+### Running highly customized code on NOMAD
+
+A dashboard is one way to bring highly customized or personalized code onto
+NOMAD infrastructure. There are two routes for this:
+
+1. **A NORTH tool** — package the code as a containerized, interactive tool
+   launched through the [NORTH tools plugin](./north_tools.md). Best when the
+   application needs its own runtime environment (for example a full Jupyter
+   or desktop environment running in a container).
+2. **A dashboard plus actions** — serve the code as a dashboard and implement
+   its server-side behaviour with the [actions plugin](./actions.md). Best
+   when a lightweight web UI backed by NOMAD's API is enough.
