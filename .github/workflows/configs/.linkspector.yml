@@ -4,7 +4,7 @@ dirs:
 files:
   - ./README.md
 useGitIgnore: true
-timeout: 25000 # in ms (default is 30s)
+timeout: 10000 # in ms (default is 30s)
 ignorePatterns:
   # Ignore all non-http(s) links; `mkdocs --strict` would validates internal links
   - pattern: "^(?!https?://).*"
@@ -15,3 +15,5 @@ ignorePatterns:
   - pattern: "^https://www\\.w3\\.org/TR/vocab-dcat-2/?$"
   # Stackoverflow might also have bot check which results in 403
   - pattern: '^https://stackoverflow\.com/'
+  # xfce.org is consistently unreachable in CI (navigation times out)
+  - pattern: "^https://(www\\.)?xfce\\.org/?$"
