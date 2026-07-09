@@ -275,4 +275,4 @@ Then, follow the instructions in the `nomad-distro-dev` readme file under the [`
 
 ## Next steps
 
-In the next tutorials we will learn how to add data schemas and file parsers to our newly created plugin.
+In the next tutorials you will learn how to add data schemas and file parsers to an existing NOMAD plugin.
