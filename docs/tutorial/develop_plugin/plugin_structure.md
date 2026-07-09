@@ -22,17 +22,17 @@ This tutorial assumes basic familiarity with Python and Git, as well as minimal 
 
 Before starting this tutorial, make sure you have the following:
 
-1. **GitHub account**  
+1. **GitHub account**
    Required to create and manage the plugin repository. You can create a free account at [github.com/signup](https://github.com/signup){:target="_blank" rel="noopener"}.
 
-2. **Basic understanding of Python**  
+2. **Basic understanding of Python**
    You should be comfortable reading and writing basic Python code, including modules, functions,
    and classes.
 
-3. **Basic understanding of NOMAD metainfo**  
+3. **Basic understanding of NOMAD metainfo**
    Familiarity with NOMAD’s metainfo system is helpful. If needed, review [FAIRmat Tutorial 8](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-8/tutorial-8-materials){:target="_blank" rel="noopener"}.
 
-4. **Local or cloud-based development environment**  
+4. **Local or cloud-based development environment**
    You need either:
 
     - A local machine with Python ≥ 3.12, git, and any Integrated Development Environment (IDE), or
@@ -263,6 +263,8 @@ source .pyenv/bin/activate
 
 This option is designed to be used with a local Linux-based machine. It does not work natively on Windows, but can in principle be run using the [Devcontainer](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank" rel="noopener"} plugin in VSCode or [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){:target="_blank" rel="noopener"} (WSL).
 
+This setup is required when you need to verify plugin behavior in the NOMAD GUI.
+
 Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"} repository (`Fork` -> `Create a new fork` in the upper right part of the page). You will also need the following additional software installed on your system:
 
 - [Docker](https://docs.docker.com/engine/install/){:target="_blank" rel="noopener"} - generally, only `docker-compose` functionality will be needed
@@ -271,7 +273,8 @@ Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-di
 
 - [node.js](https://nodejs.org/en){:target="_blank" rel="noopener"} version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install){:target="_blank" rel="noopener"} version 1.22 or above are necessary to run the GUI
 
-Then, follow the instructions in the `nomad-distro-dev` readme file under the [`Basic infra`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#basic-infra){:target="_blank" rel="noopener"} and [`Step-by-Step Setup`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#step-by-step-setup){:target="_blank" rel="noopener"} headings.
+Then, follow the instructions in the `nomad-distro-dev` readme file under the [`Basic infra`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#basic-infra){:target="_blank" rel="noopener"} and [`Developing nomad + plugins locally`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#developing-nomad--plugins-locally){:target="_blank" rel="noopener"} headings.
+
 
 ## Next steps
 
