@@ -94,5 +94,11 @@ Then reinstall the plugin:
 pip install -e '.[dev]'
 ```
 
+or, if you use `uv`:
+
+```sh
+uv sync --extra dev
+```
+
 For Tutorial 2, we only have a schema package, whereas for Tutorial 3, we again
 have both parser and schema package entry points.
