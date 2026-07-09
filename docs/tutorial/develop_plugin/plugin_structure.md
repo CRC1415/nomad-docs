@@ -275,7 +275,6 @@ Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-di
 
 Then, follow the instructions in the `nomad-distro-dev` readme file under the [`Basic infra`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#basic-infra){:target="_blank" rel="noopener"} and [`Developing nomad + plugins locally`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#developing-nomad--plugins-locally){:target="_blank" rel="noopener"} headings.
 
-
 ## Next steps
 
 In the next tutorials you will learn how to add data schemas and file parsers to an existing NOMAD plugin.
