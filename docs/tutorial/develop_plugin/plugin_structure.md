@@ -18,7 +18,7 @@ In the following tutorials, you will create a custom schema package and a parser
 
 ## Before you begin
 
-This tutorial assumes basic familiarity with Python and Git and is intended for users who want to extend NOMAD with custom functionality.
+This tutorial assumes basic familiarity with Python and Git, as well as minimal experience of using NOMAD. It is intended for users who want to extend local NOMAD deployment (NOMAD Oasis) with custom functionality.
 
 Before starting this tutorial, make sure you have the following:
 
@@ -44,9 +44,11 @@ Before starting this tutorial, make sure you have the following:
     if you are unfamiliar with any of them:
 
     - [what is Git](https://learn.microsoft.com/en-us/devops/develop/git/what-is-git){:target="_blank" rel="noopener"}
-    - [what is VSCode, i. e., an IDE](https://aws.amazon.com/what-is/ide/){:target="_blank" rel="noopener"}
+    - [what is an IDE](https://aws.amazon.com/what-is/ide/){:target="_blank" rel="noopener"}
+    - [what is VSCode (an example of IDE)](https://code.visualstudio.com/docs/getstarted/overview){:target="_blank" rel="noopener"}
     - [what is Pip](https://realpython.com/lessons/what-is-pip-overview/){:target="_blank" rel="noopener"}
     - [what is a Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/#why-do-you-need-virtual-environments){:target="_blank" rel="noopener"}
+    - [what is uv](https://realpython.com/ref/tools/uv/){:target="_blank" rel="noopener"}
     - [creating a Python package](https://packaging.python.org/en/latest/tutorials/packaging-projects/){:target="_blank" rel="noopener"}
     - [uploading a package to PyPI](https://www.freecodecamp.org/news/how-to-create-and-upload-your-first-python-package-to-pypi/){:target="_blank" rel="noopener"}
     - [what is cruft](https://cruft.github.io/cruft/){:target="_blank" rel="noopener"}
