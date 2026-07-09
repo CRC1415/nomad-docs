@@ -75,19 +75,19 @@ Next, you will generate the initial structure of the plugin by applying the offi
 
 ### Choose a development environment
 
-You can proceed in one of two ways:
+In this step, you can proceed in one of the two following ways:
 
 1. Use GitHub Codespaces (cloud-based development), or
 2. Develop locally.
 
-**Using GitHub codespaces**
+**Option 1: Using GitHub codespaces (Recommended)**
 
 To use a GitHub codespace for the plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
 
 ![Use codepace](../images/codespace_dark.png#gh-dark-mode-only)
 ![Use codespace](../images/codespace_light.png#gh-light-mode-only)
 
-**Developing locally**
+**Option 2: Developing locally**
 
 If you prefer to work locally, click on the **<> Code** button in the repository and choose the **“Local”** tab, copy the repository URL, and clone it to a selected location in your machine by running in terminal:
 
@@ -119,7 +119,7 @@ python -m pip install --user cruft
 
 **Run cruft**
 
-Generate the plugin structure by running:
+Generate the plugin structure by running in terminal:
 
 ```sh
 cruft create https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin
@@ -225,7 +225,7 @@ Open the terminal, navigate to the folder with your plugin using `cd`. Set up th
 uv sync --extra dev
 ```
 
-This sets up a dynamic Python environment. To run a python command, use:
+This sets up a dynamic Python environment. To run a command within the python environment, use:
 
 ```sh
 uv run <command>
@@ -247,9 +247,21 @@ pip install --upgrade pip
 pip install -e '.[dev]'
 ```
 
+You can stop using the virtual environment by running:
+
+```sh
+deactivate
+```
+
+And return to it by running again in the terminal in the project folder:
+
+```sh
+source .pyenv/bin/activate
+```
+
 ### Option 2: `nomad-distro-dev`
 
-This option should be used with a local Linux-based machine.
+This option is designed to be used with a local Linux-based machine. It does not work natively on Windows, but can in principle be run using the [Devcontainer](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank" rel="noopener"} plugin in VSCode or [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){:target="_blank" rel="noopener"} (WSL).
 
 Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"} repository (`Fork` -> `Create a new fork` in the upper right part of the page). You will also need the following additional software installed on your system:
 
@@ -259,7 +271,7 @@ Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-di
 
 - [node.js](https://nodejs.org/en){:target="_blank" rel="noopener"} version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install){:target="_blank" rel="noopener"} version 1.22 or above are necessary to run the GUI
 
-Then, follow the instructions in the `nomad-distro-dev` readme file under the `Basic infra` and `Step-by-Step Setup` headings.
+Then, follow the instructions in the `nomad-distro-dev` readme file under the [`Basic infra`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#basic-infra){:target="_blank" rel="noopener"} and [`Step-by-Step Setup`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#step-by-step-setup){:target="_blank" rel="noopener"} headings.
 
 ## Next steps
 
