@@ -80,14 +80,14 @@ In this step, you can proceed in one of the two following ways:
 1. Use GitHub Codespaces (cloud-based development), or
 2. Develop locally.
 
-**Option 1: Using GitHub Codespaces (Recommended)**
+#### Option 1: Using GitHub Codespaces (Recommended)
 
 To use a GitHub Codespace for plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
 
 ![Use codespace](../images/codespace_dark.png#gh-dark-mode-only)
 ![Use codespace](../images/codespace_light.png#gh-light-mode-only)
 
-**Option 2: Developing locally**
+#### Option 2: Developing locally
 
 If you prefer to work locally, click on the **<> Code** button in the repository and choose the **“Local”** tab, copy the repository URL, and clone it to a selected location in your machine by running in terminal:
 
@@ -101,7 +101,7 @@ cd REPOSITORY_NAME
 
 Cruft is a tool that creates projects from Cookiecutter templates and keeps them up to date as the template evolves.
 
-**Install cruft**
+#### Install cruft
 
 *Skip this step if you are using GitHub Codespaces (cruft is available by default).*
 
@@ -117,7 +117,7 @@ pipx install cruft
 python -m pip install --user cruft
 ```
 
-**Run cruft**
+#### Run cruft
 
 Generate the plugin structure by running in terminal:
 
@@ -194,7 +194,7 @@ git commit -m "Generated plugin from cookiecutter template"
 git push
 ```
 
-**Enable cruft updates**
+#### Enable cruft updates
 
 The template repository includes a GitHub Actions workflow that checks for updates to the cookiecutter template. The workflow runs automatically once a week and can also be triggered manually. To enable this functionality, grant the workflow permission to write to the repository and create pull requests.
 
@@ -217,7 +217,7 @@ The structure of the plugin is now ready for development for your specific purpo
 
 In this step, you will set up a Python environment and install the plugin for local development. This can be done conveniently in one step using [uv](https://docs.astral.sh/uv/getting-started/installation/){:target="_blank" rel="noopener"} or in several steps with pip.
 
-**(Recommended) Installation with uv**
+#### (Recommended) Installation with uv
 
 Open the terminal, navigate to the folder with your plugin using `cd`. Set up the plugin:
 
@@ -231,7 +231,7 @@ This sets up a dynamic Python environment. To run a command within the python en
 uv run <command>
 ```
 
-**(Alternative) Installation with pip**
+#### (Alternative) Installation with pip
 
 Open the terminal, navigate to the folder with your plugin using `cd`. Create a virtual environment using Python 3.12 and activate it:
 
