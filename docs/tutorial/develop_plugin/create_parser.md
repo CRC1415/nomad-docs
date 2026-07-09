@@ -1,6 +1,6 @@
 # Create a parser
 
-This tutorial guides you through creating a NOMAD parsers that transform raw files into structured database entries. It covers three different approaches, each reflecting a different level of user interaction in the NOMAD GUI:
+This tutorial guides you through creating NOMAD parsers that transform raw files into structured database entries. It covers three different approaches, each reflecting a different level of user interaction in the NOMAD GUI:
 
 - **[Tutorial 1](./create_parser_parser_only.md)** — A `MatchingParser` automatically detects and parses the file into a *static* entry when it is uploaded.
 - **[Tutorial 2](./create_parser_eln_only.md)** — An ELN entry is created manually by the user. Uploading a file to its `data_file` field triggers the parsing.
