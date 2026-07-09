@@ -1,6 +1,6 @@
 # Develop a NOMAD plugin
 
-In this tutorial series, you will develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we chose several possible applications as an example, including simplified optical microscopy measurements and black body radiation spectra calculations. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment. The exercises cover everything from creating a plugin repository and defining schemas to implementing parsing and testing.
+In this tutorial series, you will develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we chose several possible applications as an example, including simplified optical microscopy measurements and black-body radiation calculations. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment. The exercises cover everything from creating a plugin repository and defining schemas to implementing parsing and testing.
 
 ---
 
@@ -80,11 +80,11 @@ In this step, you can proceed in one of the two following ways:
 1. Use GitHub Codespaces (cloud-based development), or
 2. Develop locally.
 
-**Option 1: Using GitHub codespaces (Recommended)**
+**Option 1: Using GitHub Codespaces (Recommended)**
 
-To use a GitHub codespace for the plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
+To use a GitHub Codespace for plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
 
-![Use codepace](../images/codespace_dark.png#gh-dark-mode-only)
+![Use codespace](../images/codespace_dark.png#gh-dark-mode-only)
 ![Use codespace](../images/codespace_light.png#gh-light-mode-only)
 
 **Option 2: Developing locally**
@@ -148,7 +148,7 @@ For example:
   [12/12] include_app [y/n] (y): n
 ```
 
-Selecting `y` for include_schema_package creates a Python package for the schema, similar for the parser.
+Selecting `y` for include_schema_package creates a Python package for the schema, and similarly for the parser.
 
 !!! success "You have just created a minimal NOMAD plugin with a plugin entry point for a schema package"
     ```no-highlight
@@ -198,7 +198,7 @@ git push
 
 The template repository includes a GitHub Actions workflow that checks for updates to the cookiecutter template. The workflow runs automatically once a week and can also be triggered manually. To enable this functionality, grant the workflow permission to write to the repository and create pull requests.
 
-From you plugin repository on GitHub, open the **Settings** page, and navigate to **Actions → General** (on the left pane):
+From your plugin repository on GitHub, open the **Settings** page, and navigate to **Actions → General** (on the left pane):
 
 ![Use template](../images/github_settings_dark.png#gh-dark-mode-only)
 ![Use template](../images/github_settings_light.png#gh-light-mode-only)

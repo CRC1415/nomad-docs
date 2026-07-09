@@ -176,7 +176,7 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we want to:
 
 !!! question "Tutorial 1.2"
     Implement the `normalize` method in `BlackbodyResultsPlot` to generate the Plotly plot.
-    You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials /schema / schema_package.py`. Read the instructions in the code for more information.
+    You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.2: Solution"
 
@@ -225,7 +225,7 @@ We define the root class `BlackbodyRadiation` with quantities that have
 [ELN annotations](../../reference/annotations.md#eln-annotations)
 (`a_eln`). These annotations determine how each quantity is
 rendered in the GUI (e.g. text inputs or number edits) and allow input
-from the users.
+from users.
 
 ```py
 from nomad.datamodel.data import EntryData
@@ -448,9 +448,9 @@ The notebook walks through these steps:
 
 ### Using the GUI
 
-Testing the GUI outcome requires a local NOMAD GUI development setup. For that, use [Option 2: `nomad-distro-dev`](plugin_structure.md#option-2-nomad-distro-dev) from the previous tutorial and add your plugin in that environment. With this, you can spin up a local development deployment of NOMAD.
+Testing the GUI outcome requires a local NOMAD GUI development setup. For that, use [Option 2: `nomad-distro-dev`](plugin_structure.md#option-2-nomad-distro-dev) from the previous tutorial and add your plugin to that environment. With this, you can spin up a local development deployment of NOMAD.
 
-Let's start with creating a new Upload (or Project) there and then:
+Let's start by creating a new Upload (or Project) there:
 
 - Create an entry and populate the temperature.
 

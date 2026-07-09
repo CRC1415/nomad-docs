@@ -61,7 +61,7 @@ A shared helper function `read_data_file` (from `nomad_plugin_tutorials.parsers.
 
 A parser is registered in the same way as a schema package: by defining a `ParserEntryPoint` in the `__init__.py` of the parsers module and adding it to `pyproject.toml`.
 
-The entry point class overrides `load()` to instantiate and return the parser. Crucially, `mainfile_name_re` sets a regular expression pattern that NOMAD uses to match this parser to incoming files. Let's take the example of the Tutorial 1:
+The entry point class overrides `load()` to instantiate and return the parser. Crucially, `mainfile_name_re` sets a regular expression pattern that NOMAD uses to match this parser to incoming files. Let's take the example of Tutorial 1:
 
 ```py
 from nomad.config.models.plugins import ParserEntryPoint
