@@ -261,7 +261,7 @@ source .pyenv/bin/activate
 
 ### Option 2: `nomad-distro-dev`
 
-This option is designed to be used with a local Linux-based machine. It does not work natively on Windows, but can in principle be run using the [Devcontainer](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers){:target="_blank" rel="noopener"} plugin in VSCode or [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){:target="_blank" rel="noopener"} (WSL).
+This option is designed to be used with a local Linux-based machine. The `nomad-distro-dev` also works with macOS or Windows, but some NOMAD plugins might not function correctly there.
 
 This setup is required when you need to verify plugin behavior in the NOMAD GUI.
 
