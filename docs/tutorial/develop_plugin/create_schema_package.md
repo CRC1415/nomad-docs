@@ -158,7 +158,7 @@ class BlackbodyResultsPlot(BlackbodyResults, PlotSection):
     Section that generates a Plotly plot of the spectral radiance profile and
     populates `figures` subsection with JSON-serialized Plotly figure data.
     """
-    
+
     def normalize(self, archive: 'EntryArchive', logger: 'BoundLogger') -> None:
         """
         Creates a Plotly line plot of B(λ, T) and marks the peak wavelength.
@@ -176,7 +176,7 @@ Within the `normalize` method of `BlackbodyResultsPlot`, we want to:
 
 !!! question "Tutorial 1.2"
     Implement the `normalize` method in `BlackbodyResultsPlot` to generate the Plotly plot.
-    You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials /schema / schema_package.py`. Read the instructions in the code for more information.
+    You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / schema / schema_package.py`. Read the instructions in the code for more information.
 
 ??? success "Tutorial 1.2: Solution"
 
@@ -225,7 +225,7 @@ We define the root class `BlackbodyRadiation` with quantities that have
 [ELN annotations](../../reference/annotations.md#eln-annotations)
 (`a_eln`). These annotations determine how each quantity is
 rendered in the GUI (e.g. text inputs or number edits) and allow input
-from the users.
+from users.
 
 ```py
 from nomad.datamodel.data import EntryData
@@ -431,3 +431,38 @@ or use `uv sync` if you are using uv.
 ```sh
 uv sync --extra dev
 ```
+
+## Testing
+
+### Using Python API
+
+Run the cells in `src / nomad_plugin_tutorials / schema / tutorial.ipynb`.
+
+The notebook walks through these steps:
+
+1. Create an empty `EntryArchive`.
+2. Instantiate `BlackbodyRadiation` and attach it to `archive.data`.
+3. Run normalization with `normalize_all`.
+4. Inspect the normalized archive and derived results.
+5. Render the generated Plotly figure.
+
+### Using the GUI
+
+Testing the GUI outcome requires a local NOMAD GUI development setup. For that, use [Option 2: `nomad-distro-dev`](plugin_structure.md#option-2-nomad-distro-dev) from the previous tutorial and add your plugin to that environment. With this, you can spin up a local development deployment of NOMAD.
+
+Let's start by creating a new Upload (or Project) there:
+
+- Create an entry and populate the temperature.
+
+    ![Entry form](../images/plugin_tutorial_schema_1_dark.png#gh-dark-mode-only)
+    ![Entry form](../images/plugin_tutorial_schema_1_light.png#gh-light-mode-only)
+
+- Save the entry, then go to the `Results` section.
+
+    ![Results section](../images/plugin_tutorial_schema_2_dark.png#gh-dark-mode-only)
+    ![Results section](../images/plugin_tutorial_schema_2_light.png#gh-light-mode-only)
+
+- Open the `Figures` section to find the spectral radiance plot.
+
+    ![Figures plot](../images/plugin_tutorial_schema_3_dark.png#gh-dark-mode-only)
+    ![Figures plot](../images/plugin_tutorial_schema_3_light.png#gh-light-mode-only)

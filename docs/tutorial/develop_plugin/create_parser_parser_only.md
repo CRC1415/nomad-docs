@@ -132,7 +132,7 @@ measurement.m_setdefault('results/0')
 measurement.results[0].image = 'path/to/image.jpeg'
 ```
 
-!!! example "Tutorial 1.1"
+!!! question "Tutorial 1.1"
     Complete the `parse` method of `OpticalMicroscopyParser` to populate all fields of the `OpticalMicroscopy` schema from the parsed data dictionary and assign it to `archive.data`.
 
     You can find this class in the `tutorial-mode` branch under `src / nomad_plugin_tutorials / parsers / tutorial_1 / parsers / parser.py`.
@@ -186,9 +186,9 @@ input.
 
 ## Testing the parser
 
-If you use `nomad-distro-dev` development environment, all functionality of the plugin can be tested within GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
+If you use the `nomad-distro-dev` development environment, all functionality of the plugin can be tested within the GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
 
-For a stand-alone installation of the plugin, please use a provided `tutorial.ipynb` jupyter notebook (you can find it under `src / nomad_plugin_tutorials / parsers / tutorial_1 / tutorial.ipynb`).
+For a stand-alone installation of the plugin, please use the provided `tutorial.ipynb` Jupyter notebook (you can find it under `src / nomad_plugin_tutorials / parsers / tutorial_1 / tutorial.ipynb`).
 
 Before running the notebook, ensure that the plugin and all dependencies are installed by running
 
@@ -202,6 +202,6 @@ or, if you use pip:
 pip install -e '.[dev]'
 ```
 
-In step 1, you will use the `parse()` function from `nomad.client` to imitate uploading a file in GUI
+In step 1, you will use the `parse()` function from `nomad.client` to imitate uploading a file in the GUI.
 
-In step 2, you can inspect the parsing results
+In step 2, you can inspect the parsing results.

@@ -1,6 +1,6 @@
 # Develop a NOMAD plugin
 
-In this tutorial series, you will develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we chose several possible applications as an example, including simplified optical microscopy measurements and black body radiation spectra calculations. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment. The exercises cover everything from creating a plugin repository and defining schemas to implementing parsing and testing.
+In this tutorial series, you will develop a custom NOMAD plugin that extends NOMAD with a domain-specific schema package and a parser. To follow the full development workflow, we chose several possible applications as an example, including simplified optical microscopy measurements and black-body radiation calculations. The tutorial utilizes a set of exercises leading to the development of a working plugin that can be tested locally and integrated into a NOMAD Oasis deployment. The exercises cover everything from creating a plugin repository and defining schemas to implementing parsing and testing.
 
 ---
 
@@ -18,21 +18,21 @@ In the following tutorials, you will create a custom schema package and a parser
 
 ## Before you begin
 
-This tutorial assumes basic familiarity with Python and Git and is intended for users who want to extend NOMAD with custom functionality.
+This tutorial assumes basic familiarity with Python and Git, as well as minimal experience of using NOMAD. It is intended for users who want to extend local NOMAD deployment (NOMAD Oasis) with custom functionality.
 
 Before starting this tutorial, make sure you have the following:
 
-1. **GitHub account**  
+1. **GitHub account**
    Required to create and manage the plugin repository. You can create a free account at [github.com/signup](https://github.com/signup){:target="_blank" rel="noopener"}.
 
-2. **Basic understanding of Python**  
+2. **Basic understanding of Python**
    You should be comfortable reading and writing basic Python code, including modules, functions,
    and classes.
 
-3. **Basic understanding of NOMAD metainfo**  
+3. **Basic understanding of NOMAD metainfo**
    Familiarity with NOMAD’s metainfo system is helpful. If needed, review [FAIRmat Tutorial 8](https://www.fairmat-nfdi.eu/events/fairmat-tutorial-8/tutorial-8-materials){:target="_blank" rel="noopener"}.
 
-4. **Local or cloud-based development environment**  
+4. **Local or cloud-based development environment**
    You need either:
 
     - A local machine with Python ≥ 3.12, git, and any Integrated Development Environment (IDE), or
@@ -44,9 +44,11 @@ Before starting this tutorial, make sure you have the following:
     if you are unfamiliar with any of them:
 
     - [what is Git](https://learn.microsoft.com/en-us/devops/develop/git/what-is-git){:target="_blank" rel="noopener"}
-    - [what is VSCode, i. e., an IDE](https://aws.amazon.com/what-is/ide/){:target="_blank" rel="noopener"}
+    - [what is an IDE](https://aws.amazon.com/what-is/ide/){:target="_blank" rel="noopener"}
+    - [what is VSCode (an example of IDE)](https://code.visualstudio.com/docs/getstarted/overview){:target="_blank" rel="noopener"}
     - [what is Pip](https://realpython.com/lessons/what-is-pip-overview/){:target="_blank" rel="noopener"}
     - [what is a Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/#why-do-you-need-virtual-environments){:target="_blank" rel="noopener"}
+    - [what is uv](https://realpython.com/ref/tools/uv/){:target="_blank" rel="noopener"}
     - [creating a Python package](https://packaging.python.org/en/latest/tutorials/packaging-projects/){:target="_blank" rel="noopener"}
     - [uploading a package to PyPI](https://www.freecodecamp.org/news/how-to-create-and-upload-your-first-python-package-to-pypi/){:target="_blank" rel="noopener"}
     - [what is cruft](https://cruft.github.io/cruft/){:target="_blank" rel="noopener"}
@@ -73,19 +75,19 @@ Next, you will generate the initial structure of the plugin by applying the offi
 
 ### Choose a development environment
 
-You can proceed in one of two ways:
+In this step, you can proceed in one of the two following ways:
 
 1. Use GitHub Codespaces (cloud-based development), or
 2. Develop locally.
 
-**Using GitHub codespaces**
+#### Option 1: Using GitHub Codespaces (Recommended)
 
-To use a GitHub codespace for the plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
+To use a GitHub Codespace for plugin development, click on the **<> Code** button in the repository and choose **Create codespace on main**.
 
-![Use codepace](../images/codespace_dark.png#gh-dark-mode-only)
+![Use codespace](../images/codespace_dark.png#gh-dark-mode-only)
 ![Use codespace](../images/codespace_light.png#gh-light-mode-only)
 
-**Developing locally**
+#### Option 2: Developing locally
 
 If you prefer to work locally, click on the **<> Code** button in the repository and choose the **“Local”** tab, copy the repository URL, and clone it to a selected location in your machine by running in terminal:
 
@@ -99,7 +101,7 @@ cd REPOSITORY_NAME
 
 Cruft is a tool that creates projects from Cookiecutter templates and keeps them up to date as the template evolves.
 
-**Install cruft**
+#### Install cruft
 
 *Skip this step if you are using GitHub Codespaces (cruft is available by default).*
 
@@ -115,9 +117,9 @@ pipx install cruft
 python -m pip install --user cruft
 ```
 
-**Run cruft**
+#### Run cruft
 
-Generate the plugin structure by running:
+Generate the plugin structure by running in terminal:
 
 ```sh
 cruft create https://github.com/FAIRmat-NFDI/cookiecutter-nomad-plugin
@@ -146,7 +148,7 @@ For example:
   [12/12] include_app [y/n] (y): n
 ```
 
-Selecting `y` for include_schema_package creates a Python package for the schema, similar for the parser.
+Selecting `y` for include_schema_package creates a Python package for the schema, and similarly for the parser.
 
 !!! success "You have just created a minimal NOMAD plugin with a plugin entry point for a schema package"
     ```no-highlight
@@ -192,11 +194,11 @@ git commit -m "Generated plugin from cookiecutter template"
 git push
 ```
 
-**Enable cruft updates**
+#### Enable cruft updates
 
 The template repository includes a GitHub Actions workflow that checks for updates to the cookiecutter template. The workflow runs automatically once a week and can also be triggered manually. To enable this functionality, grant the workflow permission to write to the repository and create pull requests.
 
-From you plugin repository on GitHub, open the **Settings** page, and navigate to **Actions → General** (on the left pane):
+From your plugin repository on GitHub, open the **Settings** page, and navigate to **Actions → General** (on the left pane):
 
 ![Use template](../images/github_settings_dark.png#gh-dark-mode-only)
 ![Use template](../images/github_settings_light.png#gh-light-mode-only)
@@ -215,7 +217,7 @@ The structure of the plugin is now ready for development for your specific purpo
 
 In this step, you will set up a Python environment and install the plugin for local development. This can be done conveniently in one step using [uv](https://docs.astral.sh/uv/getting-started/installation/){:target="_blank" rel="noopener"} or in several steps with pip.
 
-**(Recommended) Installation with uv**
+#### (Recommended) Installation with uv
 
 Open the terminal, navigate to the folder with your plugin using `cd`. Set up the plugin:
 
@@ -223,13 +225,13 @@ Open the terminal, navigate to the folder with your plugin using `cd`. Set up th
 uv sync --extra dev
 ```
 
-This sets up a dynamic Python environment. To run a python command, use:
+This sets up a dynamic Python environment. To run a command within the python environment, use:
 
 ```sh
 uv run <command>
 ```
 
-**(Alternative) Installation with pip**
+#### (Alternative) Installation with pip
 
 Open the terminal, navigate to the folder with your plugin using `cd`. Create a virtual environment using Python 3.12 and activate it:
 
@@ -245,9 +247,23 @@ pip install --upgrade pip
 pip install -e '.[dev]'
 ```
 
+You can stop using the virtual environment by running:
+
+```sh
+deactivate
+```
+
+And return to it by running again in the terminal in the project folder:
+
+```sh
+source .pyenv/bin/activate
+```
+
 ### Option 2: `nomad-distro-dev`
 
-This option should be used with a local Linux-based machine.
+This option is designed to be used with a local Linux-based machine. The `nomad-distro-dev` also works with macOS or Windows, but some NOMAD plugins might not function correctly there.
+
+This setup is required when you need to verify plugin behavior in the NOMAD GUI.
 
 Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"} repository (`Fork` -> `Create a new fork` in the upper right part of the page). You will also need the following additional software installed on your system:
 
@@ -257,8 +273,8 @@ Start with forking [`nomad-distro-dev`](https://github.com/FAIRmat-NFDI/nomad-di
 
 - [node.js](https://nodejs.org/en){:target="_blank" rel="noopener"} version 20 or above and [yarn](https://classic.yarnpkg.com/en/docs/install){:target="_blank" rel="noopener"} version 1.22 or above are necessary to run the GUI
 
-Then, follow the instructions in the `nomad-distro-dev` readme file under the `Basic infra` and `Step-by-Step Setup` headings.
+Then, follow the instructions in the `nomad-distro-dev` readme file under the [`Basic infra`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#basic-infra){:target="_blank" rel="noopener"} and [`Developing nomad + plugins locally`](https://github.com/FAIRmat-NFDI/nomad-distro-dev#developing-nomad--plugins-locally){:target="_blank" rel="noopener"} headings.
 
 ## Next steps
 
-In the next tutorials we will learn how to add data schemas and file parsers to our newly created plugin.
+In the next tutorials you will learn how to add data schemas and file parsers to an existing NOMAD plugin.

@@ -1,10 +1,10 @@
 # Testing the plugin
 
-Complete plugin can be tested locally before adding it to the [NOMAD Oasis image](../../howto/oasis/configure.md).
+A complete plugin can be tested locally before adding it to the [NOMAD Oasis image](../../howto/oasis/configure.md).
 
-If you use `nomad-distro-dev` development environment, all functionality of the plugin can be tested within GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
+If you use the `nomad-distro-dev` development environment, all functionality of the plugin can be tested within the GUI by restarting the appworker and/or the GUI. For details, please see the `README.md` file of the [`nomad-distro-dev` repository](https://github.com/FAIRmat-NFDI/nomad-distro-dev){:target="_blank" rel="noopener"}.
 
-For the stand-alone installation of the plugin, other options are available: parsing only with a command line, or parsing and normalization with a python script.
+For the stand-alone installation of the plugin, other options are available: parsing only with a command line, or parsing and normalization with a Python script.
 
 ## Parsing only with a command line
 
@@ -28,9 +28,9 @@ The parsing can be tested at any moment using a built-in NOMAD command `parse`.
     uv run nomad parse PATH/TO/THE/SELECTED/INPUT/FILE > result.json
     ```
 
-## Parsing and normalization with a python script
+## Parsing and normalization with a Python script
 
-You can import `parse()` and `normalize_all()` functions from `nomad.client` in a python script. For example, if you want to test the resulting code in [Tutorial 3](./create_parser_hybrid.md), you can parse the provided `metadata.xml` file. The `parse()` function will return the raw data entry, and the additional ELN entry `metadata.archive.json` will be created in the working folder. This new entry can also be opened as a separate archive with an additional call of `parse()`, and either archive can be normalized with the `normalize_all()`. The archives can be viewed with `m_to_dict()` method of the archive; `json.dumps()` standard function improves the readability of the output.
+You can import the `parse()` and `normalize_all()` functions from `nomad.client` in a Python script. For example, if you want to test the resulting code in [Tutorial 3](./create_parser_hybrid.md), you can parse the provided `metadata.xml` file. The `parse()` function will return the raw data entry, and the additional ELN entry `metadata.archive.json` will be created in the working folder. This new entry can also be opened as a separate archive with an additional call of `parse()`, and either archive can be normalized with `normalize_all()`. The archives can be viewed with the `m_to_dict()` method of the archive; the standard `json.dumps()` function improves the readability of the output.
 
 ```py
 import json

@@ -1,6 +1,6 @@
 # Create a parser
 
-This tutorial guides you through creating a NOMAD parsers that transform raw files into structured database entries. It covers three different approaches, each reflecting a different level of user interaction in the NOMAD GUI:
+This tutorial guides you through creating NOMAD parsers that transform raw files into structured database entries. It covers three different approaches, each reflecting a different level of user interaction in the NOMAD GUI:
 
 - **[Tutorial 1](./create_parser_parser_only.md)** — A `MatchingParser` automatically detects and parses the file into a *static* entry when it is uploaded.
 - **[Tutorial 2](./create_parser_eln_only.md)** — An ELN entry is created manually by the user. Uploading a file to its `data_file` field triggers the parsing.
@@ -61,7 +61,7 @@ A shared helper function `read_data_file` (from `nomad_plugin_tutorials.parsers.
 
 A parser is registered in the same way as a schema package: by defining a `ParserEntryPoint` in the `__init__.py` of the parsers module and adding it to `pyproject.toml`.
 
-The entry point class overrides `load()` to instantiate and return the parser. Crucially, `mainfile_name_re` sets a regular expression pattern that NOMAD uses to match this parser to incoming files. Let's take the example of the Tutorial 1:
+The entry point class overrides `load()` to instantiate and return the parser. Crucially, `mainfile_name_re` sets a regular expression pattern that NOMAD uses to match this parser to incoming files. Let's take the example of Tutorial 1:
 
 ```py
 from nomad.config.models.plugins import ParserEntryPoint
@@ -92,6 +92,12 @@ Then reinstall the plugin:
 
 ```sh
 pip install -e '.[dev]'
+```
+
+or, if you use `uv`:
+
+```sh
+uv sync --extra dev
 ```
 
 For Tutorial 2, we only have a schema package, whereas for Tutorial 3, we again
