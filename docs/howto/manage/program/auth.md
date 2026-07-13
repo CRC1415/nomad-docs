@@ -34,7 +34,7 @@ A PAT can be created via the API with the [keycloak access token](#keycloak-acce
 import requests
 
 response = requests.post(
-    "{{ nomad_url() }}/v1/pats",
+    "{{ nomad_url() }}/v1/auth/pats",
     headers={"Authorization": "Bearer <keycloak-access-token>"},
     json={
         "metadata": {
@@ -50,13 +50,18 @@ pat = response.json()
 raw_token = pat["raw_token"]
 ```
 
-### Use a PAT in Python
+### Use a PAT
 
-Once created, we recommend storing it in an environment variable:
+Once created, we recommend [storing it in an environment variable](https://en.wikipedia.org/wiki/Environment_variable){:target="_blank" rel="noopener"}, for example on macOS/Linux:
 
 ```bash
 export NOMAD_PAT="<personal-access-token>"
 ```
+
+This helps avoid hardcoding secrets in scripts, which can be accidentally leaked
+through version control, logs, or shared files.
+
+#### With Python `requests`
 
 Use the PAT in subsequent requests:
 
@@ -66,11 +71,38 @@ import requests
 
 response = requests.get(
     "{{ nomad_url() }}/v1/uploads",
-    headers={"Authorization": f"Bearer {os.environ["NOMAD_PAT"]}"},
+    headers={"Authorization": f"Bearer {os.environ['NOMAD_PAT']}"},
 )
 response.raise_for_status()
+```
 
-uploads = response.json()["data"]
+#### With `curl`
+
+Use the PAT in the `Authorization` header:
+
+```bash
+curl "{{ nomad_url() }}/v1/uploads" \
+  -H "Authorization: Bearer ${NOMAD_PAT}"
+```
+
+!!! warning
+    You can set default headers in [`~/.curlrc`](https://everything.curl.dev/cmdline/configfile.html){:target="_blank" rel="noopener"},
+    but be careful: those headers are applied to ALL `curl` requests using that config. This can
+    accidentally send your PAT to unintended endpoints.
+
+    ```.curlrc
+    header = "Authorization: Bearer ${NOMAD_PAT}"
+    ```
+
+#### With `wget`
+
+Use the PAT in the `Authorization` header:
+
+```bash
+wget \
+  --header="Authorization: Bearer ${NOMAD_PAT}" \
+  -O - \
+  "{{ nomad_url() }}/v1/uploads"
 ```
 
 ### List your PATs
@@ -86,8 +118,8 @@ import os
 import requests
 
 response = requests.get(
-    "{{ nomad_url() }}/v1/pats",
-    headers={"Authorization": f"Bearer {os.environ["NOMAD_PAT"]}"},
+    "{{ nomad_url() }}/v1/auth/pats",
+    headers={"Authorization": f"Bearer {os.environ['NOMAD_PAT']}"},
     params={
         "search": "ci",
         "state": "active",
@@ -115,7 +147,7 @@ import requests
 pat_id = "<pat-id>"
 
 response = requests.get(
-    f"{{ nomad_url() }}/v1/pats/{pat_id}",
+    f"{{ nomad_url() }}/v1/auth/pats/{pat_id}",
     headers={"Authorization": "Bearer <keycloak-access-token>"},
 )
 response.raise_for_status()
@@ -133,7 +165,7 @@ import requests
 pat_id = "<pat-id>"
 
 response = requests.delete(
-    f"{{ nomad_url() }}/v1/pats/{pat_id}",
+    f"{{ nomad_url() }}/v1/auth/pats/{pat_id}",
     headers={"Authorization": "Bearer <keycloak-access-token>"},
 )
 response.raise_for_status()
@@ -149,7 +181,7 @@ import requests
 pat_id = "<pat-id>"
 
 response = requests.post(
-    f"{{ nomad_url() }}/v1/pats/{pat_id}/rotate",
+    f"{{ nomad_url() }}/v1/auth/pats/{pat_id}/rotate",
     headers={"Authorization": "Bearer <keycloak-access-token>"},
 )
 response.raise_for_status()
