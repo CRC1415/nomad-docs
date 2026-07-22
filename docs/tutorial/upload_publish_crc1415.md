@@ -334,54 +334,10 @@ On the OVERVIEW tab, all information of the sample will be presented.
 
 You can organize several entries by grouping them into common datasets, making it easier to manage related data.
 Datasets are for organizing and referencing curated data. They do not affect how data is processed.
-Users can get a DOI for their datasets.
+Users can get a DOI for their datasets on [https://nomad-lab.eu](https://nomad-lab.eu).
 
-### Group entries into a dataset
+!!! info "For creating datasets, please [read the tutorial](../tutorial/upload_publish.html#create-datasets-and-get-a-doi) about it."
 
-**Step 1:** In the uploads page, click on **EDIT AUTHOR METADATA OF ALL ENTRIES** button. This will add all the Entries in the upload to the dataset.
-
-![Screenshot of step 1 of creating dataset](images/datasets_step1.png)
-
-Alternatively, if you would like to add selected entries from your Upload, click on the check box next to the entries you would like to add, then click on <img src="images/change_name_icon.png" alt="Change Name Icon" width="20"> to open the EDIT AUTHOR METADATA window for the selected entries only.
-
-![Screenshot of step 1 of creating dataset](images/datasets_step1_alt.png)
-
-**Step 2:** In the Datasets section, you have two options:
-
-- Create a new dataset: If the dataset you want to group your entries under doesn't exist yet, you can create one here.
-- Search for an existing dataset: If the dataset already exists, you can search for it by name or other attributes.
-
-**Step 3:** Once you've selected or created the appropriate dataset, click **ADD ENTRY TO NEW DATASET**
-
-**Step 4:** Click on SUBMIT to group your entries under that dataset.
-
-![Screenshot of steps 2 - 4 of creating dataset](images/datasets_steps_2-4.png)
-
-### Manage a dataset and assign it a DOI
-
-User-created datasets exist in the “Your datasets” page. You can reach there by clicking on **Datasets** in the **PUBLISH** menu. Here you can view a list of all your created datasets with their relevant information and assign them a DOI.
-
-!!! warning "Assigning a DOI makes the dataset permanent—it cannot be modified or deleted."
-    If you want to test the process without actually publishing the data, you can do so in the [NOMAD test installation](https://nomad-lab.eu/prod/v1/test/gui/about/information){:target="_blank" rel="noopener"}.
-
-**Use the arrow buttons ⬅️➡️ below to follow the steps of exploring and managing your datasets.**
-
-<div class="image-slider" id="slider2">
-    <div class="nav-arrow left" id="prev2">←</div>
-    <img src="images/dataset_1.png" alt="screenshot of navigating to datasets" class="active">
-    <img src="images/dataset_2.png" alt="screenshot of the dataset page">
-    <img src="images/dataset_3.png" alt="Go to dataset page and review entries ">
-    <div class="nav-arrow right" id="next2">→</div>
-</div>
-
-**Use the arrow buttons ⬅️➡️ below to see how to publish your datasets and assign them a DOI.**
-
-<div class="image-slider" id="slider3">
-    <div class="nav-arrow left" id="prev3">←</div>
-    <img src="images/dataset_4.png" alt="screenshot of navigating to datasets" class="active">
-    <img src="images/dataset_5.png" alt="screenshot of the dataset page">
-    <img src="images/dataset_6.png" alt="Go to dataset page and review entries ">
-    <div class="nav-arrow right" id="next3">→</div>
-</div>
+!!! warning "At the moment, there's no DOI creation service within NOMAD Oasis CRC1415. Please use the worldwide accessible [NOMAD service](https://nomad-lab.eu) or the [CRC1415 Zenodo community](https://zenodo.org/communities/crc1415/about). If you need help, please contact the [INF project of the CRC145](https://tu-dresden.de/mn/chemie/sfb1415/forschung/zentrale-projekte/projekt-inf)."
 
 ---
