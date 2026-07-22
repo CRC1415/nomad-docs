@@ -24,6 +24,7 @@ NOMAD is useful for scientists that work with data, for research groups that nee
 A series of tutorials will guide you through the main functionality of NOMAD.
 
 - [Upload and publish your own data](tutorial/upload_publish.md)
+- [Upload, share, and publish data within the CRC1415](tutorial/upload_publish_crc1415.md)
 - [Use the search interface to identify interesting data](tutorial/explore.md)
 - [Use the API to search and access processed data for analysis](tutorial/access_api.md)
 - [Create and use custom schemas in NOMAD](tutorial/custom.md)

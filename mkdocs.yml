@@ -2,7 +2,7 @@ site_name: Documentation
 site_description: |
   The documentation for NOMAD v1.
 site_author: The NOMAD Authors
-repo_url: https://github.com/nomad-coe/nomad
+repo_url: https://github.com/CRC1415/nomad-docs
 edit_uri: ""
 nav:
   - Home: index.md
@@ -12,6 +12,7 @@ nav:
       - Upload and publish data:
           - With the GUI: tutorial/upload_publish.md
           - Programmatically: tutorial/upload_publish_api.md
+          - Upload, share, and publish data within the CRC1415: tutorial/upload_publish_crc1415.md
       - Use NOMAD as an ELN:
           - Built-in ELN templates: tutorial/eln/built_in_templates.md
           - Custom ELN with YAML: tutorial/eln/custom_eln_yaml.md
@@ -189,7 +190,7 @@ markdown_extensions:
 
 extra:
   generator: false
-  homepage: https://nomad-lab.eu
+  homepage: https://oasis-crc1415.zih.tu-dresden.de/nomad-oasis/
 use_directory_urls: false
 plugins:
   - search
