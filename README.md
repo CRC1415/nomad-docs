@@ -4,6 +4,8 @@ This repository hosts all official documentation for the NOMAD platform — incl
 
 See the releases for different versions of the documentation (from v1.4.0 onwards they are synced with NOMAD versions).
 
+It also contains the tutorial for the NOMAD Oasis CRC1415.
+
 ## Contributing
 
 - Typos, corrections, and missing docs can be reported by [Creating an Issue](https://github.com/FAIRmat-NFDI/nomad-docs/issues/new)
