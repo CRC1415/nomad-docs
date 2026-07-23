@@ -318,12 +318,13 @@ On the OVERVIEW tab, all information of the sample will be presented.
     After providing the `.tvb` file and saving the entry, the (meta)data extraction will automatically start.
     
 
-??? task "Showing tif files"
-    **MeasurementSEM/TEM**
+??? task "Showing images as preview"
+    **MeasurementImages**
 
     Start with uploading the `.tif` file. Follow the steps shown in the animation below.
+    Use the section `MeasurementImages` for preview of `.tif`, `.tiff`, `.jpeg`, `.jpg` or `.png`.
 
-    ![An animation demonstrating the parsing of Raman data in NOMAD ](images_crc1415/schema_sem_01.gif)
+    ![An animation demonstrating the parsing of Raman data in NOMAD ](images_crc1415/schema_images_01.gif)
 
     At the moment, there's no built-in support for rendering `.tif` files in NOMAD. Instead please use this plugin in the meantime.
     
